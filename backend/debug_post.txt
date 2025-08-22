@@ -1,0 +1,26 @@
+Array
+(
+    [Nombre] => Misael Gomez
+    [Empresa] => TI
+    [Email] => sisdev79@gmail.com
+    [Telefono] => 2227716217
+    [direccion_Empresa] => 16 pte
+    [Cargo_Ocupacional] => Ventas, Sistemas
+    [whatsapp] => 123123
+    [descripcion_Empresa] => GHJ
+    [servicios] => Array
+        (
+            [0] => Protección personal
+            [1] => Seguridad patrimonial
+        )
+
+    [num_guardias] => 12
+    [SelectTurno] => 12hrs
+    [equipamiento] => Array
+        (
+            [0] => Jefe de servicio
+            [1] => Camioneta con batea
+        )
+
+    [comentarios] => FG
+)
