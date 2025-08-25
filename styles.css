@@ -165,13 +165,15 @@ body {
 .crs-form-step-1,
 .crs-form-step-2,
 .crs-form-step-3,
-.crs-form-step-4 {
+.crs-form-step-4,
+.crs-form-step-5 {
     display: none;
 }
 
 .crs-form-step-1.active,
 .crs-form-step-2.active,
 .crs-form-step-3.active,
+.crs-form-step-4.active,
 .crs-form-step-4.active {
     display: block;
 }
