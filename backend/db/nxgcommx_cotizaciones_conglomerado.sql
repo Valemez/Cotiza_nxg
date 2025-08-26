@@ -60,3 +60,12 @@ CREATE TABLE items (
     cantidad_jarseria int,
     created_at TIMESTAMP
 );
+
+/*---------- login --------------*/
+CREATE TABLE usuarios (
+	id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+    correo varchar(100) NOT NULL,
+    password varchar(100) not null,
+    nombre varchar(100) not null,
+    created_at TIMESTAMP
+);
