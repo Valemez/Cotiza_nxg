@@ -73,8 +73,8 @@
                         <!-- div de puesto ocupacional -->
                     <div class="crs-input-flex">
                         <div class="crs-input-group">
-                            <label for="Puesto" class="crs-form-label">Puesto ocupacional: </label>
-                            <input type="text" name="Puesto" id="Puesto"
+                            <label for="puesto" class="crs-form-label">Puesto ocupacional: </label>
+                            <input type="text" name="puesto" id="puesto"
                                 placeholder="Ej. Ventas, Sistemas, Director General." class="crs-form-input" required>
                         </div>
                         <!-- Div de asunto -->
@@ -84,45 +84,31 @@
                                 class="crs-form-input" required>
                         </div>
                     </div>
-                </div>
-
+                </div>  
                 <!-- Paso 2: Servicios -->
                 <div class="crs-form-step-2">
+                    <!-- div de selección del servicio -->
                     <div class="crs-input-group">
-                        <label class="crs-form-label">Seleccione el tipo de servicio que requiere:</label>
-
-
-                        <div class="crs-checkbox-group">
-                            <label class="crs-checkbox-label">
-                                <input type="checkbox" name="servicios[]" value="Guardias Seguridad"
-                                    class="crs-checkbox-input"> Guardias de seguridad
-                            </label>
-                        </div>
-
-                        <div class="crs-checkbox-group">
-                            <label class="crs-checkbox-label">
-                                <input type="checkbox" name="servicios[]" value="Protección personal"
-                                    class="crs-checkbox-input"> Protección Personal
-                            </label>
-                        </div>
-
-                        <div class="crs-checkbox-group">
-                            <label class="crs-checkbox-label">
-                                <input type="checkbox" name="servicios[]" value="Seguridad patrimonial"
-                                    class="crs-checkbox-input"> Seguridad patrimonial
-                            </label>
-                        </div>
-
-                        <div class="crs-checkbox-group">
-                            <label class="crs-checkbox-label">
-                                <input type="checkbox" name="servicios[]" value="Custodia mercancia"
-                                    class="crs-checkbox-input"> Custodia de mercancia
-                            </label>
-                        </div>
+                        <label for="tipo-Servicio" class="crs-form-label">Seleccione el tipo de servicio que requiere.</label>
+                        <select name="servicios" id="servicios" class="crs-form-input">
+                            <option value="Limpieza">Limpieza</option>
+                            <option value="Fumigacion">Fumigación</option>
+                        </select>
                     </div>
+                    <!-- div de Insertar excel, pdf, powerpoint de cotización -->
+                        <div class="crs-input-group">
+                            <label for="archivo_excel" class="crs-form-label">Insertar el archivo de cotización del Cliente</label>
+                            <input type="file" name="archivo_excel" id="archivo" accept="image/png,.xls,.xlsx,.doc,.pdf" class="crs-form-input" required>
+                        </div>
+
+                        <div class="crs-input-group">
+                            <label for="descripcion_servicio" class="crs-form-label">Descripción del servicio</label>
+                            <textarea name="descripcion_servicio" id="descripcion_servicio" class="crs-form-input crs-form-textarea"
+                                placeholder="Especifique la descripción de"></textarea>
+                        </div>
                 </div>
-                
-                <!-- Paso 3: Selección de colaboraodres -->
+            
+                <!-- Paso 3: Selección de colaboradores -->
                 <div class="crs-form-step-3">
                     <div class="crs-input-group">
                         <label class="crs-form-label">Seleccione el tipo de servicio que requiere:</label>
@@ -163,33 +149,58 @@
                 <div class="crs-form-step-4">
                     <div class="crs-input-group">
                         <label class="crs-form-label">Seleccione los equipamientos requeridos:</label>
-
+                        <!-- Div del nuemero de colaboradores -->
                         <div class="crs-input-flex">
                             <div class="crs-input-group">
-                                <label for="num-guardias" class="crs-form-label">Número de guardias</label>
-                                <input type="number" name="num_guardias" id="num_guardias" placeholder="Ej. 12"
+                                <label for="numero_colaboradores" class="crs-form-label">Número de colaboradores:</label>
+                                <input type="number" name="numero_colaboradores" id="numero_colaboradores" placeholder="Ej. 12"
                                     class="crs-form-input" min="1">
                             </div>
-
+                            <!-- div estado de la republica -->
                             <div class="crs-input-group">
-                                <label for="tipo-turno" class="crs-form-label">Tipo de turno</label>
-                                <select name="SelectTurno" id="SelectTurno" class="crs-form-input">
-                                    <option value="12hrs">12 horas</option>
-                                    <option value="24hrs">24 horas</option>
+                                <label for="Estado_republica" class="crs-form-label">Selecciona el estado de trabajo: </label>
+                                <select name="Estado_republica" multiple id="Estado_republica" onchange="mostrarEstados()" class="crs-form-input" onchange="mostrarEstados()" required>
+                                    <option value="Aguascalientes">Aguascalientes</option>
+                                    <option value="Baja_California">Baja California</option>
+                                    <option value="Baja_California_Sur">Baja California Sur</option>
+                                    <option value="Campeche">Campeche</option>
+                                    <option value="Ciudad_de_México">Ciudad de Méxicol</option>
+                                    <option value="Coahuila">Coahuila</option>
+                                    <option value="Colima">Colima</option>
+                                    <option value="Chiapas">Chiapas</option>
+                                    <option value="Chihuahua">Chihuahua</option>
+                                    <option value="Durango">Durango</option>
+                                    <option value="Estado_de_México">Estado de México</option>
+                                    <option value="Guanajuato">Guanajuato</option>
+                                    <option value="Guerrero">Guerrero</option>
+                                    <option value="Hidalgo">Hidalgo</option>
+                                    <option value="Jalisco">Jalisco</option>
+                                    <option value="Michoacán">Michoacán</option>
+                                    <option value="Morelos">Morelos</option>
+                                    <option value="Nayarit">Nayarit</option>
+                                    <option value="Nuevo_León">Nuevo León</option>
+                                    <option value="Oaxaca">Oaxaca</option>
+                                    <option value="Puebla">Puebla</option>
+                                    <option value="Querétaro">Querétaro</option>
+                                    <option value="Quintana_Roo">Quintana Roo</option>
+                                    <option value="San_Luis_Potosí">San Luis Potosí</option>
+                                    <option value="Sinaloa">Sinaloa</option>
+                                    <option value="Sonora">Sonora</option>
+                                    <option value="Tabasco">Tabasco</option>
+                                    <option value="Tamaulipas">Tamaulipas</option>
+                                    <option value="Tlaxcala">Tlaxcala</option>
+                                    <option value="Veracruz">Veracruz</option>
+                                    <option value="Yucatán">Yucatán</option>
+                                    <option value="Zacatecas">Zacatecas</option>
                                 </select>
                             </div>
                         </div>
 
-                            <div class="crs-equipment-list" id="equipment-list">
-                                <!-- Opciones de equipo -->
-                                <p>Seleccione primero los servicios en el paso anterior</p>
-                            </div>
-                        </div>
-
-                        <div class="crs-input-group">
-                            <label for="comentarios" class="crs-form-label">Comentarios adicionales</label>
-                            <textarea name="comentarios" id="comentarios" class="crs-form-input crs-form-textarea"
-                                placeholder="Especifique cualquier requerimiento adicional"></textarea>
+                            <div class="crs-input-group">
+                                <label for="Centro_trabajo" class="crs-form-label">Selecciona el centro de trabajo: </label>
+                                <select name="Centro_trabajo" multiple id="Centro_trabajo" class="crs-form-input" required>
+                                    <option value="">--- Selecciona un centro de trabajo ---</option>
+                                </select>
                         </div>
                     </div>
 
