@@ -3,54 +3,50 @@ header("Content-Type: application/json");
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
 
-require_once('');
+require_once('./model/loginModel.php');
 
-
-print_r($_SERVER);
 
 $method=$_SERVER["REQUEST_METHOD"];
-echo $method;
+
+$requestUri = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
+$apiIndex = array_search('api.php', $requestUri);
+$resource = isset($requestUri[$apiIndex + 1]) ? $requestUri[$apiIndex + 1] : null;
 
 // require('consultaModel.php');
 
-// session_start();
+session_start();
 
+switch($method){
+    case 'POST':
+        switch($resource){
+            case 'login':
+                echo json_encode(['status' => 'success', 'message' => 'Login exitoso']);
+                $model = new LoginModel();
+                $data = json_decode(file_get_contents('php://input'), true);
+                echo json_encode($model->login($data['email'], $data['password']));
+                // $model->login($_POST['email'], $_POST['password']);
+            break;
+            case 'register':
+                echo json_encode(['status' => 'success', 'message' => 'Registro exitoso']);
+            break;
+            default:
+                return http_response_code(404);
+        }
+    break;
+    case 'GET':
+        // code...
+    break;
+    case 'PUT':
+        // code...
+    break;
+    case 'DELETE':
+        // code...
+    break;
+    default:
+        echo json_encode(['status' => 'error', 'message' => 'Método no permitido']);
+    break;
+}
 
-
-
-// $requestUri = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
-// $apiIndex = array_search('formulario.php', $requestUri);    
-
-// $resource = isset($requestUri[$apiIndex + 1]) ? $requestUri[$apiIndex + 1] : null;
-// $id = isset($requestUri[$apiIndex + 2]) ? $requestUri[$apiIndex + 2] : null;    
-// $method = strtoupper($_SERVER['REQUEST_METHOD']);
-// echo $resource;
-// switch ($method) {
-//     case 'POST':
-//         switch ($resource) {
-//             case 'prospecto':
-//                 $nombre = $_POST['Nombre'] ?? '';
-//                 $Empresa = $_POST['Empresa'] ?? '';
-//                 $Email = $_POST['Email'] ?? '';
-//                 $Telefono = $_POST['Telefono'] ?? '';
-//                 $descripcion_empresa = $_POST['descripcion_empresa'] ?? '';
-//                 $model = new consultas();
-//                 $result = $model->insertarDatos($nombre, $Empresa, $Email, $Telefono, $descripcion_empresa);   
-//                 if ($result) {
-//                     echo json_encode(['status' => 'success', 'data' => $result]);
-//                 }   else {      
-//                     echo json_encode(['status' => 'error', 'message' => 'Error al insertar datos']);
-//                 }
-//                 break;
-//             default:
-//                 echo json_encode(['status' => 'error', 'message' => 'Recurso no encontrado']);      
-//                 break;
-//             }
-//             break;
-//     default:
-//         echo json_encode(['status' => 'error', 'message' => 'Método no permitido']);
-//         break;
-// }   
 
 
 ?>
