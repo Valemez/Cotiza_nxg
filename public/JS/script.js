@@ -1,6 +1,7 @@
 
-import { URL } from './env.js';
-console.log(URL);
+
+// import { URL } from './env.js';
+// console.log(URL);
 
 document.addEventListener('DOMContentLoaded', function () {
     // elementos
