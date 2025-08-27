@@ -21,9 +21,9 @@ switch($method){
         switch($resource){
             case 'login':
                 echo json_encode(['status' => 'success', 'message' => 'Login exitoso']);
-                $model = new LoginModel();
-                $data = json_decode(file_get_contents('php://input'), true);
-                echo json_encode($model->login($data['email'], $data['password']));
+                // $model = new LoginModel();
+                // $data = json_decode(file_get_contents('php://input'), true);
+                // echo json_encode($model->login($data['email'], $data['password']));
                 // $model->login($_POST['email'], $_POST['password']);
             break;
             case 'register':
