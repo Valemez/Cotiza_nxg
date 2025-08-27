@@ -4,14 +4,16 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelector('.crs-step-menu1'),
         document.querySelector('.crs-step-menu2'),
         document.querySelector('.crs-step-menu3'),
-        document.querySelector('.crs-step-menu4')
+        document.querySelector('.crs-step-menu4'),
+        document.querySelector('.crs-step-menu5')
     ];
 
     const steps = [
         document.querySelector('.crs-form-step-1'),
         document.querySelector('.crs-form-step-2'),
         document.querySelector('.crs-form-step-3'),
-        document.querySelector('.crs-form-step-4')
+        document.querySelector('.crs-form-step-4'),
+        document.querySelector('.crs-form-step-5')
     ];
 
     const nextBtn = document.getElementById('next-btn');
@@ -47,11 +49,11 @@ document.addEventListener('DOMContentLoaded', function () {
         if (validateStep(currentStep)) {
             if (currentStep === 1) {
                 updateEquipmentList();
-            } else if (currentStep === 2) {
+            } else if (currentStep === 3) {
                 updateSummary();
             }
 
-            if (currentStep < 3) {
+            if (currentStep < 4) {
                 currentStep++;
                 updateStepDisplay();
             } else {
@@ -102,11 +104,11 @@ document.addEventListener('DOMContentLoaded', function () {
         // funcion del boton
         backBtn.style.display = currentStep > 0 ? 'block' : 'none';
 
-        if (currentStep === 3) {
+        if (currentStep === 4) {
             nextBtn.textContent = 'Enviar';
         } else {
             nextBtn.textContent = 'Siguiente';
-            nextBtn.disabled = currentStep === 1 && !Array.from(serviceCheckboxes).some(cb => cb.checked);
+            nextBtn.disabled = currentStep === 3 && !Array.from(serviceCheckboxes).some(cb => cb.checked);
         }
 
         // Scroll
@@ -265,4 +267,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         return isValid;
     }
+    
+
 });

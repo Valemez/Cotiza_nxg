@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
+
 <body>
     <div class="crs-form-wrapper">
         <div class="crs-form-header">
@@ -21,8 +22,8 @@
         </div>
         <!-- Pasos para el registro -->
         <div class="crs-form-content">
-            <form action="http://localhost/nxg_cotizacion/backend/formulario.php" method="post">
-            <!-- <form action="http://intranetipm.ddns.net:5000/cotizaciones/backend/formulario.php" method="post"> -->
+            <div action="http://localhost/nxg_cotizacion/backend/formulario.php" method="post">
+                <!-- <form action="http://intranetipm.ddns.net:5000/cotizaciones/backend/formulario.php" method="post"> -->
                 <div class="crs-steps">
                     <ul>
                         <li class="crs-step-menu1 active">
@@ -35,7 +36,7 @@
                         </li>
                         <li class="crs-step-menu3">
                             <span>3</span>
-                            Selección de colaboradores 
+                            Selección de colaboradores
                         </li>
                         <li class="crs-step-menu4">
                             <span>4</span>
@@ -51,26 +52,29 @@
                 <h2 class="crs-form-title">Formulario de Cotización</h2>
                 <p class="crs-form-subtitle">Complete el siguiente formulario para solicitar una cotización de
                     servicios con SERVICIOS E INSUMOS PROSMAN S.A DE C.V. </p>
-                
-                    <!-- Paso 1: Registro -->
+
+                <!-- Paso 1: Registro -->
                 <div class="crs-form-step-1 active">
                     <!-- div de Insertar logo de la empresa -->
-                        <div class="crs-input-group">
-                            <label for="logo_empresa" class="crs-form-label">Insertar el logo de la empresa (Cliente)</label>
-                            <input type="file" name="logo" id="logo" accept="image/png" class="crs-form-input" required>
-                        </div>
-                        <!-- div del nombre de la empresa -->
-                        <div class="crs-input-group">
-                            <label for="nombre" class="crs-form-label">Nombre de la empresa:</label>
-                            <input type="text" name="nombre" id="nombre"
-                                placeholder="Ej. Servicios de tecnológia e innovación S.A DE C." class="crs-form-input" required>
-                        </div>
-                        <!-- div de aquien va dirigido -->
-                        <div class="crs-input-group">
-                            <label for="destinatario" class="crs-form-label">Estimado:</label>
-                            <input type="text" name="destinatario" id="destinatario" placeholder="Ej. Lic. Javier Orozco" class="crs-form-input" required>
-                        </div>
-                        <!-- div de puesto ocupacional -->
+                    <div class="crs-input-group">
+                        <label for="logo_empresa" class="crs-form-label">Insertar el logo de la empresa
+                            (Cliente)</label>
+                        <input type="file" name="logo" id="logo" accept="image/png" class="crs-form-input" required>
+                    </div>
+                    <!-- div del nombre de la empresa -->
+                    <div class="crs-input-group">
+                        <label for="nombre" class="crs-form-label">Nombre de la empresa:</label>
+                        <input type="text" name="nombre" id="nombre"
+                            placeholder="Ej. Servicios de tecnológia e innovación S.A DE C." class="crs-form-input"
+                            required>
+                    </div>
+                    <!-- div de aquien va dirigido -->
+                    <div class="crs-input-group">
+                        <label for="destinatario" class="crs-form-label">Estimado:</label>
+                        <input type="text" name="destinatario" id="destinatario" placeholder="Ej. Lic. Javier Orozco"
+                            class="crs-form-input" required>
+                    </div>
+                    <!-- div de puesto ocupacional -->
                     <div class="crs-input-flex">
                         <div class="crs-input-group">
                             <label for="puesto" class="crs-form-label">Puesto ocupacional: </label>
@@ -85,143 +89,249 @@
                         </div>
                     </div>
                 </div>
-                --------------------------------------------------------------------------------------------------------
+
                 <!-- Paso 2: Servicios -->
                 <div class="crs-form-step-2">
                     <!-- div de selección del servicio -->
                     <div class="crs-input-group">
-                        <label for="tipo-Servicio" class="crs-form-label">Seleccione el tipo de servicio que requiere.</label>
+                        <label for="tipo-Servicio" class="crs-form-label">Seleccione el tipo de servicio que
+                            requiere.</label>
                         <select name="servicios" id="servicios" class="crs-form-input">
                             <option value="Limpieza">Limpieza</option>
                             <option value="Fumigacion">Fumigación</option>
                         </select>
                     </div>
                     <!-- div de Insertar excel, pdf, powerpoint de cotización -->
-                        <div class="crs-input-group">
-                            <label for="archivo_excel" class="crs-form-label">Insertar el archivo de cotización del Cliente</label>
-                            <input type="file" name="archivo_excel" id="archivo" accept="image/png,.xls,.xlsx,.doc,.pdf" class="crs-form-input" required>
-                        </div>
+                    <div class="crs-input-group">
+                        <label for="archivo_excel" class="crs-form-label">Insertar el archivo de cotización del
+                            Cliente</label>
+                        <input type="file" name="archivo_excel" id="archivo" accept="image/png,.xls,.xlsx,.doc,.pdf"
+                            class="crs-form-input" required>
+                    </div>
 
-                        <div class="crs-input-group">
-                            <label for="descripcion_servicio" class="crs-form-label">Descripción del servicio</label>
-                            <textarea name="descripcion_servicio" id="descripcion_servicio" class="crs-form-input crs-form-textarea"
-                                placeholder="Especifique la descripción"></textarea>
-                        </div>
+                    <div class="crs-input-group">
+                        <label for="descripcion_servicio" class="crs-form-label">Descripción del servicio</label>
+                        <textarea name="descripcion_servicio" id="descripcion_servicio"
+                            class="crs-form-input crs-form-textarea"
+                            placeholder="Especifique la descripción"></textarea>
+                    </div>
                 </div>
-                
+
                 <!-- Paso 3: Selección de colaboradores -->
                 <div class="crs-form-step-3">
                     <div class="crs-input-group">
-                        <label class="crs-form-label">Seleccione el tipo de servicio que requiere:</label>
-
-
-                        <div class="crs-checkbox-group">
-                            <label class="crs-checkbox-label">
-                                <input type="checkbox" name="servicios[]" value="Guardias Seguridad"
-                                    class="crs-checkbox-input"> Guardias de seguridad
+                        <div class="crs-input-group">
+                            <label for="numero_colaboradores" class="crs-form-label">Número de colaboradores:</label>
+                            <input type="number" name="numero_colaboradores" id="numero_colaboradores"
+                                placeholder="Ej. 12" class="crs-form-input" min="1">
+                        </div>
+                        <!-- div estado de la republica -->
+                        <div class="crs-input-group">
+                            <label for="Estado_republica" class="crs-form-label">Selecciona el estado de trabajo:
                             </label>
+                            <select name="Estado_republica" multiple id="Estado_republica" onchange="mostrarEstados()"
+                                class="crs-form-input" onchange="mostrarEstados()" required>
+                                <option value="Aguascalientes">Aguascalientes</option>
+                                <option value="Baja_California">Baja California</option>
+                                <option value="Baja_California_Sur">Baja California Sur</option>
+                                <option value="Campeche">Campeche</option>
+                                <option value="Ciudad_de_México">Ciudad de Méxicol</option>
+                                <option value="Coahuila">Coahuila</option>
+                                <option value="Colima">Colima</option>
+                                <option value="Chiapas">Chiapas</option>
+                                <option value="Chihuahua">Chihuahua</option>
+                                <option value="Durango">Durango</option>
+                                <option value="Estado_de_México">Estado de México</option>
+                                <option value="Guanajuato">Guanajuato</option>
+                                <option value="Guerrero">Guerrero</option>
+                                <option value="Hidalgo">Hidalgo</option>
+                                <option value="Jalisco">Jalisco</option>
+                                <option value="Michoacán">Michoacán</option>
+                                <option value="Morelos">Morelos</option>
+                                <option value="Nayarit">Nayarit</option>
+                                <option value="Nuevo_León">Nuevo León</option>
+                                <option value="Oaxaca">Oaxaca</option>
+                                <option value="Puebla">Puebla</option>
+                                <option value="Querétaro">Querétaro</option>
+                                <option value="Quintana_Roo">Quintana Roo</option>
+                                <option value="San_Luis_Potosí">San Luis Potosí</option>
+                                <option value="Sinaloa">Sinaloa</option>
+                                <option value="Sonora">Sonora</option>
+                                <option value="Tabasco">Tabasco</option>
+                                <option value="Tamaulipas">Tamaulipas</option>
+                                <option value="Tlaxcala">Tlaxcala</option>
+                                <option value="Veracruz">Veracruz</option>
+                                <option value="Yucatán">Yucatán</option>
+                                <option value="Zacatecas">Zacatecas</option>
+                            </select>
                         </div>
 
-                        <div class="crs-checkbox-group">
-                            <label class="crs-checkbox-label">
-                                <input type="checkbox" name="servicios[]" value="Protección personal"
-                                    class="crs-checkbox-input"> Protección Personal
-                            </label>
+                        <div class="crs-input-group">
+                            <label for="Centro_trabajo" class="crs-form-label"> Seleccione centro de trabajo: </label>
+                            <select name="Centro_trabajo" multiple id="Centro_trabajo" class="crs-form-input" required>
+                                <option value="">--- Seleccione estado---</option>
+                            </select>
                         </div>
-
-                        <div class="crs-checkbox-group">
-                            <label class="crs-checkbox-label">
-                                <input type="checkbox" name="servicios[]" value="Seguridad patrimonial"
-                                    class="crs-checkbox-input"> Seguridad patrimonial
-                            </label>
+                        <!-- div de supervisor -->
+                        <div class="crs-input-flex">
+                            <div class="crs-input-group">
+                                <label for="supervisor" class="crs-form-label">Número de supervisores: </label>
+                                <input type="number" name="supervisor" id="supervisor" placeholder="Ej. 12"
+                                    class="crs-form-input" min="1">
+                            </div>
+                            <!-- Div de operarios de limpieza -->
+                            <div class="crs-input-group">
+                                <label for="operario_limpieza" class="crs-form-label">Número de operario de limpieza:
+                                </label>
+                                <input type="number" name="operario_limpieza" id="operario_limpieza"
+                                    placeholder="Ej. 12" class="crs-form-input" min="1">
+                            </div>
                         </div>
-
-                        <div class="crs-checkbox-group">
-                            <label class="crs-checkbox-label">
-                                <input type="checkbox" name="servicios[]" value="Custodia mercancia"
-                                    class="crs-checkbox-input"> Custodia de mercancia
-                            </label>
+                        <!-- div de ayudante general -->
+                        <div class="crs-input-flex">
+                            <div class="crs-input-group">
+                                <label for="Ayudante_general" class="crs-form-label">Número de Ayudante general:
+                                </label>
+                                <input type="number" name="Ayudante_general" id="Ayudante_general" placeholder="Ej. 12"
+                                    class="crs-form-input" min="1">
+                            </div>
+                            <!-- Div de operario de maquinario -->
+                            <div class="crs-input-group">
+                                <label for="Operario_maquinaria" class="crs-form-label">Número de operario de
+                                    maquinaria: </label>
+                                <input type="number" name="Operario_maquinaria" id="Operario_maquinaria"
+                                    placeholder="Ej. 12" class="crs-form-input" min="1">
+                            </div>
+                        </div>
+                        <div class="crs-input-group">
+                            <label for="Turno_trabajo" class="crs-form-label"> Seleccione el turno de trabajo: </label>
+                            <select name="Turno_trabajo" multiple id="Turno_trabajo" class="crs-form-input" required>
+                                <option value="8">8 horas</option>
+                                <option value="6">6 horas</option>
+                                <option value="4">4 horas</option>
+                            </select>
                         </div>
                     </div>
                 </div>
-                
 
-                <!-- Paso 4: Requerimientos -->
+                <!-- Paso 4: ITEMS -->
                 <div class="crs-form-step-4">
                     <div class="crs-input-group">
-                        <label class="crs-form-label">Seleccione los equipamientos requeridos:</label>
+                        <label class="crs-form-label">Selecciona los ITEMS requeridos:</label>
 
                         <div class="crs-input-flex">
                             <div class="crs-input-group">
-                                <label for="num-guardias" class="crs-form-label">Número de guardias</label>
-                                <input type="number" name="num_guardias" id="num_guardias" placeholder="Ej. 12"
-                                    class="crs-form-input" min="1">
+                                <p>Uniforme</p>
+                                <div>
+                                    <label for="uniforme_superior" class="crs-form-label">Parte superior</label>
+                                    <label><input type="checkbox" checked id="" value="" />Bata de la
+                                        casaca</label><br />
+                                    <label><input type="checkbox" id="" value="" />Playera polo manga
+                                        larga</label><br />
+                                    <label><input type="checkbox" id="" value="" />Playera polo manga
+                                        corta</label><br />
+                                    <label><input type="checkbox" id="" value="" />Poncho para lluvia</label><br />
+                                </div>
+                                <br>
+                                <div>
+                                    <label for="uniforme_inferior" class="crs-form-label">Parte inferior</label>
+                                    <label><input type="checkbox" checked id="" value="" />Pantalon de la
+                                        bata</label><br />
+                                    <label><input type="checkbox" id="" value="" />Pantalon de mesclilla</label><br />
+                                    <label><input type="checkbox" id="" value="" />Plantalon caqui</label><br />
+                                </div>
                             </div>
 
                             <div class="crs-input-group">
-                                <label for="tipo-turno" class="crs-form-label">Tipo de turno</label>
-                                <select name="SelectTurno" id="SelectTurno" class="crs-form-input">
-                                    <option value="12hrs">12 horas</option>
-                                    <option value="24hrs">24 horas</option>
-                                </select>
+                                <label for="Numero_dotaciones_anuales_uniforme" class="crs-form-label">Número de
+                                    dotaciones (Anuales):</label>
+                                <input type="number" name="Numero_dotaciones_anuales_uniforme"
+                                    id="Numero_dotaciones_anuales_uniforme" placeholder="Ej. 12" class="crs-form-input"
+                                    min="1">
                             </div>
                         </div>
-
-                            <div class="crs-equipment-list" id="equipment-list">
-                                <!-- Opciones de equipo -->
-                                <p>Seleccione primero los servicios en el paso anterior</p>
+                    </div>
+                    <!-- SELECCION DE EPP -->
+                    <div class="crs-input-flex">
+                        <div class="crs-input-group">
+                            <p>EPP (Equipo de Protección Personal)</p>
+                            <div>
+                                <label for="epp_cabeza" class="crs-form-label">Cabeza</label>
+                                <label><input type="checkbox" checked id="" value="" />Cascos</label><br />
+                                <label><input type="checkbox" id="" value="" /></label>Lentes de protección<br />
+                                <label><input type="checkbox" id="" value="" /></label>Tapones<br />
+                                <label><input type="checkbox" id="" value="" /></label>Cubrebocas<br />
+                            </div>
+                            <br>
+                            <div>
+                                <label for="epp_cuerpo" class="crs-form-label">Cuerpo</label>
+                                <label><input type="checkbox" checked id="" value="" />Chaleco</label><br />
+                                <!-- <label><input type="checkbox" id="" value="" /></label><br />
+                                    <label><input type="checkbox" id="" value="" /></label><br /> -->
                             </div>
                         </div>
 
                         <div class="crs-input-group">
-                            <label for="comentarios" class="crs-form-label">Comentarios adicionales</label>
-                            <textarea name="comentarios" id="comentarios" class="crs-form-input crs-form-textarea"
-                                placeholder="Especifique cualquier requerimiento adicional"></textarea>
+                            <label for="num_dotaciones_anual_epp" class="crs-form-label">Número de
+                                dotaciones (Anuales):</label>
+                            <input type="number" name="num_dotaciones_anual_epp" id="num_dotaciones_anual_epp"
+                                placeholder="Ej. 12" class="crs-form-input" min="1">
                         </div>
                     </div>
-
-                    <!-- Paso 5: Confirmación -->
-                    <div class="crs-form-step-4">
-                        <div class="crs-form-confirm">
-                            <h3 style="color: #001550; margin-bottom: 20px;">Resumen de su solicitud</h3>
-                            <p>
-                                Por favor revise cuidadosamente la información proporcionada antes de enviar su
-                                solicitud de
-                                cotización.
-                                Un representante de CRS SERVICIOS DE SEGURIDAD PRIVADA PROFESIONAL S.A. DE C.V. se
-                                pondrá en
-                                contacto con usted dentro de las
-                                próximas 24 horas hábiles.
-                            </p>
-                            <div id="summary-details" style="text-align: left; margin-bottom: 30px;">
+                    <!-- selección de maquinaria -->
+                    <div class="crs-input-flex">
+                        <div class="crs-input-group">
+                            <p>Maquinaria</p>
+                            <div>
+                                <label for="epp_cabeza" class="crs-form-label">Cabeza</label>
+                                <label><input type="checkbox" checked id="" value="" />Cascos</label><br />
+                                <label><input type="checkbox" id="" value="" /></label>Lentes de protección<br />
+                                <label><input type="checkbox" id="" value="" /></label>Tapones<br />
+                                <label><input type="checkbox" id="" value="" /></label>Cubrebocas<br />
                             </div>
-                            <!-- <div class="crs-confirm-btns">
-                                <button type="button" class="crs-confirm-btn crs-confirm-btn-primary" id="generate-pdf">
-                                    Generar PDF
-                                </button>
-                                <button type="button" class="crs-confirm-btn crs-confirm-btn-secondary" id="visita-btn">
-                                    Solicitar Visita
-                                </button>
-                                <button type="button" class="crs-confirm-btn crs-confirm-btn-secondary" id="meet-btn">
-                                    Reunión Virtual (Meet)
-                                </button>
-                                <button type="button" class="crs-confirm-btn crs-confirm-btn-secondary" id="cita-btn">
-                                    Agendar Cita
-                                </button>
-                            </div> -->
+                        </div>
+
+                        <div class="crs-input-group">
+                            <label for="num_dotaciones_anual_epp" class="crs-form-label">Número de
+                                dotaciones (Anuales):</label>
+                            <input type="number" name="num_dotaciones_anual_epp" id="num_dotaciones_anual_epp"
+                                placeholder="Ej. 12" class="crs-form-input" min="1">
                         </div>
                     </div>
-
-                    <div class="crs-form-btn-wrapper">
-                        <button type="button" class="crs-back-btn" id="back-btn">
-                            Regresar
-                        </button>
-                        <button type="button" class="crs-next-btn" id="next-btn">
-                            Siguiente
-                        </button>
-                    </div>
-            </form>
+                </div>
+            </div>
         </div>
+    </div>
+
+    <!-- Paso 5: Confirmación -->
+    <div class="crs-form-step-5">
+        <div class="crs-form-confirm">
+            <h3 style="color: #001550; margin-bottom: 20px;">Resumen de su solicitud</h3>
+            <p>
+                Por favor revise cuidadosamente la información proporcionada antes de enviar su
+                solicitud de
+                cotización.
+                Un representante de CRS SERVICIOS DE SEGURIDAD PRIVADA PROFESIONAL S.A. DE C.V. se
+                pondrá en
+                contacto con usted dentro de las
+                próximas 24 horas hábiles.
+            </p>
+            <div id="summary-details" style="text-align: left; margin-bottom: 30px;">
+            </div>
+
+        </div>
+    </div>
+
+    <div class="crs-form-btn-wrapper">
+        <button type="button" class="crs-back-btn" id="back-btn">
+            Regresar
+        </button>
+        <button type="button" class="crs-next-btn" id="next-btn">
+            Siguiente
+        </button>
+    </div>
+    </form>
+    </div>
     </div>
     <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
     <script src="./script.js"></script>
