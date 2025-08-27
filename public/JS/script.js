@@ -1,3 +1,7 @@
+
+import { URL } from './env.js';
+console.log(URL);
+
 document.addEventListener('DOMContentLoaded', function () {
     // elementos
     const stepMenus = [
