@@ -47,13 +47,13 @@ document.addEventListener('DOMContentLoaded', function () {
     // funcion del botón siguiente
     nextBtn.addEventListener('click', function () {
         if (validateStep(currentStep)) {
-            if (currentStep === 1) {
+            if (currentStep === 4) {
                 updateEquipmentList();
-            } else if (currentStep === 3) {
+            } else if (currentStep === 5) {
                 updateSummary();
             }
 
-            if (currentStep < 4) {
+            if (currentStep < 5) {
                 currentStep++;
                 updateStepDisplay();
             } else {
@@ -104,11 +104,11 @@ document.addEventListener('DOMContentLoaded', function () {
         // funcion del boton
         backBtn.style.display = currentStep > 0 ? 'block' : 'none';
 
-        if (currentStep === 4) {
+        if (currentStep === 5) {
             nextBtn.textContent = 'Enviar';
         } else {
             nextBtn.textContent = 'Siguiente';
-            nextBtn.disabled = currentStep === 3 && !Array.from(serviceCheckboxes).some(cb => cb.checked);
+            nextBtn.disabled = currentStep === 4 && !Array.from(serviceCheckboxes).some(cb => cb.checked);
         }
 
         // Scroll

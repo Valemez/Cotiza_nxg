@@ -24,6 +24,7 @@
         <div class="crs-form-content">
             <div action="http://localhost/nxg_cotizacion/backend/formulario.php" method="post">
                 <!-- <form action="http://intranetipm.ddns.net:5000/cotizaciones/backend/formulario.php" method="post"> -->
+                <!-- Menu -->
                 <div class="crs-steps">
                     <ul>
                         <li class="crs-step-menu1 active">
@@ -50,8 +51,6 @@
                 </div>
 
                 <h2 class="crs-form-title">Formulario de Cotización</h2>
-                <p class="crs-form-subtitle">Complete el siguiente formulario para solicitar una cotización de
-                    servicios con SERVICIOS E INSUMOS PROSMAN S.A DE C.V. </p>
 
                 <!-- Paso 1: Registro -->
                 <div class="crs-form-step-1 active">
@@ -129,8 +128,7 @@
                         <div class="crs-input-group">
                             <label for="Estado_republica" class="crs-form-label">Selecciona el estado de trabajo:
                             </label>
-                            <select name="Estado_republica" multiple id="Estado_republica" onchange="mostrarEstados()"
-                                class="crs-form-input" onchange="mostrarEstados()" required>
+                            <select name="Estado_republica" id="Estado_republica" onchange="mostrarEstados()" class="crs-form-input" required>
                                 <option value="Aguascalientes">Aguascalientes</option>
                                 <option value="Baja_California">Baja California</option>
                                 <option value="Baja_California_Sur">Baja California Sur</option>
@@ -168,7 +166,7 @@
 
                         <div class="crs-input-group">
                             <label for="Centro_trabajo" class="crs-form-label"> Seleccione centro de trabajo: </label>
-                            <select name="Centro_trabajo" multiple id="Centro_trabajo" class="crs-form-input" required>
+                            <select name="Centro_trabajo" id="Centro_trabajo" class="crs-form-input" required>
                                 <option value="">--- Seleccione estado---</option>
                             </select>
                         </div>
@@ -205,7 +203,7 @@
                         </div>
                         <div class="crs-input-group">
                             <label for="Turno_trabajo" class="crs-form-label"> Seleccione el turno de trabajo: </label>
-                            <select name="Turno_trabajo" multiple id="Turno_trabajo" class="crs-form-input" required>
+                            <select name="Turno_trabajo" id="Turno_trabajo" class="crs-form-input" required>
                                 <option value="8">8 horas</option>
                                 <option value="6">6 horas</option>
                                 <option value="4">4 horas</option>
@@ -218,7 +216,7 @@
                 <div class="crs-form-step-4">
                     <div class="crs-input-group">
                         <label class="crs-form-label">Selecciona los ITEMS requeridos:</label>
-
+                        <!-- Selección de uniforme -->
                         <div class="crs-input-flex">
                             <div class="crs-input-group">
                                 <p>Uniforme</p>
@@ -250,95 +248,194 @@
                                     min="1">
                             </div>
                         </div>
-                    </div>
-                    <!-- SELECCION DE EPP -->
-                    <div class="crs-input-flex">
-                        <div class="crs-input-group">
-                            <p>EPP (Equipo de Protección Personal)</p>
-                            <div>
-                                <label for="epp_cabeza" class="crs-form-label">Cabeza</label>
-                                <label><input type="checkbox" checked id="" value="" />Cascos</label><br />
-                                <label><input type="checkbox" id="" value="" /></label>Lentes de protección<br />
-                                <label><input type="checkbox" id="" value="" /></label>Tapones<br />
-                                <label><input type="checkbox" id="" value="" /></label>Cubrebocas<br />
-                            </div>
-                            <br>
-                            <div>
-                                <label for="epp_cuerpo" class="crs-form-label">Cuerpo</label>
-                                <label><input type="checkbox" checked id="" value="" />Chaleco</label><br />
-                                <!-- <label><input type="checkbox" id="" value="" /></label><br />
+                        <!-- SELECCION DE EPP -->
+                        <div class="crs-input-flex">
+                            <div class="crs-input-group">
+                                <p>EPP (Equipo de Protección Personal)</p>
+                                <div>
+                                    <label for="epp_cabeza" class="crs-form-label">Cabeza</label>
+                                    <label><input type="checkbox" id="" value="" />Cascos</label><br />
+                                    <label><input type="checkbox" id="" value="" /></label>Lentes de protección<br />
+                                    <label><input type="checkbox" id="" value="" /></label>Tapones<br />
+                                    <label><input type="checkbox" id="" value="" /></label>Cubrebocas<br />
+                                </div>
+                                <br>
+                                <div>
+                                    <label for="epp_cuerpo" class="crs-form-label">Cuerpo</label>
+                                    <label><input type="checkbox" id="" value="" />Chaleco</label><br />
+                                    <!-- <label><input type="checkbox" id="" value="" /></label><br />
                                     <label><input type="checkbox" id="" value="" /></label><br /> -->
+                                </div>
+                            </div>
+                            <div class="crs-input-group">
+                                <label for="num_dotaciones_anual_epp" class="crs-form-label">Número de
+                                    dotaciones (Anuales):</label>
+                                <input type="number" name="num_dotaciones_anual_epp" id="num_dotaciones_anual_epp"
+                                    placeholder="Ej. 12" class="crs-form-input" min="1">
                             </div>
                         </div>
-
-                        <div class="crs-input-group">
-                            <label for="num_dotaciones_anual_epp" class="crs-form-label">Número de
-                                dotaciones (Anuales):</label>
-                            <input type="number" name="num_dotaciones_anual_epp" id="num_dotaciones_anual_epp"
-                                placeholder="Ej. 12" class="crs-form-input" min="1">
-                        </div>
-                    </div>
-                    <!-- selección de maquinaria -->
-                    <div class="crs-input-flex">
-                        <div class="crs-input-group">
-                            <p>Maquinaria</p>
-                            <div>
-                                <label for="epp_cabeza" class="crs-form-label">Cabeza</label>
-                                <label><input type="checkbox" checked id="" value="" />Cascos</label><br />
-                                <label><input type="checkbox" id="" value="" /></label>Lentes de protección<br />
-                                <label><input type="checkbox" id="" value="" /></label>Tapones<br />
-                                <label><input type="checkbox" id="" value="" /></label>Cubrebocas<br />
+                        <!-- SELECCION DE EPP -->
+                        <div class="crs-input-flex">
+                            <div class="crs-input-group">
+                                <p>EPP (Equipo de Protección Personal)</p>
+                                <div>
+                                    <label for="epp_cabeza" class="crs-form-label">Cabeza</label>
+                                    <label><input type="checkbox" id="" value="" />Cascos</label><br />
+                                    <label><input type="checkbox" id="" value="" /></label>Lentes de protección<br />
+                                    <label><input type="checkbox" id="" value="" /></label>Tapones<br />
+                                    <label><input type="checkbox" id="" value="" /></label>Cubrebocas<br />
+                                </div>
+                                <br>
+                                <div>
+                                    <label for="epp_cuerpo" class="crs-form-label">Cuerpo</label>
+                                    <label><input type="checkbox" id="" value="" />Chaleco</label><br />
+                                    <!-- <label><input type="checkbox" id="" value="" /></label><br />
+                                        <label><input type="checkbox" id="" value="" /></label><br /> -->
+                                </div>
+                            </div>
+                            <div class="crs-input-group">
+                                <label for="num_dotaciones_anual_epp" class="crs-form-label">Número de
+                                    dotaciones (Anuales):</label>
+                                <input type="number" name="num_dotaciones_anual_epp" id="num_dotaciones_anual_epp"
+                                    placeholder="Ej. 12" class="crs-form-input" min="1">
                             </div>
                         </div>
+                        <!-- selección de maquinaria -->
+                        <div class="crs-input-flex">
+                            <div class="crs-input-group">
+                                <p>Maquinaria</p>
+                                <div>
+                                    <label for="maquinaria" class="crs-form-label">Selecciona la maquinaria que
+                                        requiera:
+                                    </label>
+                                    <label><input type="checkbox" id="" value="Fregadoras_de_piso" />Fregadoras de
+                                        piso</label><br />
+                                    <label><input type="checkbox" id="" value="Pulidora" /></label>Pulidora<br />
+                                    <label><input type="checkbox" id="" value="Barredora" />Barredora</label><br />
+                                    <!-- <label><input type="checkbox" id="" value="" /></label><br /> -->
+                                </div>
+                            </div>
 
-                        <div class="crs-input-group">
-                            <label for="num_dotaciones_anual_epp" class="crs-form-label">Número de
-                                dotaciones (Anuales):</label>
-                            <input type="number" name="num_dotaciones_anual_epp" id="num_dotaciones_anual_epp"
-                                placeholder="Ej. 12" class="crs-form-input" min="1">
+                            <div class="crs-input-group">
+                                <label for="num_dotaciones_anual_maquinaria" class="crs-form-label">Número de
+                                    dotaciones (Anuales):</label>
+                                <input type="number" name="num_dotaciones_anual_maquinaria"
+                                    id="num_dotaciones_anual_maquinaria" placeholder="Ej. 12" class="crs-form-input"
+                                    min="1">
+                            </div>
+                        </div>
+                        <!-- Seleccion de Materiales -->
+                        <div class="crs-input-flex">
+                            <div class="crs-input-group">
+                                <p>Materiales</p>
+                                <!-- Selección de materiales -->
+                                    <div class="crs-input-group">
+                                        <label for="Materiales" class="crs-form-label">Seleccione si requiere materiales: </label>
+                                        <select name="Materiales" id="Materiales" class="crs-form-input">
+                                            <option value="Sin_materiales">Sin materiales</option>
+                                            <option value="con_materiales">Con materiales</option>
+                                        </select>
+                                    </div>
+                                <div>
+                                    <label for="con_materiales" class="crs-form-label">Seleccione los matreriales que
+                                        requiera</label>
+                                        <!-- Quimicos -->
+                                    <label for="quimicos" class="crs-form-label">Quimicos</label>
+                                    <label><input type="checkbox" id="" value="Jabon_multiusos" />Jabon multiusos</label><br />
+                                    <label><input type="checkbox" id="" value="Cloro" />Cloro</label><br />
+                                    <label><input type="checkbox" id="" value="Jabon_polvo" />Jabon en polvo</label><br />
+                                    <label><input type="checkbox" id="" value="Limpiador_de_vidrios" />Limpiador de vidrios</label><br>
+                                    <label><input type="checkbox" id="" value="Sarricida" />Sarricida</label><br />
+                                    <label><input type="checkbox" id="" value="Limpiador_desengrasante" />Limpiador desengrasante</label><br />
+                                    <label><input type="checkbox" id="" value="Jabon_trastes" />Jabon para trastes</label><br />
+                                    <label><input type="checkbox" id="" value="Jabon_para_manos" />Jabón para manos</label><br />   
+                                    <label><input type="checkbox" id="" value="destapacaños" />Destapacaños</label><br />
+                                    <!-- Jarcieria -->
+                                    <label for="jarcieria" class="crs-form-label">Jarcieria</label>
+                                    <label><input type="checkbox" id="" value="Escobas avanico" />Escobas avanico</label><br />
+                                    <label><input type="checkbox" id="" value="Cepillo_rigido" />Cepillo rigido</label><br />
+                                    <label><input type="checkbox" id="" value="Cubetas" />Cubetas</label><br />
+                                    <label><input type="checkbox" id="" value="Microfibras" />Microfibras</label><br />
+                                    <label><input type="checkbox" id="" value="Franela" />Franela</label><br />
+                                    <label><input type="checkbox" id="" value="Recogedores_lamina" />Recogedores de lamina</label><br />
+                                    <label><input type="checkbox" id="" value="Mechudos" />Mechudos</label><br />
+                                    <label><input type="checkbox" id="" value="Mops" />Mops</label><br />
+                                    <!-- numero de dotaciones anuales -->
+                                    <div class="crs-input-group">
+                                        <label for="num_dotaciones_anual_maquinaria" class="crs-form-label">Número de dotaciones (Anuales):</label>
+                                        <input type="number" name="num_dotaciones_anual_maquinaria"
+                                        id="num_dotaciones_anual_maquinaria" placeholder="Ej. 12" class="crs-form-input"
+                                        min="1">
+                                    </div>
+                                    <!-- tiempo de entrega de dotaciones anuales -->
+                                    <div class="crs-input-group">
+                                        <label for="Fecha_entrega_jarseria" class="crs-form-label">Seleccione el tipo de servicio que
+                                            requiere.</label>
+                                        <select name="Fecha_entrega_jarseria" id="Fecha_entrega_jarseria" class="crs-form-input">
+                                            <option value="bimestral">Bimestral</option>
+                                            <option value="trimestarl">Trimestral</option>
+                                            <option value="cuatrimestral">Cuatrimestral</option>
+                                            <option value="semestral">Semestral</option>
+                                        </select>
+                                    </div>
+                                    <!-- Mobiliario de limpieza -->
+                                    <label for="mobiliario" class="crs-form-label">Mobiliario de limpieza</label>
+                                    <label><input type="checkbox" id="" value="" />Despachador de jabon</label><br />
+                                    <label><input type="checkbox" id="" value="" />Despachador de manitas</label><br />
+                                    <label><input type="checkbox" id="" value="" />Despachador para papel bobina</label><br />
+                                    <label><input type="checkbox" id="" value="" />Señaletica de piso mojado</label><br />
+                                        <!-- numero de dotaciones anuales -->
+                                    <div class="crs-input-group">
+                                        <label for="num_dotaciones_anual_maquinaria" class="crs-form-label">Número de dotaciones (Anuales):</label>
+                                        <input type="number" name="num_dotaciones_anual_maquinaria"
+                                        id="num_dotaciones_anual_maquinaria" placeholder="Ej. 12" class="crs-form-input"
+                                        min="1">
+                                    </div>
+                                    <!-- tiempo de entrega de dotaciones anuales -->
+                                    <div class="crs-input-group">
+                                        <label for="Fecha_entrega_jarseria" class="crs-form-label">Seleccione el tipo de servicio que
+                                            requiere.</label>
+                                        <select name="Fecha_entrega_jarseria" id="Fecha_entrega_jarseria" class="crs-form-input">
+                                            <option value="semestral">Semestral</option>
+                                            <option value="anual">Anual</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <!-- Paso 5: Confirmación -->
+                    <div class="crs-form-step-5">
+                        <div class="crs-form-confirm">
+                            <h3 style="color: #001550; margin-bottom: 20px;">Resumen de su solicitud</h3>
+                            <p>
+                                Por favor revise cuidadosamente la información proporcionada antes de enviar su
+                                solicitud de
+                                cotización.
+                            </p>
+                            <div id="summary-details" style="text-align: left; margin-bottom: 30px;">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Botones de navegación -->
+                    <div class="crs-form-btn-wrapper">
+                        <button type="button" class="crs-back-btn" id="back-btn">
+                            Regresar
+                        </button>
+                        <button type="button" class="crs-next-btn" id="next-btn">
+                            Siguiente
+                        </button>
+                    </div>
             </div>
         </div>
-    </div>
 
-    <!-- Paso 5: Confirmación -->
-    <div class="crs-form-step-5">
-        <div class="crs-form-confirm">
-            <h3 style="color: #001550; margin-bottom: 20px;">Resumen de su solicitud</h3>
-            <p>
-                Por favor revise cuidadosamente la información proporcionada antes de enviar su
-                solicitud de
-                cotización.
-                Un representante de CRS SERVICIOS DE SEGURIDAD PRIVADA PROFESIONAL S.A. DE C.V. se
-                pondrá en
-                contacto con usted dentro de las
-                próximas 24 horas hábiles.
-            </p>
-            <div id="summary-details" style="text-align: left; margin-bottom: 30px;">
-            </div>
-
-        </div>
-    </div>
-
-    <div class="crs-form-btn-wrapper">
-        <button type="button" class="crs-back-btn" id="back-btn">
-            Regresar
-        </button>
-        <button type="button" class="crs-next-btn" id="next-btn">
-            Siguiente
-        </button>
-    </div>
-    </form>
-    </div>
-    </div>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
-    <script src="./script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
-    <script src="./resource/js/meet.js"></script>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
+        <script src="./script.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+        <script src="./resource/js/meet.js"></script>
 </body>
 
 </html>
