@@ -1,2 +1,2 @@
-export const URL = "http://localhost/cotiza_nxg/"
+export const URL = "http://localhost/cotiza_nxg"
 

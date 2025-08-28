@@ -1,3 +1,5 @@
+    import { URL } from './env.js';
+    
     document.getElementById('btn-inicio-sesion').addEventListener('click', function() { // Cuando el btn-inicio-sesion 
     let data ={};
     data['usuario'] = document.getElementById('exampleInputEmail1').value;
@@ -6,7 +8,7 @@
     console.log(data);
     
     // uso del fetch par la comunicación entre el cliente servidor
-    fetch(URL + '/src/php/api.php',
+    fetch(URL + '/src/php/api.php/login',
         {
             method: "POST", //protocolo http que se utiliza en el formulario
             headers: { "Content-type": "application/json;charset-UTF-8"},
