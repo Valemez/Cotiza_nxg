@@ -1,9 +1,10 @@
 <?php
-require_once('../connect.php');
+require_once('connect.php');
 
 class LoginModel{
     private $conn;
     private $nombre;
+    private $email;
 
     public function __construct(){
         $this->conn = Conexion::getInstance();
