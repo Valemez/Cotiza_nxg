@@ -22,18 +22,11 @@ switch($method){
             case 'login':
                 // echo json_encode(['status' => 'success', 'message' => 'Login exitoso']);
                 
-                // $model = new LoginModel();
+                $model = new LoginModel();
                 $data = json_decode(file_get_contents('php://input'), true);
                 $email = $data['usuario'] ?? null;
                 $password = $data['password'] ?? null;
-                // echo json_encode([
-                //     'status'  => 'success',
-                //     'message' => 'Login exitoso',
-                //     'email'   => $email,
-                //     'password' =>  $password
-                // ]);
                 echo json_encode($model->login($email, $password));
-                // $model->login($_POST['email'], $_POST['password']);
             break;
             case 'register':
                 echo json_encode(['status' => 'success', 'message' => 'Registro exitoso']);

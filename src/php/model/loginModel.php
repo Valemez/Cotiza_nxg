@@ -11,28 +11,23 @@ class LoginModel{
     }
 
     public function login($correo, $password){
-        echo json_encode([
-                    'status'  => 'success',
-                    'message' => 'Login exitoso',
-                    'email'   => $correo,
-                    'password' =>  $password
-                ]);
-        /*
+        // echo json_encode($user);
+        
         if ($this->validateEmail($correo)) {
-            $stmt = $this->conn->prepare("SELECT nombre, password FROM usuarios WHERE email = :email");
+            $stmt = $this->conn->prepare("SELECT id_usuario, password FROM usuarios WHERE email = :email");
             $stmt->bindParam(':email', $correo);
             $stmt->execute();
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
             
-            if ($user && password_verify($password, $user['password'])) { 
-            // if ($user && $password === $user['password']) {
-                $value = $this->calculateToken($correo . $user['nombre']);
+            if($user && password_verify($password, $user['password'])) {
+                $value = $this->calculateToken($correo . $user['id_usuario']);
                 $_SESSION['token'] = $value;
-                $this->getInformacion($correo);
+                // $this->getInformacion($correo); # en siguientes versiones mejorarlo, y agregarlo
                 return [
                     'status' => 'success',
                     'cookie' => setcookie("token", $value, time() + 3600, '/', 'localhost'),
-                    'Name' => $this->nombre,
+                    'nombre' => $this->nombre,
+                    'email' => $this->email,
                 ];
             } else {
                 return [
@@ -40,12 +35,13 @@ class LoginModel{
                     'message' => 'Credenciales incorrectos'
                 ];
             }
-        } else {
+        }else{
             return [
                 'status' => 'error',
                 'message' => 'Datos no encontrados'
             ];
-        }*/
+        }
+
     }
 
     public function validateEmail($correo){

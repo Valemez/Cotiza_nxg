@@ -21,9 +21,18 @@
         .then(selfdata => {
             
             if(selfdata['status'] == 'success'){
+                console.log('ingreso correcto');
                 localStorage.setItem('nombre', selfdata['nombre']);
                 localStorage.setItem('email', selfdata['email']);
-                // window.location.replace( URL +'formulario.html');
+                Swal.fire({
+                  title: "¡Bienvenido!",
+                  icon: "success",
+                  draggable: true,
+                  showConfirmButton: false
+                });
+                setTimeout(() => {
+                    window.location.replace( URL +'/formulario.html');
+                }, 2000);
             } else {
                 swal.fire({
                     icon: 'error',
