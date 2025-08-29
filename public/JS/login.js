@@ -1,6 +1,7 @@
     import { URL } from './env';
 
-    document.getElementById('btn-inicio-sesion').addEventListener('click', function() { // Cuando el btn-inicio-sesion 
+    document.getElementById('btn-inicio-sesion').addEventListener('click', function(e) {
+        e.preventDefault();
     let data ={};
     data['usuario'] = document.getElementById('exampleInputEmail1').value;
     data['password'] = document.getElementById('exampleInputPassword1').value;

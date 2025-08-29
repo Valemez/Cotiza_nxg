@@ -11,6 +11,13 @@ class LoginModel{
     }
 
     public function login($correo, $password){
+        echo json_encode([
+                    'status'  => 'success',
+                    'message' => 'Login exitoso',
+                    'email'   => $correo,
+                    'password' =>  $password
+                ]);
+        /*
         if ($this->validateEmail($correo)) {
             $stmt = $this->conn->prepare("SELECT nombre, password FROM usuarios WHERE email = :email");
             $stmt->bindParam(':email', $correo);
@@ -38,7 +45,7 @@ class LoginModel{
                 'status' => 'error',
                 'message' => 'Datos no encontrados'
             ];
-        }
+        }*/
     }
 
     public function validateEmail($correo){
