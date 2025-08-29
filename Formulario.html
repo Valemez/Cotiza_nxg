@@ -6,44 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Servicios e Insumos Prosman S.A de C.V. - Cotización</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/8.3.2/introjs.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./public/CSS/styles.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
 </head>
 
 <body>
-    <div class="crs-form-wrapper">
+    <div class="crs-form-wrapper" data-title="Bienvenido al formulario de cotización" data-intro="Aquí podrás completar los pasos necesarios para solicitar una cotización de nuestros servicios.">
         <div class="crs-form-header">
             <!-- <img src="./resource/img/crs-metalico.svg" alt="CRS Seguridad Privada"> -->
             <img src="./public/Assets/logos/logo_prosman.png" alt="Generation Software">
         </div>
         <!-- Pasos para el registro -->
         <div class="crs-form-content">
-            <div action="http://localhost/Cotiza_nxg/src/php/formulario.php" method="post">       <!--http://localhost/Cotiza_nxg/src/php/formulario.php-->
+            <div action="http://localhost/Cotiza_nxg/src/php/formulario.php" method="post">
+                <!--http://localhost/Cotiza_nxg/src/php/formulario.php-->
                 <!-- <form action="http://intranetipm.ddns.net:5000/cotizaciones/backend/formulario.php" method="post"> -->
                 <!-- Menu -->
                 <div class="crs-steps">
                     <ul>
-                        <li class="crs-step-menu1 active">
+                        <li class="crs-step-menu1 active" data-title="Paso 1: Datos de la empresa" data-intro="En este paso, por favor proporciona los datos de la empresa del cliente, incluyendo el nombre, destinatario, puesto ocupacional y asunto de la cotización.">
                             <span>1</span>
                             Datos Empresa
                         </li>
-                        <li class="crs-step-menu2">
+                        <li class="crs-step-menu2" data-title="Paso 2: Selección de servicios" data-intro="Aquí podrás seleccionar el tipo de servicio que requieres y adjuntar el archivo de cotización del cliente.">
                             <span>2</span>
                             Servicios
                         </li>
-                        <li class="crs-step-menu3">
+                        <li class="crs-step-menu3" data-title="Paso 3: Selección de colaboradores" data-intro="En este paso, especifica el número de colaboradores necesarios, el estado y centro de trabajo, así como los roles específicos como supervisores y operarios.">
                             <span>3</span>
                             Colaboradores
                         </li>
-                        <li class="crs-step-menu4">
+                        <li class="crs-step-menu4" data-title="Paso 4: Requerimientos" data-intro="Selecciona los ITEMS reuqeridos incluyendo uniforme adicional, Equipo de protección personal (EPP), maquinaria y materiales.">
                             <span>4</span>
                             Requerimientos
                         </li>
-                        <li class="crs-step-menu5">
+                        <li class="crs-step-menu5" data-intro="Paso 5: Confirmación" >
                             <span>5</span>
                             Confirmación
                         </li>
@@ -128,7 +128,8 @@
                         <div class="crs-input-group">
                             <label for="Estado_republica" class="crs-form-label">Selecciona el estado de trabajo:
                             </label>
-                            <select name="Estado_republica" id="Estado_republica" onchange="mostrarEstados()" class="crs-form-input" required>
+                            <select name="Estado_republica" id="Estado_republica" onchange="mostrarEstados()"
+                                class="crs-form-input" required>
                                 <option value="Aguascalientes">Aguascalientes</option>
                                 <option value="Baja_California">Baja California</option>
                                 <option value="Baja_California_Sur">Baja California Sur</option>
@@ -329,49 +330,63 @@
                             <div class="crs-input-group">
                                 <p>Materiales</p>
                                 <!-- Selección de materiales -->
-                                    <div class="crs-input-group">
-                                        <label for="Materiales" class="crs-form-label">Seleccione si requiere materiales: </label>
-                                        <select name="Materiales" id="Materiales" class="crs-form-input">
-                                            <option value="Sin_materiales">Sin materiales</option>
-                                            <option value="con_materiales">Con materiales</option>
-                                        </select>
-                                    </div>
+                                <div class="crs-input-group">
+                                    <label for="Materiales" class="crs-form-label">Seleccione si requiere materiales:
+                                    </label>
+                                    <select name="Materiales" id="Materiales" class="crs-form-input">
+                                        <option value="Sin_materiales">Sin materiales</option>
+                                        <option value="con_materiales">Con materiales</option>
+                                    </select>
+                                </div>
                                 <div>
                                     <label for="con_materiales" class="crs-form-label">Seleccione los matreriales que
                                         requiera</label>
-                                        <!-- Quimicos -->
+                                    <!-- Quimicos -->
                                     <label for="quimicos" class="crs-form-label">Quimicos</label>
-                                    <label><input type="checkbox" id="" value="Jabon_multiusos" />Jabon multiusos</label><br />
+                                    <label><input type="checkbox" id="" value="Jabon_multiusos" />Jabon
+                                        multiusos</label><br />
                                     <label><input type="checkbox" id="" value="Cloro" />Cloro</label><br />
-                                    <label><input type="checkbox" id="" value="Jabon_polvo" />Jabon en polvo</label><br />
-                                    <label><input type="checkbox" id="" value="Limpiador_de_vidrios" />Limpiador de vidrios</label><br>
+                                    <label><input type="checkbox" id="" value="Jabon_polvo" />Jabon en
+                                        polvo</label><br />
+                                    <label><input type="checkbox" id="" value="Limpiador_de_vidrios" />Limpiador de
+                                        vidrios</label><br>
                                     <label><input type="checkbox" id="" value="Sarricida" />Sarricida</label><br />
-                                    <label><input type="checkbox" id="" value="Limpiador_desengrasante" />Limpiador desengrasante</label><br />
-                                    <label><input type="checkbox" id="" value="Jabon_trastes" />Jabon para trastes</label><br />
-                                    <label><input type="checkbox" id="" value="Jabon_para_manos" />Jabón para manos</label><br />   
-                                    <label><input type="checkbox" id="" value="destapacaños" />Destapacaños</label><br />
+                                    <label><input type="checkbox" id="" value="Limpiador_desengrasante" />Limpiador
+                                        desengrasante</label><br />
+                                    <label><input type="checkbox" id="" value="Jabon_trastes" />Jabon para
+                                        trastes</label><br />
+                                    <label><input type="checkbox" id="" value="Jabon_para_manos" />Jabón para
+                                        manos</label><br />
+                                    <label><input type="checkbox" id=""
+                                            value="destapacaños" />Destapacaños</label><br />
                                     <!-- Jarcieria -->
                                     <label for="jarcieria" class="crs-form-label">Jarcieria</label>
-                                    <label><input type="checkbox" id="" value="Escobas avanico" />Escobas avanico</label><br />
-                                    <label><input type="checkbox" id="" value="Cepillo_rigido" />Cepillo rigido</label><br />
+                                    <label><input type="checkbox" id="" value="Escobas avanico" />Escobas
+                                        avanico</label><br />
+                                    <label><input type="checkbox" id="" value="Cepillo_rigido" />Cepillo
+                                        rigido</label><br />
                                     <label><input type="checkbox" id="" value="Cubetas" />Cubetas</label><br />
                                     <label><input type="checkbox" id="" value="Microfibras" />Microfibras</label><br />
                                     <label><input type="checkbox" id="" value="Franela" />Franela</label><br />
-                                    <label><input type="checkbox" id="" value="Recogedores_lamina" />Recogedores de lamina</label><br />
+                                    <label><input type="checkbox" id="" value="Recogedores_lamina" />Recogedores de
+                                        lamina</label><br />
                                     <label><input type="checkbox" id="" value="Mechudos" />Mechudos</label><br />
                                     <label><input type="checkbox" id="" value="Mops" />Mops</label><br />
                                     <!-- numero de dotaciones anuales -->
                                     <div class="crs-input-group">
-                                        <label for="num_dotaciones_anual_maquinaria" class="crs-form-label">Número de dotaciones (Anuales):</label>
+                                        <label for="num_dotaciones_anual_maquinaria" class="crs-form-label">Número de
+                                            dotaciones (Anuales):</label>
                                         <input type="number" name="num_dotaciones_anual_maquinaria"
-                                        id="num_dotaciones_anual_maquinaria" placeholder="Ej. 12" class="crs-form-input"
-                                        min="1">
+                                            id="num_dotaciones_anual_maquinaria" placeholder="Ej. 12"
+                                            class="crs-form-input" min="1">
                                     </div>
                                     <!-- tiempo de entrega de dotaciones anuales -->
                                     <div class="crs-input-group">
-                                        <label for="Fecha_entrega_jarseria" class="crs-form-label">Seleccione el tipo de servicio que
+                                        <label for="Fecha_entrega_jarseria" class="crs-form-label">Seleccione el tipo de
+                                            servicio que
                                             requiere.</label>
-                                        <select name="Fecha_entrega_jarseria" id="Fecha_entrega_jarseria" class="crs-form-input">
+                                        <select name="Fecha_entrega_jarseria" id="Fecha_entrega_jarseria"
+                                            class="crs-form-input">
                                             <option value="bimestral">Bimestral</option>
                                             <option value="trimestarl">Trimestral</option>
                                             <option value="cuatrimestral">Cuatrimestral</option>
@@ -382,20 +397,25 @@
                                     <label for="mobiliario" class="crs-form-label">Mobiliario de limpieza</label>
                                     <label><input type="checkbox" id="" value="" />Despachador de jabon</label><br />
                                     <label><input type="checkbox" id="" value="" />Despachador de manitas</label><br />
-                                    <label><input type="checkbox" id="" value="" />Despachador para papel bobina</label><br />
-                                    <label><input type="checkbox" id="" value="" />Señaletica de piso mojado</label><br />
-                                        <!-- numero de dotaciones anuales -->
+                                    <label><input type="checkbox" id="" value="" />Despachador para papel
+                                        bobina</label><br />
+                                    <label><input type="checkbox" id="" value="" />Señaletica de piso
+                                        mojado</label><br />
+                                    <!-- numero de dotaciones anuales -->
                                     <div class="crs-input-group">
-                                        <label for="num_dotaciones_anual_maquinaria" class="crs-form-label">Número de dotaciones (Anuales):</label>
+                                        <label for="num_dotaciones_anual_maquinaria" class="crs-form-label">Número de
+                                            dotaciones (Anuales):</label>
                                         <input type="number" name="num_dotaciones_anual_maquinaria"
-                                        id="num_dotaciones_anual_maquinaria" placeholder="Ej. 12" class="crs-form-input"
-                                        min="1">
+                                            id="num_dotaciones_anual_maquinaria" placeholder="Ej. 12"
+                                            class="crs-form-input" min="1">
                                     </div>
                                     <!-- tiempo de entrega de dotaciones anuales -->
                                     <div class="crs-input-group">
-                                        <label for="Fecha_entrega_jarseria" class="crs-form-label">Seleccione el tipo de servicio que
+                                        <label for="Fecha_entrega_jarseria" class="crs-form-label">Seleccione el tipo de
+                                            servicio que
                                             requiere.</label>
-                                        <select name="Fecha_entrega_jarseria" id="Fecha_entrega_jarseria" class="crs-form-input">
+                                        <select name="Fecha_entrega_jarseria" id="Fecha_entrega_jarseria"
+                                            class="crs-form-input">
                                             <option value="semestral">Semestral</option>
                                             <option value="anual">Anual</option>
                                         </select>
@@ -406,36 +426,37 @@
                     </div>
                 </div>
                 <!-- Paso 5: Confirmación -->
-                    <div class="crs-form-step-5">
-                        <div class="crs-form-confirm">
-                            <h3 style="color: #001550; margin-bottom: 20px;">Resumen de su solicitud</h3>
-                            <p>
-                                Por favor revise cuidadosamente la información proporcionada antes de enviar su
-                                solicitud de
-                                cotización.
-                            </p>
-                            <div id="summary-details" style="text-align: left; margin-bottom: 30px;">
-                            </div>
+                <div class="crs-form-step-5">
+                    <div class="crs-form-confirm">
+                        <h3 style="color: #001550; margin-bottom: 20px;">Resumen de su solicitud</h3>
+                        <p>
+                            Por favor revise cuidadosamente la información proporcionada antes de enviar su
+                            solicitud de
+                            cotización.
+                        </p>
+                        <div id="summary-details" style="text-align: left; margin-bottom: 30px;">
                         </div>
                     </div>
-                    <!-- Botones de navegación -->
-                    <div class="crs-form-btn-wrapper">
-                        <button type="button" class="crs-back-btn" id="back-btn">
-                            Regresar
-                        </button>
-                        <button type="button" class="crs-next-btn" id="next-btn">
-                            Siguiente
-                        </button>
-                    </div>
+                </div>
+                <!-- Botones de navegación -->
+                <div class="crs-form-btn-wrapper">
+                    <button type="button" class="crs-back-btn" id="back-btn">
+                        Regresar
+                    </button>
+                    <button type="button" class="crs-next-btn" id="next-btn">
+                        Siguiente
+                    </button>
+                </div>
             </div>
         </div>
 
         <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
         <script type="module" src="./public/js/script.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-            crossorigin="anonymous"></script>
-        <script src="./resource/js/meet.js"></script>
-</body>
+        <!-- <script src="./resource/js/meet.js"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/8.3.2/intro.min.js"></script>
+        <script>
+            introJs().start();
 
+        </script>
+</body >
 </html>
