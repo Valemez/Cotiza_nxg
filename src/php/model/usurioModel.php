@@ -1,7 +1,7 @@
 <?php
 require_once('connect.php');
 
-class LoginModel{
+class UsurioModel{
     private $conn;
     private $nombre;
     private $email;
@@ -10,36 +10,8 @@ class LoginModel{
         $this->conn = Conexion::getInstance();
     }
 
-    public function login($correo, $password){
-        // echo json_encode($user);
-        
-        if ($this->validateEmail($correo)) {
-            $stmt = $this->conn->prepare("SELECT id_usuario, password, email FROM usuarios WHERE email = :email");
-            $stmt->bindParam(':email', $correo);
-            $stmt->execute();
-            $user = $stmt->fetch(PDO::FETCH_ASSOC);
-            
-            if($user && password_verify($password, $user['password'])) {
-                $value = $this->calculateToken($correo . $user['id_usuario']);
-                $_SESSION['token'] = $value;
-                // $this->getInformacion($correo); # en siguientes versiones mejorarlo, y agregarlo
-                return [
-                    'status' => 'success',
-                    'cookie' => setcookie("token", $value, time() + 3600, '/', 'localhost'),
-                    'email' => $user['email'],
-                ];
-            } else {
-                return [
-                    'status' => 'error',
-                    'message' => 'Credenciales incorrectos'
-                ];
-            }
-        }else{
-            return [
-                'status' => 'error',
-                'message' => 'Datos no encontrados'
-            ];
-        }
+    public function verificacionUsuario(){
+        echo json_encode(['status' => 'success', 'message' => 'Solicitud GET recibida']);
 
     }
 
