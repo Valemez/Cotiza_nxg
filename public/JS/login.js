@@ -22,7 +22,8 @@
             
             if(selfdata['status'] == 'success'){
                 console.log('ingreso correcto');
-                localStorage.setItem('nombre', selfdata['nombre']);
+                console.log(selfdata);
+                // localStorage.setItem('nombre', selfdata['nombre']);
                 localStorage.setItem('email', selfdata['email']);
                 Swal.fire({
                   title: "¡Bienvenido!",

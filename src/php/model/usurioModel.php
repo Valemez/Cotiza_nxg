@@ -1,7 +1,7 @@
 <?php
 require_once('connect.php');
 
-class LoginModel{
+class UsurioModel{
     private $conn;
     private $nombre;
     private $email;

@@ -36,7 +36,15 @@ switch($method){
         }
     break;
     case 'GET':
-        // code...
+        switch ($resource) {
+            case 'getUser':
+                echo json_encode(['status' => 'success', 'message' => 'Solicitud GET recibida']);
+                break;
+            
+            default:
+                # code...
+                break;
+        }
     break;
     case 'PUT':
         // code...
