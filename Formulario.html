@@ -14,7 +14,8 @@
 </head>
 
 <body>
-    <div class="crs-form-wrapper" data-title="Bienvenido al formulario de cotización" data-intro="Aquí podrás completar los pasos necesarios para solicitar una cotización de nuestros servicios.">
+    <div class="crs-form-wrapper" data-title="Bienvenido al formulario de cotización"
+        data-intro="Aquí podrás completar los pasos necesarios para solicitar una cotización de nuestros servicios.">
         <div class="crs-form-header">
             <!-- <img src="./resource/img/crs-metalico.svg" alt="CRS Seguridad Privada"> -->
             <img src="./public/Assets/logos/logo_prosman.png" alt="Generation Software">
@@ -27,23 +28,28 @@
                 <!-- Menu -->
                 <div class="crs-steps">
                     <ul>
-                        <li class="crs-step-menu1 active" data-title="Paso 1: Datos de la empresa" data-intro="En este paso, por favor proporciona los datos de la empresa del cliente, incluyendo el nombre, destinatario, puesto ocupacional y asunto de la cotización.">
+                        <li class="crs-step-menu1 active" data-title="Paso 1: Datos de la empresa"
+                            data-intro="En este paso, por favor proporciona los datos de la empresa del cliente, incluyendo el nombre, destinatario, puesto ocupacional y asunto de la cotización.">
                             <span>1</span>
                             Datos Empresa
                         </li>
-                        <li class="crs-step-menu2" data-title="Paso 2: Selección de servicios" data-intro="Aquí podrás seleccionar el tipo de servicio que requieres y adjuntar el archivo de cotización del cliente.">
+                        <li class="crs-step-menu2" data-title="Paso 2: Selección de servicios"
+                            data-intro="Aquí podrás seleccionar el tipo de servicio que requieres y adjuntar el archivo de cotización del cliente.">
                             <span>2</span>
                             Servicios
                         </li>
-                        <li class="crs-step-menu3" data-title="Paso 3: Selección de colaboradores" data-intro="En este paso, especifica el número de colaboradores necesarios, el estado y centro de trabajo, así como los roles específicos como supervisores y operarios.">
+                        <li class="crs-step-menu3" data-title="Paso 3: Selección de colaboradores"
+                            data-intro="En este paso, especifica el número de colaboradores necesarios, el estado y centro de trabajo, así como los roles específicos como supervisores y operarios.">
                             <span>3</span>
                             Colaboradores
                         </li>
-                        <li class="crs-step-menu4" data-title="Paso 4: Requerimientos" data-intro="Selecciona los ITEMS reuqeridos incluyendo uniforme adicional, Equipo de protección personal (EPP), maquinaria y materiales.">
+                        <li class="crs-step-menu4" data-title="Paso 4: Requerimientos"
+                            data-intro="Selecciona los ITEMS reuqeridos incluyendo uniforme adicional, Equipo de protección personal (EPP), maquinaria y materiales.">
                             <span>4</span>
                             Requerimientos
                         </li>
-                        <li class="crs-step-menu5" data-intro="Paso 5: Confirmación" >
+                        <li class="crs-step-menu5" data-title="Paso 5: Confirmación"
+                            data-intro="Confirmación de los campos de la cotización">
                             <span>5</span>
                             Confirmación
                         </li>
@@ -455,8 +461,12 @@
         <!-- <script src="./resource/js/meet.js"></script> -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/8.3.2/intro.min.js"></script>
         <script>
+            introJs.tour().onbeforeexit(function () {
+                return confirm("ANTES DE CERRAR DEBES TERMINAR EL RECORRIDO GUIADO, ¿DESEAS CONTINUAR?");
+            }).start()
             introJs().start();
 
         </script>
-</body >
+</body>
+
 </html>
