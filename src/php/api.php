@@ -4,7 +4,7 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
 
 require_once('./model/loginModel.php');
-require_once('/model/usuarioModel.php');
+require_once('./model/UsuarioModel.php');
 
 
 $method=$_SERVER["REQUEST_METHOD"];
@@ -40,8 +40,8 @@ switch($method){
         switch ($resource) {
             case 'getUser':
                 # code ...
-                $model = new UsurioModel();
-                echo json_encode($model->verificacionUsuario());
+                $model = new UsuarioModel();
+                echo json_encode($user = $model->verificacionUsuario($requestUri[5]));
                 break;
             
             default:
