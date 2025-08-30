@@ -32,6 +32,14 @@ switch($method){
             case 'register':
                 echo json_encode(['status' => 'success', 'message' => 'Registro exitoso']);
             break;
+            case 'logout':
+                // Destruir la sesión
+                session_unset();
+                session_destroy();
+                echo json_encode(['status' => 'success', 'message' => 'Logout exitoso']);
+            break;
+            case 'formulario':
+                echo json_encode(['status' => 'success', 'message' => 'Formulario enviado mgc']);
             default:
                 return http_response_code(404);
         }
