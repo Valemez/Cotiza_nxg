@@ -1,277 +1,244 @@
+ // Iniciar el tour introductorio
+            introJs().start();
+            
+            // Datos de centros de trabajo por estado
+            const centrosTrabajo = {
+                Aguascalientes: ["Aguascalientes Centro", "Aguascalientes Norte", "Aguascalientes Sur"],
+                Baja_California: ["Tijuana", "Mexicali", "Ensenada"],
+                Baja_California_Sur: ["La Paz", "Cabo San Lucas", "San José del Cabo"],
+                Campeche: ["Campeche Centro", "Ciudad del Carmen", "Champotón"],
+                Ciudad_de_México: ["Alcaldía Cuauhtémoc", "Alcaldía Benito Juárez", "Alcaldía Miguel Hidalgo"],
+                Coahuila: ["Saltillo", "Torreón", "Monclova"],
+                Colima: ["Colima", "Manzanillo", "Tecomán"],
+                Chiapas: ["Tuxtla Gutiérrez", "Tapachula", "San Cristóbal de las Casas"],
+                Chihuahua: ["Chihuahua", "Juárez", "Cuauhtémoc"],
+                Durango: ["Durango", "Gómez Palacio", "Lerdo"],
+                Estado_de_México: ["Toluca", "Ecatepec", "Nezahualcóyotl"],
+                Guanajuato: ["León", "Irapuato", "Celaya"],
+                Guerrero: ["Acapulco", "Chilpancingo", "Iguala"],
+                Hidalgo: ["Pachuca", "Tulancingo", "Tizayuca"],
+                Jalisco: ["Guadalajara", "Zapopan", "Tlaquepaque"],
+                Michoacán: ["Morelia", "Uruapan", "Zamora"],
+                Morelos: ["Cuernavaca", "Jiutepec", "Cuautla"],
+                Nayarit: ["Tepic", "Xalisco", "Santiago Ixcuintla"],
+                Nuevo_León: ["Monterrey", "San Pedro Garza García", "Guadalupe"],
+                Oaxaca: ["Oaxaca", "Salina Cruz", "Juchitán"],
+                Puebla: ["Puebla", "Tehuacán", "San Martín Texmelucan"],
+                Querétaro: ["Querétaro", "San Juan del Río", "Corregidora"],
+                Quintana_Roo: ["Cancún", "Chetumal", "Playa del Carmen"],
+                San_Luis_Potosí: ["San Luis Potosí", "Soledad", "Ciudad Valles"],
+                Sinaloa: ["Culiacán", "Mazatlán", "Los Mochis"],
+                Sonora: ["Hermosillo", "Ciudad Obregón", "Nogales"],
+                Tabasco: ["Villahermosa", "Cárdenas", "Comalcalco"],
+                Tamaulipas: ["Reynosa", "Matamoros", "Nuevo Laredo"],
+                Tlaxcala: ["Tlaxcala", "Apizaco", "Chiautempan"],
+                Veracruz: ["Veracruz", "Xalapa", "Coatzacoalcos"],
+                Yucatán: ["Mérida", "Valladolid", "Progreso"],
+                Zacatecas: ["Zacatecas", "Fresnillo", "Guadalupe"]
+            };
 
-
-import { URL } from './env.js';
-console.log(URL);
-
-document.addEventListener('DOMContentLoaded', function () {
-    // elementos
-    const stepMenus = [
-        document.querySelector('.crs-step-menu1'),
-        document.querySelector('.crs-step-menu2'),
-        document.querySelector('.crs-step-menu3'),
-        document.querySelector('.crs-step-menu4'),
-        document.querySelector('.crs-step-menu5')
-    ];
-
-    const steps = [
-        document.querySelector('.crs-form-step-1'),
-        document.querySelector('.crs-form-step-2'),
-        document.querySelector('.crs-form-step-3'),
-        document.querySelector('.crs-form-step-4'),
-        document.querySelector('.crs-form-step-5')
-    ];
-
-    const nextBtn = document.getElementById('next-btn');
-    const backBtn = document.getElementById('back-btn');
-    const form = document.querySelector('form');
-    const serviceCheckboxes = document.querySelectorAll('input[name="servicios[]"]');
-    const equipmentList = document.getElementById('equipment-list');
-    const summaryDetails = document.getElementById('summary-details');
-
-    let currentStep = 0;
-
-    // Opciones de equipamiento
-    const equipmentOptions = {
-        'Guardias Seguridad': ['Raso', 'Ejecutivo','Jefe de servicio', 'Jefe de turno', 'Acomodo de personal', 'Unifirme adicional*',
-            'Auto patrulla', 'Camioneta con batea', 'Motocicleta', 'Ambulancia', 'Celular', 'Radio', 'Caninos',
-            'Papeleria y computo'],
-        'Protección personal': ['Raso', 'Ejecutivo','Jefe de servicio', 'Jefe de turno', 'Acomodo de personal', 'Unifirme adicional*',
-            'Auto patrulla', 'Camioneta con batea', 'Motocicleta', 'Ambulancia', 'Celular', 'Radio', 'Caninos',
-            'Papeleria y computo'],
-        'Seguridad patrimonial': ['Tactico', 'Jefe de servicio', 'Jefe de turno','Acomodo de personal', 'Uniforme adicional*',
-            'Auto patrulla', 'Camioneta con batea', 'Motocicleta', 'Ambulancia', 'Celular', 'Radio', 'Caninos',
-            'Papeleria y computo'],
-        'Custodia mercancia': ['Tactico', 'Ejecutivo', 'Jefe de servicio', 'Jefe de turno', 'Acomodo de personal', 'Unifirme adicional*',
-            'Auto patrulla', 'Camioneta con batea', 'Motocicleta', 'Ambulancia', 'Celular', 'Radio', 'Caninos',
-            'Papeleria y computo'],
-    };
-
-    // Inicia formulario
-    updateStepDisplay();
-
-    // funcion del botón siguiente
-    nextBtn.addEventListener('click', function () {
-        if (validateStep(currentStep)) {
-            if (currentStep === 4) {
-                updateEquipmentList();
-            } else if (currentStep === 5) {
-                updateSummary();
+            // Función para mostrar los centros de trabajo según el estado seleccionado
+            function mostrarEstados() {
+                const estadoSelect = document.getElementById('Estado_republica');
+                const centroSelect = document.getElementById('Centro_trabajo');
+                const estado = estadoSelect.value;
+                
+                // Limpiar opciones actuales
+                centroSelect.innerHTML = '<option value="">--- Seleccione centro de trabajo ---</option>';
+                
+                // Agregar nuevas opciones según el estado seleccionado
+                if (estado && centrosTrabajo[estado]) {
+                    centrosTrabajo[estado].forEach(centro => {
+                        const option = document.createElement('option');
+                        option.value = centro;
+                        option.textContent = centro;
+                        centroSelect.appendChild(option);
+                    });
+                }
             }
 
-            if (currentStep < 5) {
-                currentStep++;
+            // Mostrar/ocultar materiales según selección
+            document.getElementById('Materiales').addEventListener('change', function() {
+                const materialesContainer = document.getElementById('materiales-container');
+                materialesContainer.style.display = this.value === 'con_materiales' ? 'block' : 'none';
+            });
+
+            document.addEventListener('DOMContentLoaded', function () {
+                // elementos
+                const stepMenus = [
+                    document.querySelector('.crs-step-menu1'),
+                    document.querySelector('.crs-step-menu2'),
+                    document.querySelector('.crs-step-menu3'),
+                    document.querySelector('.crs-step-menu4'),
+                    document.querySelector('.crs-step-menu5')
+                ];
+
+                const steps = [
+                    document.querySelector('.crs-form-step-1'),
+                    document.querySelector('.crs-form-step-2'),
+                    document.querySelector('.crs-form-step-3'),
+                    document.querySelector('.crs-form-step-4'),
+                    document.querySelector('.crs-form-step-5')
+                ];
+
+                const nextBtn = document.getElementById('next-btn');
+                const backBtn = document.getElementById('back-btn');
+                const form = document.querySelector('form');
+                const summaryDetails = document.getElementById('summary-details');
+
+                let currentStep = 0;
+
+                // Inicia formulario
                 updateStepDisplay();
-            } else {
-                form.submit();
-            }
-        }
-    });
 
-    // función del boton de atrás
-    backBtn.addEventListener('click', function () {
-        if (currentStep > 0) {
-            currentStep--;
-            updateStepDisplay();
-        }
-    });
+                // funcion del botón siguiente
+                nextBtn.addEventListener('click', function () {
+                    if (validateStep(currentStep)) {
+                        if (currentStep === 4) {
+                            updateSummary();
+                        }
 
-    // cambio de servicios
-    serviceCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', function () {
-            const atLeastOneChecked = Array.from(serviceCheckboxes).some(cb => cb.checked);
-            nextBtn.disabled = !atLeastOneChecked;
-        });
-    });
+                        if (currentStep < 4) {
+                            currentStep++;
+                            updateStepDisplay();
+                        } else {
+                            form.submit();
+                        }
+                    }
+                });
 
-    // PDF generation button
-    //document.getElementById('generate-pdf')?.addEventListener('click', function() {
-    //alert('PDF generado (esta función se implementaría con un servicio real)');
-    //  });
+                // función del boton de atrás
+                backBtn.addEventListener('click', function () {
+                    if (currentStep > 0) {
+                        currentStep--;
+                        updateStepDisplay();
+                    }
+                });
 
-    // Actualizar la vista del formulario
-    function updateStepDisplay() {
-        // actualiza los menus
-        stepMenus.forEach((menu, index) => {
-            if (index === currentStep) {
-                menu.classList.add('active');
-            } else {
-                menu.classList.remove('active');
-            }
-        });
-        steps.forEach((step, index) => {
-            if (index === currentStep) {
-                step.classList.add('active');
-            } else {
-                step.classList.remove('active');
-            }
-        });
+                // Actualizar la vista del formulario
+                function updateStepDisplay() {
+                    // actualiza los menus
+                    stepMenus.forEach((menu, index) => {
+                        if (index === currentStep) {
+                            menu.classList.add('active');
+                        } else {
+                            menu.classList.remove('active');
+                        }
+                    });
+                    
+                    steps.forEach((step, index) => {
+                        if (index === currentStep) {
+                            step.classList.add('active');
+                        } else {
+                            step.classList.remove('active');
+                        }
+                    });
 
-        // funcion del boton
-        backBtn.style.display = currentStep > 0 ? 'block' : 'none';
+                    // funcion del boton
+                    backBtn.style.display = currentStep > 0 ? 'block' : 'none';
 
-        if (currentStep === 5) {
-            nextBtn.textContent = 'Enviar';
-        } else {
-            nextBtn.textContent = 'Siguiente';
-            nextBtn.disabled = currentStep === 4 && !Array.from(serviceCheckboxes).some(cb => cb.checked);
-        }
+                    if (currentStep === 4) {
+                        nextBtn.textContent = 'Enviar';
+                    } else {
+                        nextBtn.textContent = 'Siguiente';
+                    }
 
-        // Scroll
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    }
+                    // Scroll
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                }
 
-    // función de los servicios
-    function updateEquipmentList() {
-        const selectedServices = Array.from(serviceCheckboxes)
-            .filter(cb => cb.checked)
-            .map(cb => cb.value);
+                // Resumen de la información
+                function updateSummary() {
+                    const formData = new FormData(form);
+                    let summaryHTML = `
+                        <div style="margin-bottom: 20px;">
+                            <h4 style="color: #001550; margin-bottom: 10px;">Información de la empresa</h4>
+                            <p><strong>Empresa:</strong> ${formData.get('nombre')}</p>
+                            <p><strong>Destinatario:</strong> ${formData.get('destinatario')}</p>
+                            <p><strong>Puesto:</strong> ${formData.get('puesto')}</p>
+                            <p><strong>Asunto:</strong> ${formData.get('asunto')}</p>
+                        </div>
+                    `;
 
-        let equipmentHTML = '';
-        const uniqueEquipment = new Set();
-
-        selectedServices.forEach(service => {
-            if (equipmentOptions[service]) {
-                equipmentOptions[service].forEach(item => uniqueEquipment.add(item));
-            }
-        });
-
-        if (uniqueEquipment.size > 0) {
-            uniqueEquipment.forEach(item => {
-                equipmentHTML += `
-                            <div class="crs-checkbox-group">
-                                <label class="crs-checkbox-label">
-                                    <input type="checkbox" name="equipamiento[]" value="${item}" class="crs-checkbox-input"> ${item}
-                                </label>
+                    // Resumen de servicios
+                    const servicio = formData.get('servicios');
+                    if (servicio) {
+                        summaryHTML += `
+                            <div style="margin-bottom: 20px;">
+                                <h4 style="color: #001550; margin-bottom: 10px;">Servicio solicitado</h4>
+                                <p>${servicio}</p>
                             </div>
                         `;
-            });
-        } else {
-            equipmentHTML = '<p>No se requieren equipamientos especiales para los servicios seleccionados</p>';
-        }
+                    }
 
-        equipmentList.innerHTML = equipmentHTML;
-    }
+                    // Resumen de descripción del servicio
+                    const descripcion = formData.get('descripcion_servicio');
+                    if (descripcion) {
+                        summaryHTML += `
+                            <div style="margin-bottom: 20px;">
+                                <h4 style="color: #001550; margin-bottom: 10px;">Descripción del servicio</h4>
+                                <p>${descripcion}</p>
+                            </div>
+                        `;
+                    }
 
-    // Resumen de la información
-    function updateSummary() {
-        const formData = new FormData(form);
-        let summaryHTML = `
-                    <div style="margin-bottom: 20px;">
-                        <h4 style="color: #001550; margin-bottom: 10px;">Información del cliente</h4>
-                        <p><strong>Nombre:</strong> ${formData.get('Nombre')}</p>
-                        <p><strong>Empresa:</strong> ${formData.get('Empresa')}</p>
-                        <p><strong>Contacto:</strong> ${formData.get('Email')} | ${formData.get('Telefono')}</p>
-                        <p><strong>Dirección:</strong> ${formData.get('Direccion')}</p>
-                        <p><strong>Cargo:</strong> ${formData.get('Cargo')}</p>
-                        <p><strong>WhatsApp:</strong> ${formData.get('WhatsApp')}</p>   
-                    </div>
-                `;
+                    // Resumen de colaboradores
+                    const numColaboradores = formData.get('numero_colaboradores');
+                    if (numColaboradores) {
+                        summaryHTML += `
+                            <div style="margin-bottom: 20px;">
+                                <h4 style="color: #001550; margin-bottom: 10px;">Personal requerido</h4>
+                                <p><strong>Número de colaboradores:</strong> ${numColaboradores}</p>
+                                <p><strong>Supervisores:</strong> ${formData.get('supervisor') || 0}</p>
+                                <p><strong>Operarios de limpieza:</strong> ${formData.get('operario_limpieza') || 0}</p>
+                                <p><strong>Ayudantes generales:</strong> ${formData.get('Ayudante_general') || 0}</p>
+                                <p><strong>Operarios de maquinaria:</strong> ${formData.get('Operario_maquinaria') || 0}</p>
+                                <p><strong>Turno de trabajo:</strong> ${formData.get('Turno_trabajo')} horas</p>
+                            </div>
+                        `;
+                    }
 
-        // Resumen de tipo de servicio
-        const tipoTurno = formData.get('tipo_Turno');
-        if (tipoTurno) {
-            summaryHTML += `
-                        <div>
-                            <h4 style="color: #001550; margin-bottom: 10px;">Tipo de turno</h4>
-                            <p>${tipoTurno}</p>
-                        </div>
-                    `;
-        }
+                    // Resumen de ubicación
+                    const estado = formData.get('Estado_republica');
+                    const centro = formData.get('Centro_trabajo');
+                    if (estado && centro) {
+                        summaryHTML += `
+                            <div style="margin-bottom: 20px;">
+                                <h4 style="color: #001550; margin-bottom: 10px;">Ubicación</h4>
+                                <p><strong>Estado:</strong> ${estado}</p>
+                                <p><strong>Centro de trabajo:</strong> ${centro}</p>
+                            </div>
+                        `;
+                    }
 
-        // Resumen de numero de guardias
-        const numGuardia = formData.get('num_guardias');
-        if (numGuardia) {
-            summaryHTML += `
-                        <div>
-                            <h4 style="color: #001550; margin-bottom: 10px;">Numero de guardias</h4>
-                            <p>${numGuardia}</p>
-                        </div>
-                    `;
-        }
+                    summaryDetails.innerHTML = summaryHTML;
+                }
 
-        // resumen de servicios
-        const services = formData.getAll('servicios[]');
-        if (services.length > 0) {
-            summaryHTML += `
-                        <div style="margin-bottom: 20px;">
-                            <h4 style="color: #001550; margin-bottom: 10px;">Servicios solicitados</h4>
-                            <ul style="padding-left: 20px;">
-                                ${services.map(service => `<li>${service}</li>`).join('')}
-                            </ul>
-                        </div>
-                    `;
-        }
+                // Validación del formulario
+                function validateStep(step) {
+                    let isValid = true;
 
-        // resumen de equipamiento
-        const equipment = formData.getAll('equipamiento[]');
-        if (equipment.length > 0) {
-            summaryHTML += `
-                        <div style="margin-bottom: 20px;">
-                            <h4 style="color: #001550; margin-bottom: 10px;">Equipamiento requerido</h4>
-                            <ul style="padding-left: 20px;">
-                                ${equipment.map(item => `<li>${item}</li>`).join('')}
-                            </ul>
-                        </div>
-                    `;
-        }
+                    if (step === 0) {
+                        // Validacion de los campos del formulario
+                        const requiredFields = ['nombre', 'destinatario', 'puesto', 'asunto'];
+                        requiredFields.forEach(fieldId => {
+                            const field = document.getElementById(fieldId);
+                            if (!field.value.trim()) {
+                                field.style.borderColor = 'red';
+                                isValid = false;
+                            } else {
+                                field.style.borderColor = '#DDE3EC';
+                            }
+                        });
 
-        // comentarios adicionales
-        const comments = formData.get('comentarios');
-        if (comments) {
-            summaryHTML += `
-                        <div>
-                            <h4 style="color: #001550; margin-bottom: 10px;">Comentarios adicionales</h4>
-                            <p>${comments}</p>
-                        </div>
-                    `;
-        }
+                        if (!isValid) {
+                            alert('Por favor complete todos los campos requeridos');
+                        }
+                    }
 
-        summaryDetails.innerHTML = summaryHTML;
-    }
-
-
-    document.getElementById('visita-btn')?.addEventListener('click', function () {
-        alert('Solicitud de visita enviada. Nos pondremos en contacto para coordinar la visita.');
-        form.submit();
-    });
-
-    document.getElementById('meet-btn')?.addEventListener('click', function () {
-        alert('Solicitud de reunión virtual enviada. Recibirá un enlace para la reunión por correo electrónico.');
-        form.submit();
-    });
-
-    document.getElementById('cita-btn')?.addEventListener('click', function () {
-        alert('Solicitud de cita enviada. Nos pondremos en contacto para confirmar la fecha y hora.');
-        form.submit();
-    });
-
-    // Validación del formulario
-    function validateStep(step) {
-        let isValid = true;
-
-        if (step === 0) {
-            // Validacion de los campos del formulario
-            const requiredFields = ['nombre', 'destinatario', 'puesto', 'asunto'];
-            requiredFields.forEach(fieldId => {
-                const field = document.getElementById(fieldId);
-                if (!field.value.trim()) {
-                    field.style.borderColor = 'red';
-                    isValid = false;
-                } else {
-                    field.style.borderColor = '#DDE3EC';
+                    return isValid;
                 }
             });
-
-            if (!isValid) {
-                alert('Por favor complete todos los campos requeridos');
-            }
-        }
-
-        return isValid;
-    }
-    
-
-});
