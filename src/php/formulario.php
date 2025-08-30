@@ -4,7 +4,7 @@ file_put_contents('debug_post.txt', print_r($_POST, true));
 header("Content-Type: application/json");
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST");
-// header("Location: https://intranetipm.ddns.net/cotiza_nxg/");
+// header("Location: https://localhost/cotiza_nxg/");
 
 
 require_once('connect.php');
