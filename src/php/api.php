@@ -6,6 +6,7 @@ header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
 
 require_once('./model/loginModel.php');
 require_once('./model/UsuarioModel.php');
+require_once('./model/clientesModel.php');
 
 
 $method=$_SERVER["REQUEST_METHOD"];
@@ -40,7 +41,34 @@ switch($method){
                 echo json_encode(['status' => 'success', 'message' => 'Logout exitoso']);
             break;
             case 'formulario':
-                echo json_encode(['status' => 'success', 'message' => 'Formulario enviado mgc']);
+                $model = new clienteModel();
+
+                // $nombre = isset($_POST['nombre']) ? htmlspecialchars(trim($_POST['nombre']), ENT_QUOTES, 'UTF-8') : '';
+                // $destinatario = isset($_POST['destinatario']) ? htmlspecialchars(trim($_POST['destinatario']), ENT_QUOTES, 'UTF-8') : '';
+                // $puesto = isset($_POST['puesto']) ? htmlspecialchars(trim($_POST['puesto']), ENT_QUOTES, 'UTF-8') : '';
+                // $asunto = isset($_POST['asunto']) ? htmlspecialchars(trim($_POST['asunto']), ENT_QUOTES, 'UTF-8') : '';
+                
+                $clientData = [];
+
+                $textFields = ['nombre', 'destinatario', 'puesto', 'asunto'];
+
+                foreach($textFields as $field){
+                    $clientData[$field] = $_POST[$field] ? htmlspecialchars(trim($_POST[$field]), ENT_QUOTES, 'UTF-8') : null;
+                }
+
+                $clientData['logo'] = null;
+
+                if (isset($_FILES['logo']) && $_FILES['logo']['error'] === UPLOAD_ERR_OK) {
+                    $logo_path = $_FILES['logo']['tmp_name'];
+                    $logo_blob = file_get_contents($logo_path);
+
+                    $clientData['logo'] =  $logo_blob;
+                }
+
+                $resultado = $model->addClient($clientData);
+
+                echo json_encode([$resultado]) ;
+
             default:
                 return http_response_code(404);
         }
