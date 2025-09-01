@@ -3,8 +3,9 @@ header("Content-Type: application/json");
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
 
+
 require_once('./model/loginModel.php');
-require_once('/model/usuarioModel.php');
+require_once('./model/UsuarioModel.php');
 
 
 $method=$_SERVER["REQUEST_METHOD"];
@@ -32,6 +33,14 @@ switch($method){
             case 'register':
                 echo json_encode(['status' => 'success', 'message' => 'Registro exitoso']);
             break;
+            case 'logout':
+                // Destruir la sesión
+                session_unset();
+                session_destroy();
+                echo json_encode(['status' => 'success', 'message' => 'Logout exitoso']);
+            break;
+            case 'formulario':
+                echo json_encode(['status' => 'success', 'message' => 'Formulario enviado mgc']);
             default:
                 return http_response_code(404);
         }
@@ -40,8 +49,8 @@ switch($method){
         switch ($resource) {
             case 'getUser':
                 # code ...
-                $model = new UsurioModel();
-                echo json_encode($model->verificacionUsuario());
+                $model = new UsuarioModel();
+                echo json_encode($user = $model->verificacionUsuario($requestUri[5]));
                 break;
             
             default:

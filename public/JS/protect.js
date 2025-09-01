@@ -3,20 +3,20 @@ document.addEventListener("DOMContentLoaded", function() {
   fetch(URL + "/src/php/api.php/getUser/" + localStorage.getItem("email")) 
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-        // let status_activo = data.status;
+        // console.log(data);
+        let status_user = data.status_user;
 
-        // switch(status_activo){
-        //   case "0":
-        //     // statusContractHide(status_contract);
-        //     break;
-        //   case "1": //inactivo: que lo saque
-        //     window.location.replace(URL);
-        //     break;
-        //   default:
-        //     window.location.replace(URL);
-        //     break;
-        // }
+        switch(status_user){
+          case 0:
+            window.location.replace(URL);
+            break;
+          case 1: //activo
+            // window.location.replace(URL + "/public/HTML/home.html");
+            break;
+          default:
+            window.location.replace(URL);
+            break;
+        }
 
       });
 });
