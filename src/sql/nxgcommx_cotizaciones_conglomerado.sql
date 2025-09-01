@@ -57,7 +57,7 @@ CREATE TABLE items (
     fecha_entrega_jarseria VARCHAR(100),
     mobiliario JSON,
     fecha_entrega_mobiliario varchar(100),
-    cantidad_jarseria int,
+    cantidad_mobiliario int,
     created_at TIMESTAMP
 );
 
