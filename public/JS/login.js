@@ -12,6 +12,7 @@
     fetch(URL + '/src/php/api.php/login',
         {
             method: "POST", //protocolo http que se utiliza en el formulario
+            headers: { "Content-type": "application/json;charset-UTF-8"},
             body: JSON.stringify(data)
         }
     )
