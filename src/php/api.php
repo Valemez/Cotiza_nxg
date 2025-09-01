@@ -24,7 +24,6 @@ switch($method){
         switch($resource){
             case 'login':
                 // echo json_encode(['status' => 'success', 'message' => 'Login exitoso']);
-                
                 $model = new LoginModel();
                 $data = json_decode(file_get_contents('php://input'), true);
                 $email = $data['usuario'] ?? null;
@@ -35,7 +34,7 @@ switch($method){
                 echo json_encode(['status' => 'success', 'message' => 'Registro exitoso']);
             break;
             case 'logout':
-                // Destruir la sesión
+                //Destruir la sesión
                 session_unset();
                 session_destroy();
                 echo json_encode(['status' => 'success', 'message' => 'Logout exitoso']);
@@ -82,7 +81,7 @@ switch($method){
                 break;
             
             default:
-                # code...
+                echo json_encode(['status' => 'error', 'message' => 'No autorizado']);
                 break;
         }
     break;
