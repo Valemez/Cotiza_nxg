@@ -27,7 +27,6 @@
         }
         .crs-nav{
             background-color: var(--colorSecundario);
-            list-style: none;
             width:100%;
             height: 6.4vh;
             padding: 0.4rem 1rem;
@@ -39,8 +38,9 @@
                 .crs-btn-exit{
                     background-color: red;
                     color:var(--colorFondo);
-                    padding: 0.5rem 1rem;
+                    padding: 0.9rem 1rem;
                     border-radius: 8px;
+                    float: right;
                 }
         }
 
