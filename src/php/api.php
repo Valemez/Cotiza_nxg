@@ -46,31 +46,41 @@ switch($method){
 
                 $clientData = [];
 
-                $textFields = ['nombre', 'destinatario', 'puesto', 'asunto'];
+                $textFields = ['nombre', 'destinatario', 'puesto', 'asunto', 'servicios', 'descripcion_servicio'];
 
                 foreach($textFields as $field){
                     $clientData[$field] = $_POST[$field] ? htmlspecialchars(trim($_POST[$field]), ENT_QUOTES, 'UTF-8') : null;
                 }
 
-                // $clientData['logo'] = null;
 
                 if (isset($_FILES['logo']) && $_FILES['logo']['error'] === UPLOAD_ERR_OK) {
-                    // $logo_path = $_FILES['logo']['tmp_name'];
-                    // $logo_blob = file_get_contents($logo_path);
                     $clientData['logo_tmp'] = $_FILES['logo']['tmp_name'];
                     $clientData['logo_name'] = $_FILES['logo']['name'];
                     // Debug: verificar que el archivo temporal existe
-                    error_log("Archivo temporal: " . $clientData['logo_tmp']);
-                    error_log("Existe archivo temporal: " . (file_exists($clientData['logo_tmp']) ? 'SI' : 'NO'));
+                    // error_log("Archivo temporal: " . $clientData['logo_tmp']);
+                    // error_log("Existe archivo temporal: " . (file_exists($clientData['logo_tmp']) ? 'SI' : 'NO'));
                 }else{
                     $clientData['logo_tmp'] = null;
                     $clientData['logo_name'] = 'logo';
                     error_log("No se subió archivo o error en upload");
                 }
 
+                if(isset($_FILES['archivo_excel'])){ //&& $_FILES['archivo_excel'] === UPLOAD_ERR_OK
+                    $clientData['archivo_excel_tmp'] = $_FILES['archivo_excel']['tmp_name'];
+                    $clientData['archivo_excel_name'] = $_FILES['archivo_excel']['name'];
+
+                    error_log("Archivo temporal: " . $clientData['archivo_excel_tmp']);
+                    error_log("Existe archivo temporal: " . (file_exists($clientData['archivo_excel_tmp']) ? 'SI' : 'NO'));
+                }else{
+                    $clientData['archivo_excel_tmp'] = null;
+                    $clientData['archivo_excel_name'] = 'archivo_excel';
+                    error_log("No se subió archivo o error en upload Excel");
+                }
+
                 $resultado = $model->addClient($clientData);
 
                 echo json_encode([$resultado]) ;
+                // echo json_encode([$clientData]) ;
 
             default:
                 return http_response_code(404);
