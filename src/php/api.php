@@ -1,6 +1,12 @@
 <?php
+<<<<<<< HEAD
 header("Content-Type: application/json;charset-UTF-8");
 header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
+=======
+// header("Content-Type: application/json;charset-UTF-8");
+// header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
+header("Content-Type: application/json;");
+>>>>>>> 0a5ae58ff3c561f0bd0463076e7b4fa26c0acf52
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
 
@@ -43,11 +49,6 @@ switch($method){
             case 'formulario':
                 $model = new clienteModel();
 
-                // $nombre = isset($_POST['nombre']) ? htmlspecialchars(trim($_POST['nombre']), ENT_QUOTES, 'UTF-8') : '';
-                // $destinatario = isset($_POST['destinatario']) ? htmlspecialchars(trim($_POST['destinatario']), ENT_QUOTES, 'UTF-8') : '';
-                // $puesto = isset($_POST['puesto']) ? htmlspecialchars(trim($_POST['puesto']), ENT_QUOTES, 'UTF-8') : '';
-                // $asunto = isset($_POST['asunto']) ? htmlspecialchars(trim($_POST['asunto']), ENT_QUOTES, 'UTF-8') : '';
-                
                 $clientData = [];
 
                 $textFields = ['nombre', 'destinatario', 'puesto', 'asunto'];
@@ -56,13 +57,20 @@ switch($method){
                     $clientData[$field] = $_POST[$field] ? htmlspecialchars(trim($_POST[$field]), ENT_QUOTES, 'UTF-8') : null;
                 }
 
-                $clientData['logo'] = null;
+                // $clientData['logo'] = null;
 
                 if (isset($_FILES['logo']) && $_FILES['logo']['error'] === UPLOAD_ERR_OK) {
-                    $logo_path = $_FILES['logo']['tmp_name'];
-                    $logo_blob = file_get_contents($logo_path);
-
-                    $clientData['logo'] =  $logo_blob;
+                    // $logo_path = $_FILES['logo']['tmp_name'];
+                    // $logo_blob = file_get_contents($logo_path);
+                    $clientData['logo_tmp'] = $_FILES['logo']['tmp_name'];
+                    $clientData['logo_name'] = $_FILES['logo']['name'];
+                    // Debug: verificar que el archivo temporal existe
+                    error_log("Archivo temporal: " . $clientData['logo_tmp']);
+                    error_log("Existe archivo temporal: " . (file_exists($clientData['logo_tmp']) ? 'SI' : 'NO'));
+                }else{
+                    $clientData['logo_tmp'] = null;
+                    $clientData['logo_name'] = 'logo';
+                    error_log("No se subió archivo o error en upload");
                 }
 
                 $resultado = $model->addClient($clientData);

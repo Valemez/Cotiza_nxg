@@ -1,26 +1,21 @@
 Array
 (
-    [Nombre] => Misael Gomez
-    [Empresa] => TI
-    [Email] => sisdev79@gmail.com
-    [Telefono] => 2227716217
-    [direccion_Empresa] => 16 pte
-    [Cargo_Ocupacional] => Ventas, Sistemas
-    [whatsapp] => 123123
-    [descripcion_Empresa] => GHJ
-    [servicios] => Array
-        (
-            [0] => Protección personal
-            [1] => Seguridad patrimonial
-        )
-
-    [num_guardias] => 12
-    [SelectTurno] => 12hrs
-    [equipamiento] => Array
-        (
-            [0] => Jefe de servicio
-            [1] => Camioneta con batea
-        )
-
-    [comentarios] => FG
+    [logo] => footer 1 qn.png
+    [nombre] => dfg
+    [destinatario] => javier
+    [puesto] => undefined
+    [asunto] => carta
+    [servicios] => Limpieza
+    [archivo_excel] => crs-metalico.png
+    [descripcion_servicio] => dfg
+    [numero_colaboradores] => 12
+    [Estado_republica] => Puebla
+    [Centro_trabajo] => 
+    [Operario_maquinaria] => 12
+    [Turno_trabajo] => 8
+    [Numero_dotaciones_anuales_uniforme] => 
+    [num_dotaciones_anual_epp] => 
+    [num_dotaciones_anual_maquinaria] => 
+    [Materiales] => Sin_materiales
+    [Fecha_entrega_jarseria] => semestral
 )
