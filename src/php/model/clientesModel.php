@@ -44,7 +44,9 @@ class clienteModel{
 
                 $this->manyFiles($files_tmp, $files_name, $idCliente);
 
-                $this->addServices($idPropuesta, $data);
+                $idServicio = $this->addServices($idPropuesta, $data);
+
+                $this->addItem($idServicio, $data);
 
                 // --- Si todo fue exitoso, confirma la transacción ---
                 $this->conn->commit();
@@ -99,15 +101,15 @@ class clienteModel{
         $operario_maquinaria = $data['Operario_maquinaria'];
         $turno_trabajo = $data['Turno_trabajo'];
 
-        $sql = 'INSERT INTO servicios(id_proupesta, numero_colaborador, estado_republica, centro_trabajo, supervisor, operario_limpieza, ayudante_general, operario_maquinaria, turno_trabajo) VALUES(:id_proupesta, :numero_colaborador, :estado_republica, :centro_trabajo, :supervisor, :operario_limpieza, :ayudante_general, :operario_maquinaria, :turno_trabajo)';
+        $sql = 'INSERT INTO servicios(id_proupesta, numero_colaborador, estado_republica, centro_trabajo, operario_maquinaria, turno_trabajo) VALUES(:id_proupesta, :numero_colaborador, :estado_republica, :centro_trabajo, :operario_maquinaria, :turno_trabajo)';
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam('id_proupesta', $id_propuesta);
         $stmt->bindParam('numero_colaborador', $num_colaborador);
         $stmt->bindParam('estado_republica', $estado_republica);
         $stmt->bindParam('centro_trabajo', $centro_trabajo);
-        $stmt->bindParam('supervisor', $supervisor);
-        $stmt->bindParam('operario_limpieza', $operario_limpieza);
-        $stmt->bindParam('ayudante_general', $ayudante_general);
+        // $stmt->bindParam('supervisor', $supervisor);
+        // $stmt->bindParam('operario_limpieza', $operario_limpieza);
+        // $stmt->bindParam('ayudante_general', $ayudante_general);
         $stmt->bindParam('operario_maquinaria', $operario_maquinaria);
         $stmt->bindParam('turno_trabajo', $turno_trabajo);
         $stmt->execute();
@@ -116,6 +118,29 @@ class clienteModel{
         return $id_servicio;
 
     }
+
+    //metodo para insertar los items
+        private function addItem(int $idServicio, array $data){
+            # code ...
+            // $uniforme_superior = $data['uniforme_superior'];
+            // $uniforme_inferior = $data['uniforme_inferior'];
+             $uniforme_superior_json = json_encode($data['uniforme_superior'] ?? [], JSON_UNESCAPED_UNICODE);
+             $uniforme_inferior_json = json_encode($data['uniforme_inferior'] ?? [], JSON_UNESCAPED_UNICODE);
+            // $num_dotaciones_anual_uniforme = $data['num_dotaciones_anual_uniforme'];
+            $num_dotaciones_anual_epp = $data['num_dotaciones_anual_epp'];
+            $num_dotaciones_anual_maquinaria = $data['num_dotaciones_anual_maquinaria'];
+            // $fecha_entrega_jarseria = $data['fecha_entrega_jarseria'];
+
+            $sql = 'INSERT INTO items(id_servicio, uniforme_superior, uniforme_inferior, num_dotaciones_anual_epp, num_dotaciones_anual_maquinaria) VALUES(:id_servicio, :uniforme_superior, :uniforme_inferior, :num_dotaciones_anual_epp, :num_dotaciones_anual_maquinaria)';
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam('id_servicio', $idServicio);
+            $stmt->bindParam('uniforme_superior', $uniforme_superior_json);
+            $stmt->bindParam('uniforme_inferior', $uniforme_inferior_json);
+            $stmt->bindParam('num_dotaciones_anual_epp', $num_dotaciones_anual_epp);
+            $stmt->bindParam('num_dotaciones_anual_maquinaria', $num_dotaciones_anual_maquinaria);
+            // $stmt->bindParam('fecha_entrega_jarseria', $fecha_entrega_jarseria);
+            return $stmt->execute();
+        }
 
     // funcion para subir el logo
     private function uploadFile(?string $logo_tmp, string $logo_name, int $idCliente): void{
