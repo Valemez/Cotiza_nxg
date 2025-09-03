@@ -40,9 +40,11 @@ class clienteModel{
                 $this->uploadFile($logo_tmp, $logo_name, $idCliente);
 
                 # Aquí van a estar las demás inserciones
-                $this->addEconomicProposal($idCliente, $data);
+                $idPropuesta = $this->addEconomicProposal($idCliente, $data);
 
                 $this->manyFiles($files_tmp, $files_name, $idCliente);
+
+                $this->addServices($idPropuesta, $data);
 
                 // --- Si todo fue exitoso, confirma la transacción ---
                 $this->conn->commit();
@@ -79,8 +81,40 @@ class clienteModel{
         $stmt->bindValue(':id_cliente', $idCliente);
         $stmt->bindValue(':servicio', $servicios);
         $stmt->bindValue(':descripcion_servicio', $descripcionServicio);
-
         $stmt->execute();
+
+        $id_propuesta = $this->conn->lastInsertId();
+        return $id_propuesta;
+    }
+
+    //método para agregar los servicios
+    private function addServices(int $id_propuesta, array $data){
+        # code ...
+        $num_colaborador = $data['numero_colaboradores'];
+        $estado_republica = $data['Estado_republica'];
+        $centro_trabajo = $data['Centro_trabajo'];
+        // $supervisor = $data['supervisor'];
+        // $operario_limpieza = $data['operario_limpieza'];
+        // $ayudante_general = $data['Ayudante_general'];
+        $operario_maquinaria = $data['Operario_maquinaria'];
+        $turno_trabajo = $data['Turno_trabajo'];
+
+        $sql = 'INSERT INTO servicios(id_proupesta, numero_colaborador, estado_republica, centro_trabajo, supervisor, operario_limpieza, ayudante_general, operario_maquinaria, turno_trabajo) VALUES(:id_proupesta, :numero_colaborador, :estado_republica, :centro_trabajo, :supervisor, :operario_limpieza, :ayudante_general, :operario_maquinaria, :turno_trabajo)';
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam('id_proupesta', $id_propuesta);
+        $stmt->bindParam('numero_colaborador', $num_colaborador);
+        $stmt->bindParam('estado_republica', $estado_republica);
+        $stmt->bindParam('centro_trabajo', $centro_trabajo);
+        $stmt->bindParam('supervisor', $supervisor);
+        $stmt->bindParam('operario_limpieza', $operario_limpieza);
+        $stmt->bindParam('ayudante_general', $ayudante_general);
+        $stmt->bindParam('operario_maquinaria', $operario_maquinaria);
+        $stmt->bindParam('turno_trabajo', $turno_trabajo);
+        $stmt->execute();
+
+        $id_servicio = $this->conn->lastInsertId();
+        return $id_servicio;
+
     }
 
     // funcion para subir el logo
@@ -88,15 +122,11 @@ class clienteModel{
         if ($logo_tmp === null || !file_exists($logo_tmp)) {
             return;
         }
-
         $path ="../logoCliente/id/" . $idCliente;
-
         if (!file_exists($path)) {
             mkdir($path, 0777, true);
         }
-
         $destino = $path . '/' . $logo_name;
-
         if (move_uploaded_file($logo_tmp, $destino)) {
             // Archivo movido exitosamente
             // Verificar si el archivo existe en el destino

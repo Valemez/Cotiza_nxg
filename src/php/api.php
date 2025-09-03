@@ -46,7 +46,7 @@ switch($method){
 
                 $clientData = [];
 
-                $textFields = ['nombre', 'destinatario', 'puesto', 'asunto', 'servicios', 'descripcion_servicio'];
+                $textFields = ['nombre', 'destinatario', 'puesto', 'asunto', 'servicios', 'descripcion_servicio', 'numero_colaboradores', 'Estado_republica', 'Centro_trabajo', 'Operario_maquinaria', 'Turno_trabajo'];
 
                 foreach($textFields as $field){
                     $clientData[$field] = $_POST[$field] ? htmlspecialchars(trim($_POST[$field]), ENT_QUOTES, 'UTF-8') : null;
