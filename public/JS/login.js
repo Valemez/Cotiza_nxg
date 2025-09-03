@@ -23,15 +23,16 @@ document.getElementById('btn-inicio-sesion').addEventListener('click', function 
                 //     console.log(selfdata);
                 // localStorage.setItem('nombre', selfdata['nombre']);
                 localStorage.setItem('email', selfdata['email']);
-                Swal.fire({
-                    title: "¡Bienvenido!",
-                    icon: "success",
-                    draggable: true,
-                    showConfirmButton: false
-                });
+                    Swal.fire({
+                        title: "¡Bienvenido!",
+                        icon: "success",
+                        draggable: true,
+                        showConfirmButton: false
+                    });
                 setTimeout(() => {
                     window.location.replace(URL + '/formulario.html');
-                }, 2000);
+                }, 
+            );
             } else {
                 swal.fire({
                     icon: 'error',

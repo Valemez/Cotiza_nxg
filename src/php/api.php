@@ -1,12 +1,9 @@
 <?php
-<<<<<<< HEAD
 header("Content-Type: application/json;charset-UTF-8");
 header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
-=======
 // header("Content-Type: application/json;charset-UTF-8");
 // header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
 header("Content-Type: application/json;");
->>>>>>> 0a5ae58ff3c561f0bd0463076e7b4fa26c0acf52
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
 

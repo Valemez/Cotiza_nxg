@@ -23,7 +23,7 @@ document.getElementById('crs-btn-exit').addEventListener('click', function (e) {
     
                 setTimeout(() => {
                     window.location.replace(URL + '/index.html')
-                }, 10000);
+                }, );
 
             }
         });

@@ -1,6 +1,13 @@
-// Iniciar el tour introductorio
+//iniciar el tour introductorio
 introJs.tour().onbeforeexit(function () {
-    return confirm("ANTES DE CERRAR DEBES TERMINAR EL RECORRIDO GUIADO, ¿DESEAS CONTINUAR?");
+    Swal.fire({
+                    title: '¡IMPORTANTE!',
+                    text: "ANTES DE CERRAR DEBES TERMINAR EL RECORRIDO GUIADO, ¿DESEAS CONTINUAR?",
+                    icon: 'warning',
+                    iconColor: '#001550',
+                    confirmButtonText: 'Entendido'
+                });
+    //return confirm("ANTES DE CERRAR DEBES TERMINAR EL RECORRIDO GUIADO, ¿DESEAS CONTINUAR?");
 }).start()
 
 // Datos de centros de trabajo por estado
@@ -43,7 +50,7 @@ const centrosTrabajo = {
 function mostrarEstados() {
     const estadoSelect = document.getElementById('Estado_republica');
     const centroSelect = document.getElementById('Centro_trabajo');
-    const estado = estadoSelect.value;
+    const estado = estadoSelect.value.replace(/ /g, '_'); // Reemplazar espacios por guiones bajos
 
     // Limpiar opciones actuales
     centroSelect.innerHTML = '<option value="">--- Seleccione centro de trabajo ---</option>';
@@ -64,6 +71,9 @@ document.getElementById('Materiales').addEventListener('change', function () {
     const materialesContainer = document.getElementById('materiales-container');
     materialesContainer.style.display = this.value === 'con_materiales' ? 'block' : 'none';
 });
+
+// Agregar event listener para el cambio de estado
+document.getElementById('Estado_republica')?.addEventListener('change', mostrarEstados);
 
 document.addEventListener('DOMContentLoaded', function () {
     // elementos
@@ -225,7 +235,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (step === 0) {
             // Validacion de los campos del formulario
-            const requiredFields = ['nombre', 'destinatario', 'puesto', 'asunto'];
+            const requiredFields = ['logo', 'nombre', 'destinatario', 'puesto', 'asunto'];
             requiredFields.forEach(fieldId => {
                 const field = document.getElementById(fieldId);
                 if (!field.value.trim()) {
@@ -237,7 +247,13 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
             if (!isValid) {
-                alert('Por favor complete todos los campos requeridos');
+                Swal.fire({
+                    title: 'Datos incompletos',
+                    text: 'Por favor, complete todos los campos obligatorios.',
+                    icon: 'warning',
+                    iconColor: '#001550',
+                    confirmButtonText: 'Entendido'
+                });
             }
         }
 
