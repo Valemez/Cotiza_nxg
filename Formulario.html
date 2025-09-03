@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./public/CSS/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -88,9 +88,9 @@
                                 placeholder="Ej. Lic. Javier Orozco" class="crs-form-input" required>
                         </div>
                         <!-- div de puesto ocupacional -->
-                        <div class="crs-input-flex" data-title="Puesto ocupacional y asunto"
+                        <div class="crs-input-flex">
+                            <div class="crs-input-group" data-title="Puesto ocupacional y asunto"
                             data-intro="Proporciona el puesto ocupacional del destinatario y el asunto de la cotización.">
-                            <div class="crs-input-group">
                                 <label for="puesto" class="crs-form-label">Puesto ocupacional: </label>
                                 <input type="text" name="puesto" id="puesto"
                                     placeholder="Ej. Ventas, Sistemas, Director General." class="crs-form-input"
@@ -202,16 +202,34 @@
                             </div>
                             <!-- div de supervisor -->
                             <div class="crs-input-flex">
-
                                 <!-- Div de operario de maquinario -->
                                 <div class="crs-input-group">
-                                    <label for="Operario_maquinaria" class="crs-form-label">Número de
-                                        operario de
-                                        maquinaria: </label>
+                                    <label for="Operario_maquinaria" class="crs-form-label">Número de operario de maquinaria: </label>
                                     <input type="number" name="Operario_maquinaria" id="Operario_maquinaria"
                                         placeholder="Ej. 12" class="crs-form-input" min="1">
                                 </div>
+                                <!-- Div de operario de limpieza -->
+                                <div class="crs-input-group">
+                                    <label for="Operario_limpieza" class="crs-form-label">Número de operario de maquinaria: </label>
+                                    <input type="number" name="Operario_limpieza" id="Operario_limpieza"
+                                        placeholder="Ej. 12" class="crs-form-input" min="1">
+                                </div>
                             </div>
+                            <div class="crs-input-flex">
+                                <!-- Div de supervisor -->
+                                <div class="crs-input-group">
+                                    <label for="supervisor" class="crs-form-label">Número de operario de maquinaria: </label>
+                                    <input type="number" name="supervisor" id="supervisor"
+                                        placeholder="Ej. 12" class="crs-form-input" min="1">
+                                </div>
+                                <!-- Div de ayudante general-->
+                                <div class="crs-input-group">
+                                    <label for="ayudante_general" class="crs-form-label">Número de operario de maquinaria: </label>
+                                    <input type="number" name="ayudante_general" id="ayudante_general"
+                                        placeholder="Ej. 12" class="crs-form-input" min="1">
+                                </div>
+                            </div>
+                            
                             <div class="crs-input-group">
                                 <label for="Turno_trabajo" class="crs-form-label"> Seleccione el turno de
                                     trabajo:
@@ -232,7 +250,7 @@
                             <!-- Selección de uniforme -->
                             <div class="crs-input-flex">
                                 <div class="crs-input-group">
-                                    <p>Uniforme</p>
+                                    <p style="font-size: 20px; color: #001550; font-weight: bold;">Uniforme</p>
                                     <div>
                                         <label for="uniforme_superior" class="crs-form-label">Parte superior</label>
                                         <label><input type="checkbox" checked id="" value="Bata de la casaca" name="uniforme_superior[]"/>Bata de la casaca</label><br />
@@ -261,7 +279,7 @@
                             <!-- SELECCION DE EPP -->
                             <div class="crs-input-flex">
                                 <div class="crs-input-group">
-                                    <p>EPP (Equipo de Protección Personal)</p>
+                                    <p style="font-size: 20px; color: #001550; font-weight: bold;">EPP (Equipo de Protección Personal)</p>
                                     <div>
                                         <!-- Donde está la etiqueta name????????? -->
                                         <label for="epp_cabeza" class="crs-form-label">Cabeza</label>
@@ -286,37 +304,10 @@
                                         placeholder="Ej. 12" class="crs-form-input" min="1">
                                 </div>
                             </div>
-                            <!-- SELECCION DE EPP -->
-                            <div class="crs-input-flex">
-                                <div class="crs-input-group">
-                                    <p>EPP (Equipo de Protección Personal)</p>
-                                    <div>
-                                        <label for="epp_cabeza" class="crs-form-label">Cabeza</label>
-                                        <label><input type="checkbox" id="" value="" />Cascos</label><br />
-                                        <label><input type="checkbox" id="" value="" /></label>Lentes de
-                                        protección<br />
-                                        <label><input type="checkbox" id="" value="" /></label>Tapones<br />
-                                        <label><input type="checkbox" id="" value="" /></label>Cubrebocas<br />
-                                    </div>
-                                    <br>
-                                    <div>
-                                        <label for="epp_cuerpo" class="crs-form-label">Cuerpo</label>
-                                        <label><input type="checkbox" id="" value="" />Chaleco</label><br />
-                                        <!-- <label><input type="checkbox" id="" value="" /></label><br />
-                                        <label><input type="checkbox" id="" value="" /></label><br /> -->
-                                    </div>
-                                </div>
-                                <div class="crs-input-group">
-                                    <label for="num_dotaciones_anual_epp" class="crs-form-label">Número de
-                                        dotaciones (Anuales):</label>
-                                    <input type="number" name="num_dotaciones_anual_epp" id="num_dotaciones_anual_epp"
-                                        placeholder="Ej. 12" class="crs-form-input" min="1">
-                                </div>
-                            </div>
                             <!-- selección de maquinaria -->
                             <div class="crs-input-flex">
                                 <div class="crs-input-group">
-                                    <p>Maquinaria</p>
+                                    <p style="font-size: 20px; color: #001550; font-weight: bold;">Maquinaria</p>
                                     <div>
                                         <label for="maquinaria" class="crs-form-label">Selecciona la
                                             maquinaria que
@@ -342,7 +333,7 @@
                             <!-- Seleccion de Materiales -->
                             <div class="crs-input-flex">
                                 <div class="crs-input-group">
-                                    <p>Materiales</p>
+                                    <p style="font-size: 20px; color: #001550; font-weight: bold;">Materiales</p>
                                     <!-- Selección de materiales -->
                                     <div class="crs-input-group">
                                         <label for="Materiales" class="crs-form-label">Seleccione si
@@ -354,7 +345,7 @@
                                             <option value="con_materiales">Con materiales</option>
                                         </select>
                                     </div>
-                                    <div>
+                                    <div id="materiales-container" style="display: none;">
                                         <label for="con_materiales" class="crs-form-label">Seleccione los
                                             matreriales
                                             que
