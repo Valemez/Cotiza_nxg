@@ -1,6 +1,4 @@
 <?php
-header("Content-Type: application/json;charset-UTF-8");
-header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
 // header("Content-Type: application/json;charset-UTF-8");
 // header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
 header("Content-Type: application/json;");
@@ -48,13 +46,30 @@ switch($method){
 
                 $clientData = [];
 
-                $textFields = ['nombre', 'destinatario', 'puesto', 'asunto', 'servicios', 'descripcion_servicio', 'numero_colaboradores', 'Estado_republica', 'Centro_trabajo', 'Operario_maquinaria', 'Turno_trabajo'];
+                $textFields = ['nombre', 'destinatario', 'puesto', 'asunto', 'servicios', 'descripcion_servicio', 'numero_colaboradores', 'Estado_republica', 'Centro_trabajo', 'Operario_maquinaria', 'Turno_trabajo',  'num_dotaciones_anual_epp', 'num_dotaciones_anual_maquinaria', 'Fecha_entrega_jarseria'];
+
+                $textFieldJson = ['uniforme_superior', 'uniforme_inferior'];
 
                 foreach($textFields as $field){
                     $clientData[$field] = $_POST[$field] ? htmlspecialchars(trim($_POST[$field]), ENT_QUOTES, 'UTF-8') : null;
                 }
 
 
+                foreach($textFieldJson as $fieldJson){
+                    // code ...
+                    // $data_json = $_POST[$fieldJson] ?? [];
+                    // $data_json = [];
+                    if (isset($_POST[$fieldJson]) && is_array($_POST[$fieldJson])) {
+                        $clientData[$fieldJson] = array_map(function($item){
+                            $item = is_scalar($item) ? (string) $item : '';
+                            return htmlspecialchars(trim($item), ENT_QUOTES, 'UTF-8');
+                        }, $_POST[$fieldJson]);
+                    }else{
+                        $clientData[$fieldJson] = [];
+                    }
+                }
+
+                # es para recibir la imagen
                 if (isset($_FILES['logo']) && $_FILES['logo']['error'] === UPLOAD_ERR_OK) {
                     $clientData['logo_tmp'] = $_FILES['logo']['tmp_name'];
                     $clientData['logo_name'] = $_FILES['logo']['name'];
@@ -66,7 +81,7 @@ switch($method){
                     $clientData['logo_name'] = 'logo';
                     error_log("No se subió archivo o error en upload");
                 }
-
+                # es para recibir el archivo
                 if(isset($_FILES['archivo_excel'])){ //&& $_FILES['archivo_excel'] === UPLOAD_ERR_OK
                     $clientData['archivo_excel_tmp'] = $_FILES['archivo_excel']['tmp_name'];
                     $clientData['archivo_excel_name'] = $_FILES['archivo_excel']['name'];

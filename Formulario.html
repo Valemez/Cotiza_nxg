@@ -252,28 +252,19 @@
                                 <div class="crs-input-group">
                                     <p style="font-size: 20px; color: #001550; font-weight: bold;">Uniforme</p>
                                     <div>
-                                        <label for="uniforme_superior" class="crs-form-label">Parte
-                                            superior</label>
-                                        <label><input type="checkbox" checked id="" value="Bata_casaca" />Bata de la
-                                            casaca</label><br />
-                                        <label><input type="checkbox" id="" value="Playera_polo_manga_larga" />Playera polo manga
-                                            larga</label><br />
-                                        <label><input type="checkbox" id="" value="Playera_polo_manga_corta" />Playera polo manga
-                                            corta</label><br />
-                                        <label><input type="checkbox" id="" value="Poncho_para_lluvia" />Poncho para
-                                            lluvia</label><br />
+                                        <label for="uniforme_superior" class="crs-form-label">Parte superior</label>
+                                        <label><input type="checkbox" checked id="" value="Bata de la casaca" name="uniforme_superior[]"/>Bata de la casaca</label><br />
+                                        <label><input type="checkbox" id="" value="Playera polo manga larga" name="uniforme_superior[]"/>Playera polo manga larga</label><br />
+                                        <label><input type="checkbox" id="" value="Playera polo manga corta" name="uniforme_superior[]"/>Playera polo manga corta</label><br />
+                                        <label><input type="checkbox" id="" value="Poncho para lluvia" name="uniforme_superior[]"/>Poncho para lluvia</label><br />
                                     </div>
                                     <br>
                                     <div>
                                         <label for="uniforme_inferior" class="crs-form-label">Parte
                                             inferior</label>
-                                        <label><input type="checkbox" checked id="" value="" />Pantalon de
-                                            la
-                                            bata</label><br />
-                                        <label><input type="checkbox" id="" value="" />Pantalon de
-                                            mesclilla</label><br />
-                                        <label><input type="checkbox" id="" value="" />Plantalon
-                                            caqui</label><br />
+                                        <label><input type="checkbox" checked id="" value="Pantalon de la bata"  name="uniforme_inferior[]"/>Pantalon de la bata</label><br />
+                                        <label><input type="checkbox" id="" value="Pantalon de mesclilla"  name="uniforme_inferior[]"/>Pantalon de mesclilla</label><br />
+                                        <label><input type="checkbox" id="" value="Plantalon caqui"  name="uniforme_inferior[]"/>Plantalon caqui</label><br />
                                     </div>
                                 </div>
 
@@ -290,6 +281,7 @@
                                 <div class="crs-input-group">
                                     <p style="font-size: 20px; color: #001550; font-weight: bold;">EPP (Equipo de Protección Personal)</p>
                                     <div>
+                                        <!-- Donde está la etiqueta name????????? -->
                                         <label for="epp_cabeza" class="crs-form-label">Cabeza</label>
                                         <label><input type="checkbox" id="" value="" />Cascos</label><br />
                                         <label><input type="checkbox" id="" value="" /></label>Lentes de
@@ -440,11 +432,11 @@
                                         </div>
                                         <!-- tiempo de entrega de dotaciones anuales -->
                                         <div class="crs-input-group">
-                                            <label for="Fecha_entrega_jarseria" class="crs-form-label">Seleccione el
+                                            <label for="Fecha_entrega_jarseria1" class="crs-form-label">Seleccione el
                                                 tipo de
                                                 servicio que
                                                 requiere.</label>
-                                            <select name="Fecha_entrega_jarseria" id="Fecha_entrega_jarseria"
+                                            <select name="Fecha_entrega_jarseria1" id="Fecha_entrega_jarseria1"
                                                 class="crs-form-input">
                                                 <option value="semestral">Semestral</option>
                                                 <option value="anual">Anual</option>
