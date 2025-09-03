@@ -4,12 +4,17 @@ class Conexion extends PDO {
 
     private $host = '26.165.234.2'; // 127.0.0.0  26.165.234.2 // 26.165.234.2
     private $db = 'nxgcommx_cotizaciones_prosman';
+<<<<<<< HEAD
 
     private $user = 'valeria'; //root valeria
     private $pass = 'Kastellanos56'; //svr_ti2025$  Kastellanos56  Kastellanos56
 
     // private $user = 'gomez'; //root valeria
     // private $pass = '12345678'; //svr_ti2025$  Kastellanos56  Kastellanos56
+=======
+    private $user = 'valeria'; //root valeria
+    private $pass = 'Kastellanos56'; //svr_ti2025$  Kastellanos56  Kastellanos56
+>>>>>>> d1f3c8d9f38bfaad7259ee8b46de6d10378547b0
     private static $instance = null;
     private $conexion;
 
