@@ -210,7 +210,7 @@
                                 </div>
                                 <!-- Div de operario de limpieza -->
                                 <div class="crs-input-group">
-                                    <label for="Operario_limpieza" class="crs-form-label">Número de operario de maquinaria: </label>
+                                    <label for="Operario_limpieza" class="crs-form-label">Número de operario de limpieza: </label>
                                     <input type="number" name="Operario_limpieza" id="Operario_limpieza"
                                         placeholder="Ej. 12" class="crs-form-input" min="1">
                                 </div>
@@ -218,13 +218,13 @@
                             <div class="crs-input-flex">
                                 <!-- Div de supervisor -->
                                 <div class="crs-input-group">
-                                    <label for="supervisor" class="crs-form-label">Número de operario de maquinaria: </label>
+                                    <label for="supervisor" class="crs-form-label">Número de supervisor: </label>
                                     <input type="number" name="supervisor" id="supervisor"
                                         placeholder="Ej. 12" class="crs-form-input" min="1">
                                 </div>
                                 <!-- Div de ayudante general-->
                                 <div class="crs-input-group">
-                                    <label for="ayudante_general" class="crs-form-label">Número de operario de maquinaria: </label>
+                                    <label for="ayudante_general" class="crs-form-label">Número de ayudante general: </label>
                                     <input type="number" name="ayudante_general" id="ayudante_general"
                                         placeholder="Ej. 12" class="crs-form-input" min="1">
                                 </div>
@@ -281,20 +281,18 @@
                                 <div class="crs-input-group">
                                     <p style="font-size: 20px; color: #001550; font-weight: bold;">EPP (Equipo de Protección Personal)</p>
                                     <div>
-                                        <!-- Donde está la etiqueta name????????? -->
                                         <label for="epp_cabeza" class="crs-form-label">Cabeza</label>
-                                        <label><input type="checkbox" id="" value="" />Cascos</label><br />
-                                        <label><input type="checkbox" id="" value="" /></label>Lentes de
-                                        protección<br />
-                                        <label><input type="checkbox" id="" value="" /></label>Tapones<br />
-                                        <label><input type="checkbox" id="" value="" /></label>Cubrebocas<br />
+                                        <label><input type="checkbox" id="" value="Cascos" name="epp_cabeza[]" />Cascos</label><br />
+                                        <label><input type="checkbox" id="" value="Lentes de protección" name="epp_cabeza[]" />Lentes de
+                                        protección</label><br />
+                                        <label><input type="checkbox" id="" value="Tapones" name="epp_cabeza[]" />Tapones</label><br />
+                                        <label><input type="checkbox" id="" value="Cubrebocas" name="epp_cabeza[]" />Cubrebocas</label><br />
                                     </div>
                                     <br>
                                     <div>
                                         <label for="epp_cuerpo" class="crs-form-label">Cuerpo</label>
-                                        <label><input type="checkbox" id="" value="" />Chaleco</label><br />
-                                        <!-- <label><input type="checkbox" id="" value="" /></label><br />
-                                    <label><input type="checkbox" id="" value="" /></label><br /> -->
+                                        <label><input type="checkbox" id="" value="Chaleco" name="epp_cuerpo[]" />Chaleco</label><br />
+                            
                                     </div>
                                 </div>
                                 <div class="crs-input-group">
@@ -313,11 +311,11 @@
                                             maquinaria que
                                             requiera:
                                         </label>
-                                        <label><input type="checkbox" id="" value="Fregadoras_de_piso" />Fregadoras
+                                        <label><input type="checkbox" id="" value="Fregadoras_de_piso" name="maquinaria[]" />Fregadoras
                                             de
                                             piso</label><br />
-                                        <label><input type="checkbox" id="" value="Pulidora" /></label>Pulidora<br />
-                                        <label><input type="checkbox" id="" value="Barredora" />Barredora</label><br />
+                                        <label><input type="checkbox" id="" value="Pulidora" name="maquinaria[]" />Pulidora</label><br />
+                                        <label><input type="checkbox" id="" value="Barredora" name="maquinaria[]" />Barredora</label><br />
                                         <!-- <label><input type="checkbox" id="" value="" /></label><br /> -->
                                     </div>
                                 </div>
@@ -352,56 +350,54 @@
                                             requiera</label>
                                         <!-- Quimicos -->
                                         <label for="quimicos" class="crs-form-label">Quimicos</label>
-                                        <label><input type="checkbox" id="" value="Jabon_multiusos" />Jabon
+                                        <label><input type="checkbox" id="" value="Jabon_multiusos" name="quimicos[]" />Jabon
                                             multiusos</label><br />
-                                        <label><input type="checkbox" id="" value="Cloro" />Cloro</label><br />
-                                        <label><input type="checkbox" id="" value="Jabon_polvo" />Jabon en
+                                        <label><input type="checkbox" id="" value="Cloro" name="quimicos[]" />Cloro</label><br />
+                                        <label><input type="checkbox" id="" value="Jabon_polvo" name="quimicos[]" />Jabon en
                                             polvo</label><br />
-                                        <label><input type="checkbox" id="" value="Limpiador_de_vidrios" />Limpiador
+                                        <label><input type="checkbox" id="" value="Limpiador_de_vidrios" name="quimicos[]" />Limpiador
                                             de
                                             vidrios</label><br>
-                                        <label><input type="checkbox" id="" value="Sarricida" />Sarricida</label><br />
-                                        <label><input type="checkbox" id="" value="Limpiador_desengrasante" />Limpiador
+                                        <label><input type="checkbox" id="" value="Sarricida" name="quimicos[]" />Sarricida</label><br />
+                                        <label><input type="checkbox" id="" value="Limpiador_desengrasante" name="quimicos[]" />Limpiador
                                             desengrasante</label><br />
-                                        <label><input type="checkbox" id="" value="Jabon_trastes" />Jabon
+                                        <label><input type="checkbox" id="" value="Jabon_trastes" name="quimicos[]" />Jabon
                                             para
                                             trastes</label><br />
-                                        <label><input type="checkbox" id="" value="Jabon_para_manos" />Jabón
+                                        <label><input type="checkbox" id="" value="Jabon_para_manos" name="quimicos[]" />Jabón
                                             para
                                             manos</label><br />
                                         <label><input type="checkbox" id=""
-                                                value="destapacaños" />Destapacaños</label><br />
+                                                value="destapacaños" name="quimicos[]" />Destapacaños</label><br />
                                         <!-- Jarcieria -->
                                         <label for="jarcieria" class="crs-form-label">Jarcieria</label>
-                                        <label><input type="checkbox" id="" value="Escobas avanico" />Escobas
+                                        <label><input type="checkbox" id="" value="Escobas avanico" name="jarcieria[]" />Escobas
                                             avanico</label><br />
-                                        <label><input type="checkbox" id="" value="Cepillo_rigido" />Cepillo
+                                        <label><input type="checkbox" id="" value="Cepillo_rigido" name="jarcieria[]" />Cepillo
                                             rigido</label><br />
-                                        <label><input type="checkbox" id="" value="Cubetas" />Cubetas</label><br />
+                                        <label><input type="checkbox" id="" value="Cubetas" name="jarcieria[]" />Cubetas</label><br />
                                         <label><input type="checkbox" id=""
-                                                value="Microfibras" />Microfibras</label><br />
-                                        <label><input type="checkbox" id="" value="Franela" />Franela</label><br />
-                                        <label><input type="checkbox" id="" value="Recogedores_lamina" />Recogedores
+                                                value="Microfibras" name="jarcieria[]" />Microfibras</label><br />
+                                        <label><input type="checkbox" id="" value="Franela" name="jarcieria[]" />Franela</label><br />
+                                        <label><input type="checkbox" id="" value="Recogedores_lamina" name="jarcieria[]" />Recogedores
                                             de
                                             lamina</label><br />
-                                        <label><input type="checkbox" id="" value="Mechudos" />Mechudos</label><br />
-                                        <label><input type="checkbox" id="" value="Mops" />Mops</label><br />
+                                        <label><input type="checkbox" id="" value="Mechudos" name="jarcieria[]" />Mechudos</label><br />
+                                        <label><input type="checkbox" id="" value="Mops" name="jarcieria[]" />Mops</label><br />
                                         <!-- numero de dotaciones anuales -->
                                         <div class="crs-input-group">
-                                            <label for="num_dotaciones_anual_maquinaria" class="crs-form-label">Número
+                                            <label for="num_dotaciones_anual_materiales" class="crs-form-label">Número
                                                 de
                                                 dotaciones (Anuales):</label>
-                                            <input type="number" name="num_dotaciones_anual_maquinaria"
-                                                id="num_dotaciones_anual_maquinaria" placeholder="Ej. 12"
+                                            <input type="number" name="num_dotaciones_anual_jarcieria"
+                                                id="num_dotaciones_anual_materiales" placeholder="Ej. 12"
                                                 class="crs-form-input" min="1">
                                         </div>
                                         <!-- tiempo de entrega de dotaciones anuales -->
                                         <div class="crs-input-group">
-                                            <label for="Fecha_entrega_jarseria" class="crs-form-label">Seleccione el
-                                                tipo de
-                                                servicio que
+                                            <label for="Fecha_entrega_jarcieria" class="crs-form-label">Seleccione la fecha de entrega que
                                                 requiere.</label>
-                                            <select name="Fecha_entrega_jarseria" id="Fecha_entrega_jarseria"
+                                            <select name="Fecha_entrega_jarcieria" id="Fecha_entrega_jarcieria"
                                                 class="crs-form-input">
                                                 <option value="bimestral">Bimestral</option>
                                                 <option value="trimestarl">Trimestral</option>
@@ -412,31 +408,29 @@
                                         <!-- Mobiliario de limpieza -->
                                         <label for="mobiliario" class="crs-form-label">Mobiliario de
                                             limpieza</label>
-                                        <label><input type="checkbox" id="" value="" />Despachador de
+                                        <label><input type="checkbox" id="" value="Despachador_jabon" name="mobiliario[]" />Despachador de
                                             jabon</label><br />
-                                        <label><input type="checkbox" id="" value="" />Despachador de
+                                        <label><input type="checkbox" id="" value="Despachador_manitas" name="mobiliario[]" />Despachador de
                                             manitas</label><br />
-                                        <label><input type="checkbox" id="" value="" />Despachador para
+                                        <label><input type="checkbox" id="" value="Despachador_papel" name="mobiliario[]" />Despachador para
                                             papel
                                             bobina</label><br />
-                                        <label><input type="checkbox" id="" value="" />Señaletica de piso
+                                        <label><input type="checkbox" id="" value="Señaletica_piso" name="mobiliario[]" />Señaletica de piso
                                             mojado</label><br />
                                         <!-- numero de dotaciones anuales -->
                                         <div class="crs-input-group">
-                                            <label for="num_dotaciones_anual_maquinaria" class="crs-form-label">Número
+                                            <label for="num_dotaciones_anual_mobiliario" class="crs-form-label">Número
                                                 de
                                                 dotaciones (Anuales):</label>
-                                            <input type="number" name="num_dotaciones_anual_maquinaria"
-                                                id="num_dotaciones_anual_maquinaria" placeholder="Ej. 12"
+                                            <input type="number" name="num_dotaciones_anual_mobiliario"
+                                                id="num_dotaciones_anual_mobiliario" placeholder="Ej. 12"
                                                 class="crs-form-input" min="1">
                                         </div>
                                         <!-- tiempo de entrega de dotaciones anuales -->
                                         <div class="crs-input-group">
-                                            <label for="Fecha_entrega_jarseria1" class="crs-form-label">Seleccione el
-                                                tipo de
-                                                servicio que
+                                            <label for="Fecha_entrega_mobilario" class="crs-form-label">Seleccione la fecha de entrega que
                                                 requiere.</label>
-                                            <select name="Fecha_entrega_jarseria1" id="Fecha_entrega_jarseria1"
+                                            <select name="Fecha_entrega_mobilario" id="Fecha_entrega_mobilario"
                                                 class="crs-form-input">
                                                 <option value="semestral">Semestral</option>
                                                 <option value="anual">Anual</option>

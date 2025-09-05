@@ -1,34 +1,62 @@
 import {URL} from './env';
 
-document.getElementById ('nextBtn').addEventListener ('click', function (e) {
-    e.preventDefault ();
+document.getElementById('nextBtn').addEventListener('click', function(e) {
+    e.preventDefault();
     let data = {};
+    
+    // // Función auxiliar para obtener valores de checkboxes
+    // function getCheckedValues(name) {
+    //     return Array.from(document.getElementsByName(name))
+    //         .filter(checkbox => checkbox.checked)
+    //         .map(checkbox => checkbox.value);
+    // }
+
     //Paso 1
-    data['logo'] = document.getElementsByTagName ('logo').value;
-    data['nombre'] = document.getElementsByTagName ('nombre').value;
-    data['destinatario'] = document.getElementsByTagName ('destinatario').value;
-    data['puesto'] = document.getElementsByTagName ('puesto').value;
-    data['asunto'] = document.getElementsByTagName ('asunto').value;
+    data['logo'] = document.getElementById('logo').value;
+    data['nombre'] = document.getElementById('nombre').value;
+    data['destinatario'] = document.getElementById('destinatario').value;
+    data['puesto'] = document.getElementById('puesto').value;
+    data['asunto'] = document.getElementById('asunto').value;
+    
     // Paso 2
-    data['servicios'] = document.getElementsByTagName ('servicios').value;
-    data['archivo_excel'] = document.getElementsByTagName ('archivo_excel').value;
-    data['descripcion_servicio'] = document.getElementsByTagName ('descripcion_servicio').value;
+    data['servicios'] = document.getElementById('servicios').value;
+    data['archivo_excel'] = document.getElementById('archivo').value;
+    data['descripcion_servicio'] = document.getElementById('descripcion_servicio').value;
+    
     //Paso 3
-    data['numero_colaboradores'] = document.getElementsByTagName ('numero_colaboradores').value;
-    data['Estado_republica'] = document.getElementsByTagName ('Estado_republica').value;
-    data['Centro_trabajo'] = document.getElementsByTagName ('Centro_trabajo').value;
-    data['Operario_maquinaria'] = document.getElementsByTagName ('Operario_maquinaria').value;
-    data['Operario_limpieza'] = document.getElementsByTagName ('Operario_limpieza').value;
-    data['supervisor'] = document.getElementsByTagName ('supervisor').value;
-    data['ayudante_general'] = document.getElementsByTagName ('ayudante_general').value;
-    data['Turno_trabajo'] = document.getElementsByTagName ('Turno_trabajo').value;
+    data['numero_colaboradores'] = document.getElementById('numero_colaboradores').value;
+    data['Estado_republica'] = document.getElementById('Estado_republica').value;
+    data['Centro_trabajo'] = document.getElementById('Centro_trabajo').value;
+    data['Operario_maquinaria'] = document.getElementById('Operario_maquinaria').value;
+    data['Operario_limpieza'] = document.getElementById('Operario_limpieza').value;
+    data['supervisor'] = document.getElementById('supervisor').value;
+    data['ayudante_general'] = document.getElementById('ayudante_general').value;
+    data['Turno_trabajo'] = document.getElementById('Turno_trabajo').value;
+    
     //Paso 4
-    data['asunto'] = document.getElementsByTagName ('asunto').value;
-    data['asunto'] = document.getElementsByTagName ('asunto').value;
-    data['asunto'] = document.getElementsByTagName ('asunto').value;
-    data['asunto'] = document.getElementsByTagName ('asunto').value;
-    data['asunto'] = document.getElementsByTagName ('asunto').value;
-    data['asunto'] = document.getElementsByTagName ('asunto').value;
+    // Uniforme
+    data['uniforme_superior'] = getCheckedValues('uniforme_superior[]');
+    data['uniforme_inferior'] = getCheckedValues('uniforme_inferior[]');
+    data['Numero_dotaciones_anuales_uniforme'] = document.getElementById('Numero_dotaciones_anuales_uniforme').value;
+    
+    // EPP
+    data['epp_cabeza'] = getCheckedValues('epp_cabeza[]');
+    data['epp_cuerpo'] = getCheckedValues('epp_cuerpo[]');
+    data['num_dotaciones_anual_epp'] = document.getElementById('num_dotaciones_anual_epp').value;
+    
+    // Maquinaria
+    data['maquinaria'] = getCheckedValues('maquinaria[]');
+    data['num_dotaciones_anual_maquinaria'] = document.getElementById('num_dotaciones_anual_maquinaria').value;
+    
+    // Materiales
+    data['Materiales'] = document.getElementById('Materiales').value;
+    if (data['Materiales'] === 'con_materiales') {
+        data['quimicos'] = getCheckedValues('quimicos[]');
+        data['jarcieria'] = getCheckedValues('jarcieria[]');
+        data['mobiliario'] = getCheckedValues('mobiliario[]');
+        data['Fecha_entrega_jarcieria'] = document.getElementById('Fecha_entrega_jarcieria').value;
+        data['Fecha_entrega_mobiliario'] = document.getElementById('Fecha_entrega_mobiliario').value;
+    }
     console.log(data);
 
     // uso del fetch par la comunicación entre el cliente servidor
@@ -44,45 +72,53 @@ document.getElementById ('nextBtn').addEventListener ('click', function (e) {
             if (response['status'] == 'success') {
                 //     console.log(response);
                 localStorage.setItem('nombre', response['nombre']);
-                localstorage.setItem('logo',response['logo']);
-                localstorage.setItem('destinatario',response['destinatario']);
-                localstorage.setItem('puesto',response['puesto']);
-                localstorage.setItem('asunto',response['asunto']);
-                localstorage.setItem('servicios',response['servicios']);
-                localstorage.setItem('archivo_excel',response['archivo_excel']);
-                localstorage.setItem('descripcion_servicio',response['descripcion_servicio']);
-                localstorage.setItem('numero_colaboradores',response['numero_colaboradores']);
-                localstorage.setItem('Estado_republica',response['Estado_republica']);
-                localstorage.setItem('Centro_trabajo',response['Centro_trabajo']);
-                localstorage.setItem('Operario_maquinaria',response['Operario_maquinaria']);
-                localstorage.setItem('Operario_limpieza',response['Operario_limpieza']);
-                localstorage.setItem('supervisor',response['supervisor']);
-                localstorage.setItem('ayudante_general',response['ayudante_general']);
-                localstorage.setItem('Turno_trabajo',response['Turno_trabajo']);
-                // localstorage.setItem('',response['']);
-                // localstorage.setItem('',response['']);
-                // localstorage.setItem('',response['']);
-                // localstorage.setItem('',response['']);
-                // localstorage.setItem('',response['']);
-                // localstorage.setItem('',response['']);
-                // localstorage.setItem('',response['']);
-                // localstorage.setItem('',response['']);
-                // localstorage.setItem('',response['']);
-                // localstorage.setItem('',response['']);
-                // localstorage.setItem('',response['']);
-                // localstorage.setItem('',response['']);
-                // localstorage.setItem('',response['']);
-                // localstorage.setItem('',response['']);
-                    // Swal.fire({
-                    //     title: "¡Bienvenido!",
-                    //     icon: "success",
-                    //     draggable: true,
-                    //     showConfirmButton: false
-                    // });
-                setTimeout(() => {
-                    window.location.replace(URL + '/formulario.html');
-                }, 
-            );
+                localStorage.setItem('logo', response['logo']);
+                localStorage.setItem('destinatario', response['destinatario']);
+                localStorage.setItem('puesto', response['puesto']);
+                localStorage.setItem('asunto', response['asunto']);
+                localStorage.setItem('servicios', response['servicios']);
+                localStorage.setItem('archivo_excel', response['archivo_excel']);
+                localStorage.setItem('descripcion_servicio', response['descripcion_servicio']);
+                localStorage.setItem('numero_colaboradores', response['numero_colaboradores']);
+                localStorage.setItem('Estado_republica', response['Estado_republica']);
+                localStorage.setItem('Centro_trabajo', response['Centro_trabajo']);
+                localStorage.setItem('Operario_maquinaria', response['Operario_maquinaria']);
+                localStorage.setItem('Operario_limpieza', response['Operario_limpieza']);
+                localStorage.setItem('supervisor', response['supervisor']);
+                localStorage.setItem('ayudante_general', response['ayudante_general']);
+                localStorage.setItem('Turno_trabajo', response['Turno_trabajo']);
+                
+                // Paso 4
+                localStorage.setItem('uniforme_superior', JSON.stringify(response['uniforme_superior']));
+                localStorage.setItem('uniforme_inferior', JSON.stringify(response['uniforme_inferior']));
+                localStorage.setItem('Numero_dotaciones_anuales_uniforme', response['Numero_dotaciones_anuales_uniforme']);
+                
+                localStorage.setItem('epp_cabeza', JSON.stringify(response['epp_cabeza']));
+                localStorage.setItem('epp_cuerpo', JSON.stringify(response['epp_cuerpo']));
+                localStorage.setItem('num_dotaciones_anual_epp', response['num_dotaciones_anual_epp']);
+                
+                localStorage.setItem('maquinaria', JSON.stringify(response['maquinaria']));
+                localStorage.setItem('num_dotaciones_anual_maquinaria', response['num_dotaciones_anual_maquinaria']);
+                
+                localStorage.setItem('Materiales', response['Materiales']);
+                if (response['Materiales'] === 'con_materiales') {
+                    localStorage.setItem('quimicos', JSON.stringify(response['quimicos']));
+                    localStorage.setItem('jarcieria', JSON.stringify(response['jarcieria']));
+                    localStorage.setItem('mobiliario', JSON.stringify(response['mobiliario']));
+                    localStorage.setItem('Fecha_entrega_jarseria', response['Fecha_entrega_jarseria']);
+                    localStorage.setItem('Fecha_entrega_jarseria1', response['Fecha_entrega_jarseria1']);
+                }
+                
+                Swal.fire({
+                    title: "¡Datos guardados!",
+                    text: "La información se ha guardado correctamente",
+                    icon: "success",
+                    showConfirmButton: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.replace(URL + '/formulario.html');
+                    }
+                });
             } else {
                 swal.fire({
                     icon: 'error',
