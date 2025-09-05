@@ -95,21 +95,22 @@ class clienteModel{
         $num_colaborador = $data['numero_colaboradores'];
         $estado_republica = $data['Estado_republica'];
         $centro_trabajo = $data['Centro_trabajo'];
-        // $supervisor = $data['supervisor'];
+        $supervisor = $data['supervisor'];
         // $operario_limpieza = $data['operario_limpieza'];
-        // $ayudante_general = $data['Ayudante_general'];
+        $ayudante_general = $data['ayudante_general'];
+        $operario_limpieza = $data['Operario_limpieza'];
         $operario_maquinaria = $data['Operario_maquinaria'];
         $turno_trabajo = $data['Turno_trabajo'];
 
-        $sql = 'INSERT INTO servicios(id_proupesta, numero_colaborador, estado_republica, centro_trabajo, operario_maquinaria, turno_trabajo) VALUES(:id_proupesta, :numero_colaborador, :estado_republica, :centro_trabajo, :operario_maquinaria, :turno_trabajo)';
+        $sql = 'INSERT INTO servicios(id_proupesta, numero_colaborador, estado_republica, centro_trabajo, supervisor, operario_limpieza, ayudante_general, operario_maquinaria, turno_trabajo) VALUES(:id_proupesta, :numero_colaborador, :estado_republica, :centro_trabajo, :supervisor, :operario_limpieza, :ayudante_general, :operario_maquinaria, :turno_trabajo)';
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam('id_proupesta', $id_propuesta);
         $stmt->bindParam('numero_colaborador', $num_colaborador);
         $stmt->bindParam('estado_republica', $estado_republica);
         $stmt->bindParam('centro_trabajo', $centro_trabajo);
-        // $stmt->bindParam('supervisor', $supervisor);
-        // $stmt->bindParam('operario_limpieza', $operario_limpieza);
-        // $stmt->bindParam('ayudante_general', $ayudante_general);
+        $stmt->bindParam('supervisor', $supervisor);
+        $stmt->bindParam('operario_limpieza', $operario_limpieza);
+        $stmt->bindParam('ayudante_general', $ayudante_general);
         $stmt->bindParam('operario_maquinaria', $operario_maquinaria);
         $stmt->bindParam('turno_trabajo', $turno_trabajo);
         $stmt->execute();
