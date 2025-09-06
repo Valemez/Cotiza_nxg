@@ -62,10 +62,6 @@ class clienteModel{
         } catch (PDOException $e) {
             // --- Si ocurre un error en la BD, revierte todos los cambios ---
             $this->conn->rollBack();
-            // return [
-            //     'status' => 'error', 
-            //     'message' => 'Error de base de datos: ' . $e->getMessage()
-            // ];
 
             $response['success'] = false;
             $response['message'] = 'Error de base de datos: ' . $e->getMessage();
