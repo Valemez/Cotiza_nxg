@@ -46,7 +46,7 @@ switch($method){
 
                 $clientData = [];
 
-                $textFields = ['nombre', 'destinatario', 'puesto', 'asunto', 'servicios', 'descripcion_servicio', 'numero_colaboradores', 'Estado_republica', 'Centro_trabajo', 'Operario_maquinaria', 'Turno_trabajo',  'num_dotaciones_anual_epp', 'num_dotaciones_anual_maquinaria', 'Fecha_entrega_jarseria'];
+                $textFields = ['nombre', 'destinatario', 'puesto', 'asunto', 'servicios', 'descripcion_servicio', 'numero_colaboradores', 'Estado_republica', 'Centro_trabajo', 'Operario_maquinaria', 'Turno_trabajo',  'num_dotaciones_anual_epp', 'num_dotaciones_anual_maquinaria', 'Fecha_entrega_jarcieria'];
 
                 $textFieldJson = ['uniforme_superior', 'uniforme_inferior'];
 

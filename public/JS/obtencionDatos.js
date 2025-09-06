@@ -1,12 +1,12 @@
-import {URL} from './env';
+import { URL } from './env';
 
-document.getElementById('nextBtn').addEventListener('click', function(e) {
+document.getElementById('nextBtn').addEventListener('click', function (e) {
     e.preventDefault();
     let data = {};
-    
+
     // // Función auxiliar para obtener valores de checkboxes
     // function getCheckedValues(name) {
-    //     return Array.from(document.getElementsByName(name))
+    //     return Array.from(document.getElementsByName(nae))
     //         .filter(checkbox => checkbox.checked)
     //         .map(checkbox => checkbox.value);
     // }
@@ -17,12 +17,12 @@ document.getElementById('nextBtn').addEventListener('click', function(e) {
     data['destinatario'] = document.getElementById('destinatario').value;
     data['puesto'] = document.getElementById('puesto').value;
     data['asunto'] = document.getElementById('asunto').value;
-    
+
     // Paso 2
     data['servicios'] = document.getElementById('servicios').value;
     data['archivo_excel'] = document.getElementById('archivo').value;
     data['descripcion_servicio'] = document.getElementById('descripcion_servicio').value;
-    
+
     //Paso 3
     data['numero_colaboradores'] = document.getElementById('numero_colaboradores').value;
     data['Estado_republica'] = document.getElementById('Estado_republica').value;
@@ -32,22 +32,22 @@ document.getElementById('nextBtn').addEventListener('click', function(e) {
     data['supervisor'] = document.getElementById('supervisor').value;
     data['ayudante_general'] = document.getElementById('ayudante_general').value;
     data['Turno_trabajo'] = document.getElementById('Turno_trabajo').value;
-    
+
     //Paso 4
     // Uniforme
     data['uniforme_superior'] = getCheckedValues('uniforme_superior[]');
     data['uniforme_inferior'] = getCheckedValues('uniforme_inferior[]');
     data['Numero_dotaciones_anuales_uniforme'] = document.getElementById('Numero_dotaciones_anuales_uniforme').value;
-    
+
     // EPP
     data['epp_cabeza'] = getCheckedValues('epp_cabeza[]');
     data['epp_cuerpo'] = getCheckedValues('epp_cuerpo[]');
     data['num_dotaciones_anual_epp'] = document.getElementById('num_dotaciones_anual_epp').value;
-    
+
     // Maquinaria
     data['maquinaria'] = getCheckedValues('maquinaria[]');
     data['num_dotaciones_anual_maquinaria'] = document.getElementById('num_dotaciones_anual_maquinaria').value;
-    
+
     // Materiales
     data['Materiales'] = document.getElementById('Materiales').value;
     if (data['Materiales'] === 'con_materiales') {
@@ -87,28 +87,28 @@ document.getElementById('nextBtn').addEventListener('click', function(e) {
                 localStorage.setItem('supervisor', response['supervisor']);
                 localStorage.setItem('ayudante_general', response['ayudante_general']);
                 localStorage.setItem('Turno_trabajo', response['Turno_trabajo']);
-                
+
                 // Paso 4
                 localStorage.setItem('uniforme_superior', JSON.stringify(response['uniforme_superior']));
                 localStorage.setItem('uniforme_inferior', JSON.stringify(response['uniforme_inferior']));
-                localStorage.setItem('Numero_dotaciones_anuales_uniforme', response['Numero_dotaciones_anuales_uniforme']);
-                
+                localStorage.setItem('num_dotaciones_anual_uniforme', response['num_dotaciones_anual_uniforme']);
+
                 localStorage.setItem('epp_cabeza', JSON.stringify(response['epp_cabeza']));
                 localStorage.setItem('epp_cuerpo', JSON.stringify(response['epp_cuerpo']));
                 localStorage.setItem('num_dotaciones_anual_epp', response['num_dotaciones_anual_epp']);
-                
+
                 localStorage.setItem('maquinaria', JSON.stringify(response['maquinaria']));
                 localStorage.setItem('num_dotaciones_anual_maquinaria', response['num_dotaciones_anual_maquinaria']);
-                
+
                 localStorage.setItem('Materiales', response['Materiales']);
                 if (response['Materiales'] === 'con_materiales') {
                     localStorage.setItem('quimicos', JSON.stringify(response['quimicos']));
                     localStorage.setItem('jarcieria', JSON.stringify(response['jarcieria']));
                     localStorage.setItem('mobiliario', JSON.stringify(response['mobiliario']));
-                    localStorage.setItem('Fecha_entrega_jarseria', response['Fecha_entrega_jarseria']);
-                    localStorage.setItem('Fecha_entrega_jarseria1', response['Fecha_entrega_jarseria1']);
+                    localStorage.setItem('fecha_entrega_jarcieria', response['fecha_entrega_jarcieria']);
+                    localStorage.setItem('fecha_entrega_mobiliario', response['fecha_entrega_mobiliario']);
                 }
-                
+
                 Swal.fire({
                     title: "¡Datos guardados!",
                     text: "La información se ha guardado correctamente",
@@ -128,6 +128,5 @@ document.getElementById('nextBtn').addEventListener('click', function(e) {
             }
             console.log(response);
         });
-
     
-    
+});
