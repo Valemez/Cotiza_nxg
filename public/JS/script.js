@@ -1,4 +1,5 @@
 //iniciar el tour introductorio
+import { URL } from "./env.js";
 introJs.tour().onbeforeexit(function () {
     Swal.fire({
                     title: '¡IMPORTANTE!',
@@ -114,7 +115,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 currentStep++;
                 updateStepDisplay();
             } else {
-                form.submit();
+                // form.submit();
+                sendForm();
             }
         }
     });
@@ -126,6 +128,40 @@ document.addEventListener('DOMContentLoaded', function () {
             updateStepDisplay();
         }
     });
+
+    // Función para mandar el formulario de tipo fetch
+    async function sendForm() {
+        const formData = new FormData(form);
+        try {
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: formData,
+            });
+            const data = await response.json();
+
+            if (data.success) {
+                // alert(data.message);
+                Swal.fire({
+                    title: "Datos insertados con éxito!",
+                    icon: "success",
+                    draggable: true,
+                    button: false
+                });
+                setTimeout(()=>{
+                    window.location.href = URL + '/formulario.html';
+                }, 5000);
+            } else {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Hubo un error, por favor, llena todos los campos!", //+ data.message,
+                });
+                // alert('Error: ' + data.message);
+            }
+        } catch (error) {
+            
+        }
+    }
 
     // Actualizar la vista del formulario
     function updateStepDisplay() {
