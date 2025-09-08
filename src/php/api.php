@@ -46,19 +46,22 @@ switch($method){
 
                 $clientData = [];
 
+<<<<<<< HEAD
                 $textFields = ['nombre', 'destinatario', 'puesto', 'asunto', 'servicios', 'descripcion_servicio', 'numero_colaboradores', 'Estado_republica', 'Centro_trabajo', 'Operario_maquinaria', 'Turno_trabajo',  'num_dotaciones_anual_epp', 'num_dotaciones_anual_maquinaria', 'Fecha_entrega_jarcieria'];
+=======
+                $textFields = ['nombre', 'destinatario', 'puesto', 'asunto', 'servicios', 'descripcion_servicio', 'numero_colaboradores', 'Estado_republica', 'Centro_trabajo', 'Operario_maquinaria', 'Turno_trabajo',  'num_dotaciones_anual_epp', 'num_dotaciones_anual_maquinaria', 'Operario_limpieza', 'ayudante_general', 'supervisor', 'Numero_dotaciones_anuales_uniforme', 'Materiales', 'Fecha_entrega_jarseria', 'num_dotaciones_anual_jarcieria', 'Fecha_entrega_jarcieria', 'Fecha_entrega_mobilario', 'num_dotaciones_anual_mobiliario'];
+>>>>>>> 7e77e18641ed27b0c377513f339a17ff34f093b3
 
-                $textFieldJson = ['uniforme_superior', 'uniforme_inferior'];
+                $textFieldJson = ['uniforme_superior', 'uniforme_inferior', 'epp_cabeza', 'epp_cuerpo', 'maquinaria', 'quimicos', 'jarcieria', 'mobiliario'];
 
                 foreach($textFields as $field){
-                    $clientData[$field] = $_POST[$field] ? htmlspecialchars(trim($_POST[$field]), ENT_QUOTES, 'UTF-8') : null;
+                    // $clientData[$field] = $_POST[$field] ? htmlspecialchars(trim($_POST[$field]), ENT_QUOTES, 'UTF-8') : null;
+                    $clientData[$field] = isset($_POST[$field]) ? htmlspecialchars(trim($_POST[$field]), ENT_QUOTES, 'UTF-8') : null;
                 }
 
 
                 foreach($textFieldJson as $fieldJson){
                     // code ...
-                    // $data_json = $_POST[$fieldJson] ?? [];
-                    // $data_json = [];
                     if (isset($_POST[$fieldJson]) && is_array($_POST[$fieldJson])) {
                         $clientData[$fieldJson] = array_map(function($item){
                             $item = is_scalar($item) ? (string) $item : '';
@@ -95,8 +98,8 @@ switch($method){
                 }
 
                 $resultado = $model->addClient($clientData);
-
                 echo json_encode([$resultado]) ;
+
                 // echo json_encode([$clientData]) ;
 
             default:

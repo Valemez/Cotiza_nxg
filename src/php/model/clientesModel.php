@@ -95,21 +95,22 @@ class clienteModel{
         $num_colaborador = $data['numero_colaboradores'];
         $estado_republica = $data['Estado_republica'];
         $centro_trabajo = $data['Centro_trabajo'];
-        // $supervisor = $data['supervisor'];
+        $supervisor = $data['supervisor'];
         // $operario_limpieza = $data['operario_limpieza'];
-        // $ayudante_general = $data['Ayudante_general'];
+        $ayudante_general = $data['ayudante_general'];
+        $operario_limpieza = $data['Operario_limpieza'];
         $operario_maquinaria = $data['Operario_maquinaria'];
         $turno_trabajo = $data['Turno_trabajo'];
 
-        $sql = 'INSERT INTO servicios(id_proupesta, numero_colaborador, estado_republica, centro_trabajo, operario_maquinaria, turno_trabajo) VALUES(:id_proupesta, :numero_colaborador, :estado_republica, :centro_trabajo, :operario_maquinaria, :turno_trabajo)';
+        $sql = 'INSERT INTO servicios(id_proupesta, numero_colaborador, estado_republica, centro_trabajo, supervisor, operario_limpieza, ayudante_general, operario_maquinaria, turno_trabajo) VALUES(:id_proupesta, :numero_colaborador, :estado_republica, :centro_trabajo, :supervisor, :operario_limpieza, :ayudante_general, :operario_maquinaria, :turno_trabajo)';
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam('id_proupesta', $id_propuesta);
         $stmt->bindParam('numero_colaborador', $num_colaborador);
         $stmt->bindParam('estado_republica', $estado_republica);
         $stmt->bindParam('centro_trabajo', $centro_trabajo);
-        // $stmt->bindParam('supervisor', $supervisor);
-        // $stmt->bindParam('operario_limpieza', $operario_limpieza);
-        // $stmt->bindParam('ayudante_general', $ayudante_general);
+        $stmt->bindParam('supervisor', $supervisor);
+        $stmt->bindParam('operario_limpieza', $operario_limpieza);
+        $stmt->bindParam('ayudante_general', $ayudante_general);
         $stmt->bindParam('operario_maquinaria', $operario_maquinaria);
         $stmt->bindParam('turno_trabajo', $turno_trabajo);
         $stmt->execute();
@@ -122,22 +123,43 @@ class clienteModel{
     //metodo para insertar los items
         private function addItem(int $idServicio, array $data){
             # code ...
-            // $uniforme_superior = $data['uniforme_superior'];
-            // $uniforme_inferior = $data['uniforme_inferior'];
+            $numero_dotaciones_anuales_uniforme = $data['Numero_dotaciones_anuales_uniforme'];
              $uniforme_superior_json = json_encode($data['uniforme_superior'] ?? [], JSON_UNESCAPED_UNICODE);
              $uniforme_inferior_json = json_encode($data['uniforme_inferior'] ?? [], JSON_UNESCAPED_UNICODE);
-            // $num_dotaciones_anual_uniforme = $data['num_dotaciones_anual_uniforme'];
+             $epp_cabeza = json_encode($data['epp_cabeza'] ?? [], JSON_UNESCAPED_UNICODE);
+             $epp_cuerpo = json_encode($data['epp_cuerpo'] ?? [], JSON_UNESCAPED_UNICODE);
+             $maquinaria = json_encode($data['maquinaria'] ?? [], JSON_UNESCAPED_UNICODE);
+             $quimicos = json_encode($data['quimicos'] ?? [], JSON_UNESCAPED_UNICODE);
+             $jarcieria = json_encode($data['jarcieria'] ?? [], JSON_UNESCAPED_UNICODE);
+             $mobiliario = json_encode($data['mobiliario'] ?? [], JSON_UNESCAPED_UNICODE);
+             $num_dotaciones_anual_jarcieria =$data['num_dotaciones_anual_jarcieria'];
             $num_dotaciones_anual_epp = $data['num_dotaciones_anual_epp'];
             $num_dotaciones_anual_maquinaria = $data['num_dotaciones_anual_maquinaria'];
-            // $fecha_entrega_jarseria = $data['fecha_entrega_jarseria'];
+            $materiales = $data['Materiales'];
+            $fecha_entrega_jarcieria = $data['Fecha_entrega_jarcieria'];
+            $fecha_entrega_mobilario = $data['Fecha_entrega_mobilario'];
+            $num_dotaciones_anual_mobiliario = $data['num_dotaciones_anual_mobiliario'];
 
-            $sql = 'INSERT INTO items(id_servicio, uniforme_superior, uniforme_inferior, num_dotaciones_anual_epp, num_dotaciones_anual_maquinaria) VALUES(:id_servicio, :uniforme_superior, :uniforme_inferior, :num_dotaciones_anual_epp, :num_dotaciones_anual_maquinaria)';
+            $sql = 'INSERT INTO items(id_servicio, uniforme_superior, uniforme_inferior, num_dotaciones_anual_uniforme, epp_cabeza, epp_cuerpo, num_dotaciones_anual_epp, maquinaria, num_dotaciones_anual_maquinaria, Sin_materiales, quimicos, jarseria, cantidad_jarseria, fecha_entrega_jarseria, mobiliario, fecha_entrega_mobiliario, cantidad_mobiliario) VALUES(:id_servicio, :uniforme_superior, :uniforme_inferior, :num_dotaciones_anual_uniforme, :epp_cabeza, :epp_cuerpo, :num_dotaciones_anual_epp, :maquinaria, :num_dotaciones_anual_maquinaria, :Sin_materiales, :quimicos, :jarseria, :cantidad_jarseria, :fecha_entrega_jarseria, :mobiliario, :fecha_entrega_mobiliario, :cantidad_mobiliario)';
             $stmt = $this->conn->prepare($sql);
             $stmt->bindParam('id_servicio', $idServicio);
             $stmt->bindParam('uniforme_superior', $uniforme_superior_json);
             $stmt->bindParam('uniforme_inferior', $uniforme_inferior_json);
+            $stmt->bindParam('num_dotaciones_anual_uniforme', $numero_dotaciones_anuales_uniforme);
+            $stmt->bindParam('epp_cabeza', $epp_cabeza);
+            $stmt->bindParam('epp_cuerpo', $epp_cuerpo);
             $stmt->bindParam('num_dotaciones_anual_epp', $num_dotaciones_anual_epp);
+            $stmt->bindParam('maquinaria', $maquinaria);
             $stmt->bindParam('num_dotaciones_anual_maquinaria', $num_dotaciones_anual_maquinaria);
+            $stmt->bindParam('Sin_materiales', $materiales);
+            $stmt->bindParam('quimicos', $quimicos);
+            $stmt->bindParam('jarseria', $jarcieria);
+            $stmt->bindParam('cantidad_jarseria', $num_dotaciones_anual_jarcieria);
+            $stmt->bindParam('fecha_entrega_jarseria', $fecha_entrega_jarcieria);
+            $stmt->bindParam('mobiliario', $mobiliario);
+            $stmt->bindParam('fecha_entrega_mobiliario', $fecha_entrega_mobilario);
+            $stmt->bindParam('cantidad_mobiliario', $num_dotaciones_anual_mobiliario);
+
             // $stmt->bindParam('fecha_entrega_jarseria', $fecha_entrega_jarseria);
             return $stmt->execute();
         }
