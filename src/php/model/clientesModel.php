@@ -49,27 +49,23 @@ class clienteModel{
                 $this->addItem($idServicio, $data);
 
                 // --- Si todo fue exitoso, confirma la transacción ---
-                $this->conn->commit();
-
-                return [
-                    'status' => 'success', 
-                    'message' => 'Cliente guardado correctamente.', 
-                    'id' => $idCliente
-                ];
-            } else {
-                return [
-                    'status' => 'error', 
-                    'message' => 'No se pudo guardar el cliente.'
-                ];
+                if($this->conn->commit()){
+                    $response['success'] = true;
+                    $response['message'] = 'Datos insertados correctamente.';
+                }else{
+                    $response['success'] = false;
+                    $response['message'] = 'Datos no se insertaron';
+                }
+                return $response;
             }
 
         } catch (PDOException $e) {
             // --- Si ocurre un error en la BD, revierte todos los cambios ---
             $this->conn->rollBack();
-            return [
-                'status' => 'error', 
-                'message' => 'Error de base de datos: ' . $e->getMessage()
-            ];
+
+            $response['success'] = false;
+            $response['message'] = 'Error de base de datos: ' . $e->getMessage();
+            return $response;
         }
     }
 
