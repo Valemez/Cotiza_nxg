@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 // alert('Error: ' + data.message);
             }
         } catch (error) {
-
+            console.log('Error 45: '+ error);
         }
     }
 
