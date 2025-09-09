@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     draggable: true,
                     button: false
                 });
-                setTimeout(()=>{
+                setTimeout(() => {
                     window.location.href = URL + '/formulario.html';
                 }, 5000);
             } else {
@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 // alert('Error: ' + data.message);
             }
         } catch (error) {
-            
+
         }
     }
 
@@ -282,6 +282,43 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
 
+            // Mostrar términos y condiciones en el último paso
+            if (step === 4) {
+                Swal.fire({
+                    title: 'Términos y Condiciones',
+                    html: `<div style="text-align:left;max-height:250px;overflow-y:auto;">
+                    <p>Al enviar este formulario, aceptas los términos y condiciones de uso del servicio. Por favor, lee cuidadosamente antes de continuar.</p>
+                    <p>1. La información proporcionada será utilizada únicamente para fines de cotización.</p>
+                    <p>2. Nos comprometemos a proteger tus datos personales conforme a la ley.</p>
+                    <p>3. El envío del formulario no garantiza la prestación del servicio.</p>
+         
+                    
+                    <br>
+                    <label>
+                        <input type="checkbox" id="acepto_terminos_sw" />
+                        Acepto los términos y condiciones
+                    </label>
+                </div>`,
+                    icon: 'info',
+                    iconColor: '#001550',
+                    confirmButtonText: 'Continuar',
+                    preConfirm: () => {
+                        const checkbox = Swal.getPopup().querySelector('#acepto_terminos_sw');
+                        if (!checkbox.checked) {
+                            Swal.showValidationMessage('Debes aceptar los términos y condiciones para continuar.');
+                            return false;
+                        }
+                        return true;
+                    }
+                }).then((result) => {
+                    if (!result.isConfirmed) {
+                        isValid = false;
+                    }
+                });
+            }
+
+            return isValid;
+
             if (!isValid) {
                 Swal.fire({
                     title: 'Datos incompletos',
@@ -294,5 +331,42 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         return isValid;
+    }
+});
+
+// Inicializar tooltips
+document.querySelectorAll('.help-icon').forEach(icon => {
+    icon.addEventListener('mouseenter', function () {
+        this.querySelector('.tooltip').style.visibility = 'visible';
+        this.querySelector('.tooltip').style.opacity = '1';
+    });
+
+    icon.addEventListener('mouseleave', function () {
+        this.querySelector('.tooltip').style.visibility = 'hidden';
+        this.querySelector('.tooltip').style.opacity = '0';
+    });
+});
+
+function verFoto(tipo) {
+    const fotos = {
+        'bata_casaca': './public/Assets/logos/347_detras.jpg',
+        'playera_polo_manga_larga': './public/Assets/fotos/playera_polo_manga_larga.png',
+        // Agrega las rutas de las fotos para cada ítem
+        // ...
+    };
+    document.getElementById('foto-modal-img').src = fotos[tipo] || '';
+    document.getElementById('foto-modal').style.display = 'flex';
+}
+
+window.verFoto = verFoto;
+
+document.getElementById('archivo').addEventListener('change', function (e) {
+    if (this.files.length > 5) {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Límite de archivos',
+            text: 'Solo puedes subir hasta 5 archivos.'
+        });
+        this.value = ''; // Limpia la selección
     }
 });

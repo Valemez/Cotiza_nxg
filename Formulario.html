@@ -27,7 +27,8 @@
             </div>
             <!-- Pasos para el registro -->
             <div class="crs-form-content">
-                <form action="http://192.168.2.138/Cotiza_nxg/src/php/api.php/formulario" method="post" enctype="multipart/form-data">
+                <form action="http://192.168.2.138/Cotiza_nxg/src/php/api.php/formulario" method="post"
+                    enctype="multipart/form-data">
                     <!-- <form action="http://intranetipm.ddns.net:5000/cotizaciones/backend/formulario.php" method="post"> -->
                     <!-- Menu -->
                     <div class="crs-steps">
@@ -68,14 +69,36 @@
                         <div class="crs-input-group"
                             data-title="Inserta el logo de la empresa a la que se le realizará la cotización"
                             data-intro="Sube el logo de la empresa del cliente en formato PNG.">
-                            <label for="logo_empresa" class="crs-form-label">Insertar el logo de la empresa
-                                (Cliente)</label>
+
+                            <div class="crs-label-wrapper">
+                                <label for="logo" class="crs-form-label">
+                                    Insertar el logo de la empresa (Cliente)
+                                </label>
+                                <div class="help-icon" tabindex="0"
+                                    aria-label="Ayuda: El logo debe estar en formato PNG y tener un tamaño máximo de 2MB.">
+                                    ?
+                                    <span class="tooltip">Ayuda: El logo debe estar en formato
+                                        <br> y tener un tamaño máximo de 2MB</span>
+                                </div>
+                            </div>
+
                             <input type="file" name="logo" id="logo" accept="image/png" class="crs-form-input" required>
+
                         </div>
+
                         <!-- div del nombre de la empresa -->
                         <div class="crs-input-group" data-title="Nombre de la empresa"
                             data-intro="Proporciona el nombre completo de la empresa del cliente.">
-                            <label for="nombre" class="crs-form-label">Nombre de la empresa:</label>
+
+                            <div class="crs-label-wrapper">
+                                <label for="nombre" class="crs-form-label">Nombre de la empresa:</label>
+                                <div class="help-icon" tabindex="0"
+                                    aria-label="Ayuda: Ingresa el nombre completo de la empresa del cliente.">
+                                    ?
+                                    <span class="tooltip">Ayuda: Ingresa el nombre completo de la empresa del
+                                        cliente.</span>
+                                </div>
+                            </div>
                             <input type="text" name="nombre" id="nombre"
                                 placeholder="Ej. Servicios de tecnológia e innovación S.A DE C." class="crs-form-input"
                                 required>
@@ -83,15 +106,32 @@
                         <!-- div de aquien va dirigido -->
                         <div class="crs-input-group" data-title="Destinatario"
                             data-intro="Indica el nombre de la persona a quien va dirigida la cotización.">
-                            <label for="destinatario" class="crs-form-label">Estimado:</label>
+
+                            <div class="crs-label-wrapper">
+                                <label for="destinatario" class="crs-form-label">A quien va dirigido:</label>
+                                <div class="help-icon" tabindex="0"
+                                    aria-label="Ayuda: Proporciona el nombre completo de la persona a quien va dirigida la cotización.">
+                                    ?
+                                    <span class="tooltip">Ayuda: Proporciona el nombre completo de la persona a <br>
+                                        quien va dirigida la cotización.</span>
+                                </div>
+                            </div>
                             <input type="text" name="destinatario" id="destinatario"
                                 placeholder="Ej. Lic. Javier Orozco" class="crs-form-input" required>
                         </div>
                         <!-- div de puesto ocupacional -->
                         <div class="crs-input-flex">
                             <div class="crs-input-group" data-title="Puesto ocupacional y asunto"
-                            data-intro="Proporciona el puesto ocupacional del destinatario y el asunto de la cotización.">
-                                <label for="puesto" class="crs-form-label">Puesto ocupacional: </label>
+                                data-intro="Proporciona el puesto ocupacional del destinatario y el asunto de la cotización.">
+                                <div class="crs-label-wrapper">
+                                    <label for="puesto" class="crs-form-label">Puesto ocupacional y asunto:</label>
+                                    <div class="help-icon" tabindex="0"
+                                        aria-label="Ayuda: Ingresa el puesto ocupacional del destinatario y el asunto de la cotización.">
+                                        ?
+                                        <span class="tooltip">Ayuda: Ingresa el puesto ocupacional del destinatario <br>
+                                            y el asunto de la cotización.</span>
+                                    </div>
+                                </div>
                                 <input type="text" name="puesto" id="puesto"
                                     placeholder="Ej. Ventas, Sistemas, Director General." class="crs-form-input"
                                     required>
@@ -99,7 +139,15 @@
                             <!-- Div de asunto -->
                             <div class="crs-input-group" data-title="Asunto de la cotización"
                                 data-intro="Especifica el asunto de la cotización, por ejemplo, 'Carta de presentación'.">
-                                <label for="asunto" class="crs-form-label">Asunto: </label>
+                                <div class="crs-label-wrapper">
+                                    <label for="asunto" class="crs-form-label">Asunto: </label>
+                                    <div class="help-icon" tabindex="0"
+                                        aria-label="Ayuda: Especifica el asunto de la cotización, por ejemplo, 'Carta de presentación'.">
+                                        ?
+                                        <span class="tooltip">Ayuda: Especifica el asunto de la cotización, por ejemplo,
+                                            'Carta de presentación'.</span>
+                                    </div>
+                                </div>
                                 <input type="text" name="asunto" id="asunto" placeholder="Ej. Carta de presentación"
                                     class="crs-form-input" required>
                             </div>
@@ -111,9 +159,16 @@
                         <!-- div de selección del servicio -->
                         <div class="crs-input-group" data-title="Tipo de servicio"
                             data-intro="Selecciona el tipo de servicio que requiere el cliente, ya sea limpieza o fumigación.">
-                            <label for="tipo-Servicio" class="crs-form-label">Seleccione el tipo de servicio
-                                que
-                                requiere.</label>
+                            <div class="crs-label-wrapper">
+                                <label for="tipo-Servicio" class="crs-form-label">Seleccione el tipo de servicio que
+                                    requiere.</label>
+                                <div class="help-icon" tabindex="0"
+                                    aria-label="Ayuda: Selecciona el tipo de servicio que requiere el cliente, ya sea limpieza o fumigación.">
+                                    ?
+                                    <span class="tooltip">Ayuda: Selecciona el tipo de servicio que requiere el cliente,
+                                        ya sea limpieza o fumigación.</span>
+                                </div>
+                            </div>
                             <select name="servicios" id="servicios" class="crs-form-input">
                                 <option value="Limpieza">Limpieza</option>
                                 <option value="Fumigacion">Fumigación</option>
@@ -121,18 +176,37 @@
                         </div>
                         <!-- div de Insertar excel, pdf, powerpoint de cotización -->
                         <div class="crs-input-group" data-title="Archivo de cotización del cliente"
-                            data-intro="Adjunta el archivo de cotización proporcionado por el cliente en formatos como PNG, XLS, XLSX, DOC o PDF.">
-                            <label for="archivo_excel" class="crs-form-label">Insertar el archivo de
-                                cotización del
-                                Cliente</label>
-                            <input type="file" name="archivo_excel" id="archivo" accept="image/png,.xls,.xlsx,.doc,.pdf"
-                                class="crs-form-input" required>
+                            data-intro="Adjunta hasta 5 archivos de cotización proporcionado por el cliente en formatos como PNG, XLS, XLSX, DOC o PDF.">
+                            <div class="crs-label-wrapper">
+                                <label for="archivo_excel" class="crs-form-label">Insertar el archivo de cotización del
+                                    Cliente</label>
+                                <div class="help-icon" tabindex="0"
+                                    aria-label="Ayuda: Adjunta los archivos de cotización proporcionado por el cliente en formatos como PNG, XLS, XLSX, DOC o PDF.">
+                                    ?
+                                    <span class="tooltip">Ayuda: Adjunta los archivos de cotización proporcionado <br>
+                                        por
+                                        el
+                                        cliente en formatos como PNG, XLS, XLSX, DOC o PDF.</span>
+                                </div>
+                            </div>
+                            <input type="file" name="archivo_excel[]" id="archivo"
+                                accept="image/png,.xls,.xlsx,.doc,.pdf" class="crs-form-input" multiple required>
                         </div>
 
                         <div class="crs-input-group" data-title="Descripción del servicio"
                             data-intro="Proporciona una descripción detallada del servicio solicitado.">
-                            <label for="descripcion_servicio" class="crs-form-label">Descripción del
-                                servicio</label>
+                            <div class="crs-label-wrapper">
+                                <label for="descripcion_servicio" class="crs-form-label">Descripción del
+                                    servicio</label>
+                                <div class="help-icon" tabindex="0"
+                                    aria-label="Ayuda: Proporciona una descripción detallada del servicio solicitado.">
+                                    ?
+                                    <span class="tooltip">Ayuda: Proporciona una descripción detallada del servicio
+                                        solicitado.</span>
+                                </div>
+
+                            </div>
+
                             <textarea name="descripcion_servicio" id="descripcion_servicio"
                                 class="crs-form-input crs-form-textarea"
                                 placeholder="Especifique la descripción"></textarea>
@@ -141,20 +215,57 @@
 
                     <!-- Paso 3: Selección de colaboradores -->
                     <div class="crs-form-step-3">
+                        <div class="crs-input-group">
+                            <div class="crs-label-wrapper">
+                                <label for="Turno_trabajo" class="crs-form-label"> Seleccione el turno de
+                                    trabajo:
+                                </label>
+                                <div class="help-icon" tabindex="0"
+                                    aria-label="Ayuda: Selecciona el turno de trabajo requerido, ya sea de 4, 6 u 8 horas.">
+                                    ?
+                                    <span class="tooltip">Ayuda: Selecciona el turno de trabajo requerido, ya sea de
+                                        4, 6 u 8 horas.</span>
+                                </div>
+                            </div>
+                            </label>
+                            <select name="Turno_trabajo" id="Turno_trabajo" class="crs-form-input" required>
+                                <option value="8">8 horas</option>
+                                <option value="6">6 horas</option>
+                                <option value="4">4 horas</option>
+                            </select>
+                        </div>
+
                         <div class="crs-input-group" data-title="Detalles de los colaboradores"
                             data-intro="Especifica el número de colaboradores necesarios, el estado y centro de trabajo, así como los roles específicos como supervisores y operarios.">
+                            <div class="crs-label-wrapper">
+                                <label for="numero_colaboradores" class="crs-form-label">Detalles de los
+                                    colaboradores</label>
+                                <div class="help-icon" tabindex="0"
+                                    aria-label="Ayuda: Especifica el número de colaboradores necesarios, el estado y centro de trabajo, así como los roles específicos como supervisores y operarios.">
+                                    ?
+                                    <span class="tooltip">Ayuda: Especifica el número de colaboradores necesarios, el
+                                        estado y centro de trabajo, así como los roles específicos como supervisores y
+                                        operarios.</span>
+                                </div>
+                            </div>
                             <div class="crs-input-group">
-                                <label for="numero_colaboradores" class="crs-form-label">Número de
-                                    colaboradores:</label>
                                 <input type="number" name="numero_colaboradores" id="numero_colaboradores"
                                     placeholder="Ej. 12" class="crs-form-input" min="1">
                             </div>
                             <!-- div estado de la republica -->
                             <div class="crs-input-group" data-title="Estado de trabajo"
                                 data-intro="Selecciona el estado donde se realizará el trabajo.">
-                                <label for="Estado_republica" class="crs-form-label">Selecciona el estado de
-                                    trabajo:
-                                </label>
+                                <div class="crs-label-wrapper">
+                                    <label for="Estado_republica" class="crs-form-label">Selecciona el estado de
+                                        trabajo:
+                                    </label>
+                                    <div class="help-icon" tabindex="0"
+                                        aria-label="Ayuda: Selecciona el estado donde se realizará el trabajo.">
+                                        ?
+                                        <span class="tooltip">Ayuda: Selecciona el estado donde se realizará el
+                                            trabajo.</span>
+                                    </div>
+                                </div>
                                 <select name="Estado_republica" id="Estado_republica" onchange="mostrarEstados()"
                                     class="crs-form-input" required>
                                     <option value="Aguascalientes">Aguascalientes</option>
@@ -193,24 +304,35 @@
                             </div>
 
                             <div class="crs-input-group">
-                                <label for="Centro_trabajo" class="crs-form-label"> Seleccione centro de
-                                    trabajo:
-                                </label>
+                                <div class="crs-label-wrapper">
+                                    <label for="Centro_trabajo" class="crs-form-label"> Seleccione centro de
+                                        trabajo:
+                                    </label>
+                                    <div class="help-icon" tabindex="0"
+                                        aria-label="Ayuda: Selecciona el centro de trabajo específico dentro del estado elegido.">
+                                        ?
+                                        <span class="tooltip">Ayuda: Selecciona el centro de trabajo específico dentro
+                                            del estado elegido.</span>
+                                    </div>
+                                </div>
                                 <select name="Centro_trabajo" id="Centro_trabajo" class="crs-form-input" required>
                                     <option value="">--- Seleccione estado---</option>
                                 </select>
                             </div>
-                            <!-- div de supervisor -->
+                            <!-- div de COLABORADORES -->
+                            <!-- FALTAAAAAAAAA  PONER EL ? -->
                             <div class="crs-input-flex">
                                 <!-- Div de operario de maquinario -->
                                 <div class="crs-input-group">
-                                    <label for="Operario_maquinaria" class="crs-form-label">Número de operario de maquinaria: </label>
+                                    <label for="Operario_maquinaria" class="crs-form-label">Número de operario de
+                                        maquinaria: </label>
                                     <input type="number" name="Operario_maquinaria" id="Operario_maquinaria"
                                         placeholder="Ej. 12" class="crs-form-input" min="1">
                                 </div>
                                 <!-- Div de operario de limpieza -->
                                 <div class="crs-input-group">
-                                    <label for="Operario_limpieza" class="crs-form-label">Número de operario de limpieza: </label>
+                                    <label for="Operario_limpieza" class="crs-form-label">Número de operario de
+                                        limpieza: </label>
                                     <input type="number" name="Operario_limpieza" id="Operario_limpieza"
                                         placeholder="Ej. 12" class="crs-form-input" min="1">
                                 </div>
@@ -219,26 +341,16 @@
                                 <!-- Div de supervisor -->
                                 <div class="crs-input-group">
                                     <label for="supervisor" class="crs-form-label">Número de supervisor: </label>
-                                    <input type="number" name="supervisor" id="supervisor"
-                                        placeholder="Ej. 12" class="crs-form-input" min="1">
+                                    <input type="number" name="supervisor" id="supervisor" placeholder="Ej. 12"
+                                        class="crs-form-input" min="1">
                                 </div>
                                 <!-- Div de ayudante general-->
                                 <div class="crs-input-group">
-                                    <label for="ayudante_general" class="crs-form-label">Número de ayudante general: </label>
+                                    <label for="ayudante_general" class="crs-form-label">Número de ayudante general:
+                                    </label>
                                     <input type="number" name="ayudante_general" id="ayudante_general"
                                         placeholder="Ej. 12" class="crs-form-input" min="1">
                                 </div>
-                            </div>
-                            
-                            <div class="crs-input-group">
-                                <label for="Turno_trabajo" class="crs-form-label"> Seleccione el turno de
-                                    trabajo:
-                                </label>
-                                <select name="Turno_trabajo" id="Turno_trabajo" class="crs-form-input" required>
-                                    <option value="8">8 horas</option>
-                                    <option value="6">6 horas</option>
-                                    <option value="4">4 horas</option>
-                                </select>
                             </div>
                         </div>
                     </div>
@@ -250,27 +362,57 @@
                             <!-- Selección de uniforme -->
                             <div class="crs-input-flex">
                                 <div class="crs-input-group">
-                                    <p style="font-size: 20px; color: #001550; font-weight: bold;">Uniforme</p>
+                                    <div class="crs-label-wrapper">
+                                        <label for="uniforme" class="crs-form-label"
+                                            style="font-size: 20px; font-weight: bold;">Uniforme</label>
+                                        <div class="help-icon" tabindex="0"
+                                            aria-label="Ayuda: Selecciona los tipos de uniforme que se requieren para los colaboradores.">
+                                            ?
+                                            <span class="tooltip">Ayuda: Selecciona los tipos de uniforme que se
+                                                requieren
+                                                para los colaboradores.</span>
+                                        </div>
+                                    </div>
                                     <div>
                                         <label for="uniforme_superior" class="crs-form-label">Parte superior</label>
-                                        <label><input type="checkbox" checked id="" value="Bata de la casaca" name="uniforme_superior[]"/>Bata de la casaca</label><br />
-                                        <label><input type="checkbox" id="" value="Playera polo manga larga" name="uniforme_superior[]"/>Playera polo manga larga</label><br />
-                                        <label><input type="checkbox" id="" value="Playera polo manga corta" name="uniforme_superior[]"/>Playera polo manga corta</label><br />
-                                        <label><input type="checkbox" id="" value="Poncho para lluvia" name="uniforme_superior[]"/>Poncho para lluvia</label><br />
+                                        <label><input type="checkbox" checked id="" value="Bata de la casaca"
+                                                name="uniforme_superior[]" />Bata de la casaca
+                                            <button type="button" class="ver-foto-btn"
+                                                onclick="verFoto('bata_casaca')">Ver
+                                                foto</button>
+                                        </label><br />
+                                        <label><input type="checkbox" id="" value="Playera polo manga larga"
+                                                name="uniforme_superior[]" />Playera polo manga larga</label><br />
+                                        <label><input type="checkbox" id="" value="Playera polo manga corta"
+                                                name="uniforme_superior[]" />Playera polo manga corta</label><br />
+                                        <label><input type="checkbox" id="" value="Poncho para lluvia"
+                                                name="uniforme_superior[]" />Poncho para lluvia</label><br />
                                     </div>
                                     <br>
                                     <div>
                                         <label for="uniforme_inferior" class="crs-form-label">Parte
                                             inferior</label>
-                                        <label><input type="checkbox" checked id="" value="Pantalon de la bata"  name="uniforme_inferior[]"/>Pantalon de la bata</label><br />
-                                        <label><input type="checkbox" id="" value="Pantalon de mesclilla"  name="uniforme_inferior[]"/>Pantalon de mesclilla</label><br />
-                                        <label><input type="checkbox" id="" value="Plantalon caqui"  name="uniforme_inferior[]"/>Plantalon caqui</label><br />
+                                        <label><input type="checkbox" checked id="" value="Pantalon de la bata"
+                                                name="uniforme_inferior[]" />Pantalon de la bata</label><br />
+                                        <label><input type="checkbox" id="" value="Pantalon de mesclilla"
+                                                name="uniforme_inferior[]" />Pantalon de mesclilla</label><br />
+                                        <label><input type="checkbox" id="" value="Plantalon caqui"
+                                                name="uniforme_inferior[]" />Plantalon caqui</label><br />
                                     </div>
                                 </div>
 
                                 <div class="crs-input-group">
-                                    <label for="Numero_dotaciones_anuales_uniforme" class="crs-form-label">Número de
-                                        dotaciones (Anuales):</label>
+                                    <div class="crs-label-wrapper">
+                                        <label for="Numero_dotaciones_anuales_uniforme" class="crs-form-label"
+                                            style="font-size: 20px; font-weight: bold;">Número de dotaciones
+                                            (Anuales)</label>
+                                        <div class="help-icon" tabindex="0"
+                                            aria-label="Ayuda: Indica el número de dotaciones anuales requeridas para los uniformes.">
+                                            ?
+                                            <span class="tooltip">Ayuda: Indica el número de dotaciones anuales
+                                                requeridas para los uniformes.</span>
+                                        </div>
+                                    </div>
                                     <input type="number" name="Numero_dotaciones_anuales_uniforme"
                                         id="Numero_dotaciones_anuales_uniforme" placeholder="Ej. 12"
                                         class="crs-form-input" min="1">
@@ -279,25 +421,49 @@
                             <!-- SELECCION DE EPP -->
                             <div class="crs-input-flex">
                                 <div class="crs-input-group">
-                                    <p style="font-size: 20px; color: #001550; font-weight: bold;">EPP (Equipo de Protección Personal)</p>
+                                    <div class="crs-label-wrapper">
+                                        <label for="epp" class="crs-form-label"
+                                            style="font-size: 20px; font-weight: bold;">EPP (Equipo de Protección
+                                            Personal)</label>
+                                        <div class="help-icon" tabindex="0"
+                                            aria-label="Ayuda: Selecciona los tipos de equipo de protección personal (EPP) que se requieren para los colaboradores.">
+                                            ?
+                                            <span class="tooltip">Ayuda: Selecciona los tipos de equipo de protección
+                                                personal (EPP) que se requieren para los colaboradores.</span>
+                                        </div>
+                                    </div>
                                     <div>
                                         <label for="epp_cabeza" class="crs-form-label">Cabeza</label>
-                                        <label><input type="checkbox" id="" value="Cascos" name="epp_cabeza[]" />Cascos</label><br />
-                                        <label><input type="checkbox" id="" value="Lentes de protección" name="epp_cabeza[]" />Lentes de
-                                        protección</label><br />
-                                        <label><input type="checkbox" id="" value="Tapones" name="epp_cabeza[]" />Tapones</label><br />
-                                        <label><input type="checkbox" id="" value="Cubrebocas" name="epp_cabeza[]" />Cubrebocas</label><br />
+                                        <label><input type="checkbox" id="" value="Cascos"
+                                                name="epp_cabeza[]" />Cascos</label><br />
+                                        <label><input type="checkbox" id="" value="Lentes de protección"
+                                                name="epp_cabeza[]" />Lentes de
+                                            protección</label><br />
+                                        <label><input type="checkbox" id="" value="Tapones"
+                                                name="epp_cabeza[]" />Tapones</label><br />
+                                        <label><input type="checkbox" id="" value="Cubrebocas"
+                                                name="epp_cabeza[]" />Cubrebocas</label><br />
                                     </div>
                                     <br>
                                     <div>
                                         <label for="epp_cuerpo" class="crs-form-label">Cuerpo</label>
-                                        <label><input type="checkbox" id="" value="Chaleco" name="epp_cuerpo[]" />Chaleco</label><br />
-                            
+                                        <label><input type="checkbox" id="" value="Chaleco"
+                                                name="epp_cuerpo[]" />Chaleco</label><br />
+
                                     </div>
                                 </div>
                                 <div class="crs-input-group">
-                                    <label for="num_dotaciones_anual_epp" class="crs-form-label">Número de
-                                        dotaciones (Anuales):</label>
+                                    <div class="crs-label-wrapper">
+                                        <label for="num_dotaciones_anual_epp" class="crs-form-label"
+                                            style="font-size: 20px; font-weight: bold;">Número de dotaciones
+                                            (Anuales)</label>
+                                        <div class="help-icon" tabindex="0"
+                                            aria-label="Ayuda: Indica el número de dotaciones anuales requeridas para el equipo de protección personal (EPP).">
+                                            ?
+                                            <span class="tooltip">Ayuda: Indica el número de dotaciones anuales
+                                                requeridas para el equipo de protección personal (EPP).</span>
+                                        </div>
+                                    </div>
                                     <input type="number" name="num_dotaciones_anual_epp" id="num_dotaciones_anual_epp"
                                         placeholder="Ej. 12" class="crs-form-input" min="1">
                                 </div>
@@ -305,24 +471,45 @@
                             <!-- selección de maquinaria -->
                             <div class="crs-input-flex">
                                 <div class="crs-input-group">
-                                    <p style="font-size: 20px; color: #001550; font-weight: bold;">Maquinaria</p>
+                                    <div class="crs-label-wrapper">
+                                        <label for="maquinaria" class="crs-form-label"
+                                            style="font-size: 20px; font-weight: bold;"> Maquinaria</label>
+                                        <div class="help-icon" tabindex="0"
+                                            aria-label="Ayuda: Selecciona los tipos de maquinaria que se requieren para el servicio.">
+                                            ?
+                                            <span class="tooltip">Ayuda: Selecciona los tipos de maquinaria que se
+                                                requieren para el servicio.</span>
+                                        </div>
+                                    </div>
                                     <div>
                                         <label for="maquinaria" class="crs-form-label">Selecciona la
                                             maquinaria que
                                             requiera:
                                         </label>
-                                        <label><input type="checkbox" id="" value="Fregadoras_de_piso" name="maquinaria[]" />Fregadoras
+                                        <label><input type="checkbox" id="" value="Fregadoras_de_piso"
+                                                name="maquinaria[]" />Fregadoras
                                             de
                                             piso</label><br />
-                                        <label><input type="checkbox" id="" value="Pulidora" name="maquinaria[]" />Pulidora</label><br />
-                                        <label><input type="checkbox" id="" value="Barredora" name="maquinaria[]" />Barredora</label><br />
+                                        <label><input type="checkbox" id="" value="Pulidora"
+                                                name="maquinaria[]" />Pulidora</label><br />
+                                        <label><input type="checkbox" id="" value="Barredora"
+                                                name="maquinaria[]" />Barredora</label><br />
                                         <!-- <label><input type="checkbox" id="" value="" /></label><br /> -->
                                     </div>
                                 </div>
 
                                 <div class="crs-input-group">
-                                    <label for="num_dotaciones_anual_maquinaria" class="crs-form-label">Número de
-                                        dotaciones (Anuales):</label>
+                                    <div class="crs-label-wrapper">
+                                        <label for="num_dotaciones_anual_maquinaria" class="crs-form-label"
+                                            style="font-size: 20px; font-weight: bold;">Número de dotaciones
+                                            (Anuales)</label>
+                                        <div class="help-icon" tabindex="0"
+                                            aria-label="Ayuda: Indica el número de dotaciones anuales requeridas para la maquinaria.">
+                                            ?
+                                            <span class="tooltip">Ayuda: Indica el número de dotaciones anuales
+                                                requeridas para la maquinaria.</span>
+                                        </div>
+                                    </div>
                                     <input type="number" name="num_dotaciones_anual_maquinaria"
                                         id="num_dotaciones_anual_maquinaria" placeholder="Ej. 12" class="crs-form-input"
                                         min="1">
@@ -331,7 +518,18 @@
                             <!-- Seleccion de Materiales -->
                             <div class="crs-input-flex">
                                 <div class="crs-input-group">
-                                    <p style="font-size: 20px; color: #001550; font-weight: bold;">Materiales</p>
+                                    <div>
+                                        <div class="crs-label-wrapper">
+                                            <label for="Materiales" class="crs-form-label"
+                                                style="font-size: 20px; font-weight: bold;">Materiales</label>
+                                            <div class="help-icon" tabindex="0"
+                                                aria-label="Ayuda: Selecciona los tipos de materiales que se requieren para el servicio.">
+                                                ?
+                                                <span class="tooltip">Ayuda: Selecciona los tipos de materiales que se
+                                                    requieren para el servicio.</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <!-- Selección de materiales -->
                                     <div class="crs-input-group">
                                         <label for="Materiales" class="crs-form-label">Seleccione si
@@ -350,40 +548,55 @@
                                             requiera</label>
                                         <!-- Quimicos -->
                                         <label for="quimicos" class="crs-form-label">Quimicos</label>
-                                        <label><input type="checkbox" id="" value="Jabon_multiusos" name="quimicos[]" />Jabon
+                                        <label><input type="checkbox" id="" value="Jabon_multiusos"
+                                                name="quimicos[]" />Jabon
                                             multiusos</label><br />
-                                        <label><input type="checkbox" id="" value="Cloro" name="quimicos[]" />Cloro</label><br />
-                                        <label><input type="checkbox" id="" value="Jabon_polvo" name="quimicos[]" />Jabon en
+                                        <label><input type="checkbox" id="" value="Cloro"
+                                                name="quimicos[]" />Cloro</label><br />
+                                        <label><input type="checkbox" id="" value="Jabon_polvo"
+                                                name="quimicos[]" />Jabon en
                                             polvo</label><br />
-                                        <label><input type="checkbox" id="" value="Limpiador_de_vidrios" name="quimicos[]" />Limpiador
+                                        <label><input type="checkbox" id="" value="Limpiador_de_vidrios"
+                                                name="quimicos[]" />Limpiador
                                             de
                                             vidrios</label><br>
-                                        <label><input type="checkbox" id="" value="Sarricida" name="quimicos[]" />Sarricida</label><br />
-                                        <label><input type="checkbox" id="" value="Limpiador_desengrasante" name="quimicos[]" />Limpiador
+                                        <label><input type="checkbox" id="" value="Sarricida"
+                                                name="quimicos[]" />Sarricida</label><br />
+                                        <label><input type="checkbox" id="" value="Limpiador_desengrasante"
+                                                name="quimicos[]" />Limpiador
                                             desengrasante</label><br />
-                                        <label><input type="checkbox" id="" value="Jabon_trastes" name="quimicos[]" />Jabon
+                                        <label><input type="checkbox" id="" value="Jabon_trastes"
+                                                name="quimicos[]" />Jabon
                                             para
                                             trastes</label><br />
-                                        <label><input type="checkbox" id="" value="Jabon_para_manos" name="quimicos[]" />Jabón
+                                        <label><input type="checkbox" id="" value="Jabon_para_manos"
+                                                name="quimicos[]" />Jabón
                                             para
                                             manos</label><br />
-                                        <label><input type="checkbox" id=""
-                                                value="destapacaños" name="quimicos[]" />Destapacaños</label><br />
+                                        <label><input type="checkbox" id="" value="destapacaños"
+                                                name="quimicos[]" />Destapacaños</label><br />
                                         <!-- Jarcieria -->
                                         <label for="jarcieria" class="crs-form-label">Jarcieria</label>
-                                        <label><input type="checkbox" id="" value="Escobas avanico" name="jarcieria[]" />Escobas
+                                        <label><input type="checkbox" id="" value="Escobas avanico"
+                                                name="jarcieria[]" />Escobas
                                             avanico</label><br />
-                                        <label><input type="checkbox" id="" value="Cepillo_rigido" name="jarcieria[]" />Cepillo
+                                        <label><input type="checkbox" id="" value="Cepillo_rigido"
+                                                name="jarcieria[]" />Cepillo
                                             rigido</label><br />
-                                        <label><input type="checkbox" id="" value="Cubetas" name="jarcieria[]" />Cubetas</label><br />
-                                        <label><input type="checkbox" id=""
-                                                value="Microfibras" name="jarcieria[]" />Microfibras</label><br />
-                                        <label><input type="checkbox" id="" value="Franela" name="jarcieria[]" />Franela</label><br />
-                                        <label><input type="checkbox" id="" value="Recogedores_lamina" name="jarcieria[]" />Recogedores
+                                        <label><input type="checkbox" id="" value="Cubetas"
+                                                name="jarcieria[]" />Cubetas</label><br />
+                                        <label><input type="checkbox" id="" value="Microfibras"
+                                                name="jarcieria[]" />Microfibras</label><br />
+                                        <label><input type="checkbox" id="" value="Franela"
+                                                name="jarcieria[]" />Franela</label><br />
+                                        <label><input type="checkbox" id="" value="Recogedores_lamina"
+                                                name="jarcieria[]" />Recogedores
                                             de
                                             lamina</label><br />
-                                        <label><input type="checkbox" id="" value="Mechudos" name="jarcieria[]" />Mechudos</label><br />
-                                        <label><input type="checkbox" id="" value="Mops" name="jarcieria[]" />Mops</label><br />
+                                        <label><input type="checkbox" id="" value="Mechudos"
+                                                name="jarcieria[]" />Mechudos</label><br />
+                                        <label><input type="checkbox" id="" value="Mops"
+                                                name="jarcieria[]" />Mops</label><br />
                                         <!-- numero de dotaciones anuales -->
                                         <div class="crs-input-group">
                                             <label for="num_dotaciones_anual_materiales" class="crs-form-label">Número
@@ -395,7 +608,9 @@
                                         </div>
                                         <!-- tiempo de entrega de dotaciones anuales -->
                                         <div class="crs-input-group">
-                                            <label for="Fecha_entrega_jarcieria" class="crs-form-label">Seleccione la fecha de entrega que
+                                            <label for="Fecha_entrega_jarcieria" class="crs-form-label">Seleccione
+                                                la
+                                                fecha de entrega que
                                                 requiere.</label>
                                             <select name="Fecha_entrega_jarcieria" id="Fecha_entrega_jarcieria"
                                                 class="crs-form-input">
@@ -408,14 +623,18 @@
                                         <!-- Mobiliario de limpieza -->
                                         <label for="mobiliario" class="crs-form-label">Mobiliario de
                                             limpieza</label>
-                                        <label><input type="checkbox" id="" value="Despachador_jabon" name="mobiliario[]" />Despachador de
+                                        <label><input type="checkbox" id="" value="Despachador_jabon"
+                                                name="mobiliario[]" />Despachador de
                                             jabon</label><br />
-                                        <label><input type="checkbox" id="" value="Despachador_manitas" name="mobiliario[]" />Despachador de
+                                        <label><input type="checkbox" id="" value="Despachador_manitas"
+                                                name="mobiliario[]" />Despachador de
                                             manitas</label><br />
-                                        <label><input type="checkbox" id="" value="Despachador_papel" name="mobiliario[]" />Despachador para
+                                        <label><input type="checkbox" id="" value="Despachador_papel"
+                                                name="mobiliario[]" />Despachador para
                                             papel
                                             bobina</label><br />
-                                        <label><input type="checkbox" id="" value="Señaletica_piso" name="mobiliario[]" />Señaletica de piso
+                                        <label><input type="checkbox" id="" value="Señaletica_piso"
+                                                name="mobiliario[]" />Señaletica de piso
                                             mojado</label><br />
                                         <!-- numero de dotaciones anuales -->
                                         <div class="crs-input-group">
@@ -428,7 +647,9 @@
                                         </div>
                                         <!-- tiempo de entrega de dotaciones anuales -->
                                         <div class="crs-input-group">
-                                            <label for="Fecha_entrega_mobilario" class="crs-form-label">Seleccione la fecha de entrega que
+                                            <label for="Fecha_entrega_mobilario" class="crs-form-label">Seleccione
+                                                la
+                                                fecha de entrega que
                                                 requiere.</label>
                                             <select name="Fecha_entrega_mobilario" id="Fecha_entrega_mobilario"
                                                 class="crs-form-input">
@@ -476,7 +697,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/8.3.2/intro.min.js"></script>
 </body>
 
-<script type="module" src="./public/js/protect.js"></script>
+<div id="foto-modal"
+    style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.7); justify-content:center; align-items:center; z-index:9999;">
+    <img id="foto-modal-img" src="" alt="Foto" style="max-width:80vw; max-height:80vh; border:5px solid #fff;">
+    <button onclick="document.getElementById('foto-modal').style.display='none'"
+        style="position:absolute; top:20px; right:40px; font-size:2em;">×</button>
+</div>
 </body>
 
 </html>
