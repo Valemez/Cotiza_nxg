@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
                 setTimeout(()=>{
                     window.location.href = URL + '/formulario.html';
-                }, 5000);
+                }, 6000);
             } else {
                 Swal.fire({
                     icon: "error",
