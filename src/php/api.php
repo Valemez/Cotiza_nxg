@@ -81,9 +81,26 @@ switch($method){
                     error_log("No se subió archivo o error en upload");
                 }
                 # es para recibir el archivo
+                $clientData['archivo_excel_tmp'] = [];
+                $clientData['archivo_excel_name'] = [];
+
                 if(isset($_FILES['archivo_excel'])){ //&& $_FILES['archivo_excel'] === UPLOAD_ERR_OK
-                    $clientData['archivo_excel_tmp'] = $_FILES['archivo_excel']['tmp_name'];
-                    $clientData['archivo_excel_name'] = $_FILES['archivo_excel']['name'];
+
+                    $fileCount = count($_FILES['archivo_excel']['name']);
+
+                    for ($i=0; $i < $fileCount; $i++) { 
+                        # code...
+                        if ($_FILES['archivo_excel']['error'][$i] === UPLOAD_ERR_OK) {
+                            # code...
+                            $clientData['archivo_excel_tmp'][] = $_FILES['archivo_excel']['tmp_name'][$i];
+                            $clientData['archivo_excel_name'][] = $_FILES['archivo_excel']['name'];
+
+                            error_log("Archivo[".$i."] temporal: " . $_FILES['archivo_excel']['tmp_name'][$i]);
+                        }else{
+                            error_log("Error al subir el archivo [".$i."]: " . $_FILES['archivo_excel']['name'][$i]);
+                        }
+                    }
+
 
                     error_log("Archivo temporal: " . $clientData['archivo_excel_tmp']);
                     error_log("Existe archivo temporal: " . (file_exists($clientData['archivo_excel_tmp']) ? 'SI' : 'NO'));

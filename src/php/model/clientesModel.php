@@ -189,11 +189,13 @@ class clienteModel{
     }
 
     // método para subir varios archivos
-    private function manyFiles(?string $file_tmp, string $file_name, int $idCliente){
+    private function manyFiles(array $file_tmp, array $file_name, int $idCliente){
         # code ...
-            if ($file_tmp === null || !file_exists($file_tmp)) {
+            if (empty($file_tmp)) {
             return;
         }
+
+        foreach($file_tmp as $i =>$tmp){}
 
         $path ="../filesCliente/id/" . $idCliente;
 
