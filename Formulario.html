@@ -27,14 +27,13 @@
             </div>
             <!-- Pasos para el registro -->
             <div class="crs-form-content">
-<<<<<<< HEAD
+
                 <form action="http://192.168.2.138/Cotiza_nxg/src/php/api.php/formulario" method="post"
                     enctype="multipart/form-data">
-=======
+
                 <form action="http://localhost/Cotiza_nxg/src/php/api.php/formulario" method="post" enctype="multipart/form-data">
                     <!-- <form action="http://192.168.2.138/Cotiza_nxg/src/php/api.php/formulario" method="post" enctype="multipart/form-data"> -->
->>>>>>> 245e7832eaa40d154f1befbc3d96fb7915970cfe
-                    <!-- <form action="http://intranetipm.ddns.net:5000/cotizaciones/backend/formulario.php" method="post"> -->
+                    <!-- <form action="http://intranetipm.ddns.net:5000/Cotiza_nxg/src/php/api.php/formulario
                     <!-- Menu -->
                     <div class="crs-steps">
                         <ul>
@@ -387,45 +386,53 @@
                                                 foto</button>
                                         </label><br />
                                         <label><input type="checkbox" id="" value="Playera polo manga larga"
-                                                name="uniforme_superior[]" />Playera polo manga larga</label><br />
+                                                name="uniforme_superior[]" />Playera polo manga larga
+                                             <button type="button" class="ver-foto-btn"
+                                                onclick="verFoto('polo_manga_larga')">Ver
+                                                foto</button>
+                                            </label><br />
                                         <label><input type="checkbox" id="" value="Playera polo manga corta"
-                                                name="uniforme_superior[]" />Playera polo manga corta</label><br />
+                                                name="uniforme_superior[]" />Playera polo manga corta
+                                             <button type="button" class="ver-foto-btn"
+                                                onclick="verFoto('polo_manga_corta')">Ver
+                                                foto</button>
+                                            </label><br />
                                         <label><input type="checkbox" id="" value="Poncho para lluvia"
-                                                name="uniforme_superior[]" />Poncho para lluvia</label><br />
+                                                name="uniforme_superior[]" />Poncho para lluvia
+                                             <button type="button" class="ver-foto-btn"
+                                                onclick="verFoto('poncho_lluvia')">Ver
+                                                foto</button>
+                                            </label><br />
                                     </div>
                                     <br>
                                     <div>
                                         <label for="uniforme_inferior" class="crs-form-label">Parte
                                             inferior</label>
                                         <label><input type="checkbox" checked id="" value="Pantalon de la bata"
-                                                name="uniforme_inferior[]" />Pantalon de la bata</label><br />
+                                                name="uniforme_inferior[]" />Pantalon de la bata
+                                            <button type="button" class="ver-foto-btn"
+                                                onclick="verFoto('pantalon_bata')">Ver
+                                                foto</button>
+                                            </label><br />
                                         <label><input type="checkbox" id="" value="Pantalon de mesclilla"
-                                                name="uniforme_inferior[]" />Pantalon de mesclilla</label><br />
+                                                name="uniforme_inferior[]" />Pantalon de mezclilla
+                                            <button type="button" class="ver-foto-btn"
+                                                onclick="verFoto('Pantalon_mezclilla')">Ver
+                                                foto</button>
+                                            </label><br />
                                         <label><input type="checkbox" id="" value="Plantalon caqui"
-                                                name="uniforme_inferior[]" />Plantalon caqui</label><br />
+                                                name="uniforme_inferior[]" />Plantalon caqui
+                                            <button type="button" class="ver-foto-btn"
+                                                onclick="verFoto('Pantalon_caqui')">Ver
+                                                foto</button>
+                                            </label><br />
                                     </div>
                                 </div>
 
                                 <div class="crs-input-group">
-<<<<<<< HEAD
-                                    <div class="crs-label-wrapper">
-                                        <label for="Numero_dotaciones_anuales_uniforme" class="crs-form-label"
-                                            style="font-size: 20px; font-weight: bold;">Número de dotaciones
-                                            (Anuales)</label>
-                                        <div class="help-icon" tabindex="0"
-                                            aria-label="Ayuda: Indica el número de dotaciones anuales requeridas para los uniformes.">
-                                            ?
-                                            <span class="tooltip">Ayuda: Indica el número de dotaciones anuales
-                                                requeridas para los uniformes.</span>
-                                        </div>
-                                    </div>
-                                    <input type="number" name="Numero_dotaciones_anuales_uniforme"
-                                        id="Numero_dotaciones_anuales_uniforme" placeholder="Ej. 12"
-=======
                                         dotaciones (Anuales):</label>
                                     <input type="number" name="num_dotaciones_anual_uniforme"
                                         id="num_dotaciones_anual_uniforme" placeholder="Ej. 12"
->>>>>>> 245e7832eaa40d154f1befbc3d96fb7915970cfe
                                         class="crs-form-input" min="1">
                                 </div>
                             </div>
@@ -446,20 +453,40 @@
                                     <div>
                                         <label for="epp_cabeza" class="crs-form-label">Cabeza</label>
                                         <label><input type="checkbox" id="" value="Cascos"
-                                                name="epp_cabeza[]" />Cascos</label><br />
+                                                name="epp_cabeza[]" />Cascos
+                                            <button type="button" class="ver-foto-btn"
+                                                onclick="verFoto('cascos')">Ver
+                                                foto</button>
+                                            </label><br />
                                         <label><input type="checkbox" id="" value="Lentes de protección"
                                                 name="epp_cabeza[]" />Lentes de
-                                            protección</label><br />
+                                            protección
+                                         <button type="button" class="ver-foto-btn"
+                                                onclick="verFoto('Lentes')">Ver
+                                                foto</button>
+                                        </label><br />
                                         <label><input type="checkbox" id="" value="Tapones"
-                                                name="epp_cabeza[]" />Tapones</label><br />
+                                                name="epp_cabeza[]" />Tapones
+                                            <button type="button" class="ver-foto-btn"
+                                                onclick="verFoto('tapones')">Ver
+                                                foto</button>
+                                            </label><br />
                                         <label><input type="checkbox" id="" value="Cubrebocas"
-                                                name="epp_cabeza[]" />Cubrebocas</label><br />
+                                                name="epp_cabeza[]" />Cubrebocas
+                                            <button type="button" class="ver-foto-btn"
+                                                onclick="verFoto('cubrebocas')">Ver
+                                                foto</button>
+                                            </label><br />
                                     </div>
                                     <br>
                                     <div>
                                         <label for="epp_cuerpo" class="crs-form-label">Cuerpo</label>
                                         <label><input type="checkbox" id="" value="Chaleco"
-                                                name="epp_cuerpo[]" />Chaleco</label><br />
+                                                name="epp_cuerpo[]" />Chaleco
+                                            <button type="button" class="ver-foto-btn"
+                                                onclick="verFoto('Chaleco')">Ver
+                                                foto</button>
+                                            </label><br />
 
                                     </div>
                                 </div>
@@ -500,11 +527,23 @@
                                         <label><input type="checkbox" id="" value="Fregadoras_de_piso"
                                                 name="maquinaria[]" />Fregadoras
                                             de
-                                            piso</label><br />
+                                            piso
+                                        <button type="button" class="ver-foto-btn"
+                                                onclick="verFoto('fregadora')">Ver
+                                                foto</button>
+                                        </label><br />
                                         <label><input type="checkbox" id="" value="Pulidora"
-                                                name="maquinaria[]" />Pulidora</label><br />
+                                                name="maquinaria[]" />Pulidora
+                                            <button type="button" class="ver-foto-btn"
+                                                onclick="verFoto('pulidora')">Ver
+                                                foto</button>
+                                            </label><br />
                                         <label><input type="checkbox" id="" value="Barredora"
-                                                name="maquinaria[]" />Barredora</label><br />
+                                                name="maquinaria[]" />Barredora
+                                            <button type="button" class="ver-foto-btn"
+                                                onclick="verFoto('barredora')">Ver
+                                                foto</button>
+                                            </label><br />
                                         <!-- <label><input type="checkbox" id="" value="" /></label><br /> -->
                                     </div>
                                 </div>
@@ -561,53 +600,120 @@
                                         <label for="quimicos" class="crs-form-label">Quimicos</label>
                                         <label><input type="checkbox" id="" value="Jabon_multiusos"
                                                 name="quimicos[]" />Jabon
-                                            multiusos</label><br />
+                                            multiusos
+                                        <button type="button" class="ver-foto-btn"
+                                                onclick="verFoto('jabon_multiusos')">Ver
+                                                foto</button></label><br />
                                         <label><input type="checkbox" id="" value="Cloro"
-                                                name="quimicos[]" />Cloro</label><br />
+                                                name="quimicos[]" />Cloro
+                                            <button type="button" class="ver-foto-btn"
+                                                onclick="verFoto('cloro')">Ver
+                                                foto</button>
+                                            </label><br />
                                         <label><input type="checkbox" id="" value="Jabon_polvo"
                                                 name="quimicos[]" />Jabon en
-                                            polvo</label><br />
+                                            polvo
+                                        <button type="button" class="ver-foto-btn"
+                                                onclick="verFoto('jabon_polvo')">Ver
+                                                foto</button>
+                                        </label><br />
                                         <label><input type="checkbox" id="" value="Limpiador_de_vidrios"
                                                 name="quimicos[]" />Limpiador
                                             de
-                                            vidrios</label><br>
+                                            vidrios
+                                        <button type="button" class="ver-foto-btn"
+                                                onclick="verFoto('limpia_vidrios')">Ver
+                                                foto</button>
+                                        </label><br>
                                         <label><input type="checkbox" id="" value="Sarricida"
-                                                name="quimicos[]" />Sarricida</label><br />
+                                                name="quimicos[]" />Sarricida
+                                            <button type="button" class="ver-foto-btn"
+                                                onclick="verFoto('sarricida')">Ver
+                                                foto</button>
+                                            </label><br />
                                         <label><input type="checkbox" id="" value="Limpiador_desengrasante"
                                                 name="quimicos[]" />Limpiador
-                                            desengrasante</label><br />
+                                            desengrasante
+                                        <button type="button" class="ver-foto-btn"
+                                                onclick="verFoto('desengrasante')">Ver
+                                                foto</button>
+                                        </label><br />
                                         <label><input type="checkbox" id="" value="Jabon_trastes"
                                                 name="quimicos[]" />Jabon
                                             para
-                                            trastes</label><br />
+                                            trastes
+                                            <button type="button" class="ver-foto-btn"
+                                                onclick="verFoto('jabon_trastes')">Ver
+                                                foto</button>
+                                        </label><br />
                                         <label><input type="checkbox" id="" value="Jabon_para_manos"
                                                 name="quimicos[]" />Jabón
                                             para
-                                            manos</label><br />
+                                            manos
+                                        <button type="button" class="ver-foto-btn"
+                                                onclick="verFoto('jabon_manos')">Ver
+                                                foto</button>
+                                        </label><br />
                                         <label><input type="checkbox" id="" value="destapacaños"
-                                                name="quimicos[]" />Destapacaños</label><br />
+                                                name="quimicos[]" />Destapacaños
+                                            <button type="button" class="ver-foto-btn"
+                                                onclick="verFoto('destapacaños')">Ver
+                                                foto</button>
+                                            </label><br />
                                         <!-- Jarcieria -->
                                         <label for="jarcieria" class="crs-form-label">Jarcieria</label>
                                         <label><input type="checkbox" id="" value="Escobas avanico"
                                                 name="jarcieria[]" />Escobas
-                                            avanico</label><br />
+                                            avanico
+                                        <button type="button" class="ver-foto-btn"
+                                                onclick="verFoto('escobas')">Ver
+                                                foto</button>
+                                        </label><br />
                                         <label><input type="checkbox" id="" value="Cepillo_rigido"
                                                 name="jarcieria[]" />Cepillo
-                                            rigido</label><br />
+                                            rigido
+                                        <button type="button" class="ver-foto-btn"
+                                                onclick="verFoto('cepillo')">Ver
+                                                foto</button>
+                                        </label><br />
                                         <label><input type="checkbox" id="" value="Cubetas"
-                                                name="jarcieria[]" />Cubetas</label><br />
+                                                name="jarcieria[]" />Cubetas
+                                            <button type="button" class="ver-foto-btn"
+                                                onclick="verFoto('cubetas')">Ver
+                                                foto</button>
+                                            </label><br />
                                         <label><input type="checkbox" id="" value="Microfibras"
-                                                name="jarcieria[]" />Microfibras</label><br />
+                                                name="jarcieria[]" />Microfibras
+                                            <button type="button" class="ver-foto-btn"
+                                                onclick="verFoto('microfibras')">Ver
+                                                foto</button>
+                                            </label><br />
                                         <label><input type="checkbox" id="" value="Franela"
-                                                name="jarcieria[]" />Franela</label><br />
+                                                name="jarcieria[]" />Franela
+                                            <button type="button" class="ver-foto-btn"
+                                                onclick="verFoto('franelas')">Ver
+                                                foto</button>
+                                            </label><br />
                                         <label><input type="checkbox" id="" value="Recogedores_lamina"
                                                 name="jarcieria[]" />Recogedores
                                             de
-                                            lamina</label><br />
+                                            lamina
+                                        <button type="button" class="ver-foto-btn"
+                                                onclick="verFoto('recogedores')">Ver
+                                                foto</button>
+                                        </label><br />
                                         <label><input type="checkbox" id="" value="Mechudos"
-                                                name="jarcieria[]" />Mechudos</label><br />
+                                                name="jarcieria[]" />Mechudos
+                                            <button type="button" class="ver-foto-btn"
+                                                onclick="verFoto('mechudos')">Ver
+                                                foto</button>
+                                            </label><br />
                                         <label><input type="checkbox" id="" value="Mops"
-                                                name="jarcieria[]" />Mops</label><br />
+                                                name="jarcieria[]" />Mops
+                                            <button type="button" class="ver-foto-btn"
+                                                onclick="verFoto('mops')">Ver
+                                                foto</button>
+                                            </label><br />
                                         <!-- numero de dotaciones anuales -->
                                         <div class="crs-input-group">
                                             <label for="cantidad_jarseria" class="crs-form-label">Número
@@ -619,13 +725,12 @@
                                         </div>
                                         <!-- tiempo de entrega de dotaciones anuales -->
                                         <div class="crs-input-group">
-<<<<<<< HEAD
+
                                             <label for="Fecha_entrega_jarcieria" class="crs-form-label">Seleccione
                                                 la
                                                 fecha de entrega que
-=======
+
                                             <label for="fecha_entrega_jarseria" class="crs-form-label">Seleccione la fecha de entrega que
->>>>>>> 245e7832eaa40d154f1befbc3d96fb7915970cfe
                                                 requiere.</label>
                                             <select name="fecha_entrega_jarseria" id="fecha_entrega_jarseria"
                                                 class="crs-form-input">
@@ -640,7 +745,11 @@
                                             limpieza</label>
                                         <label><input type="checkbox" id="" value="Despachador_jabon"
                                                 name="mobiliario[]" />Despachador de
-                                            jabon</label><br />
+                                            jabon
+                                        <button type="button" class="ver-foto-btn"
+                                                onclick="verFoto('Lentes')">Ver
+                                                foto</button>
+                                        </label><br />
                                         <label><input type="checkbox" id="" value="Despachador_manitas"
                                                 name="mobiliario[]" />Despachador de
                                             manitas</label><br />
