@@ -188,7 +188,7 @@
                                         cliente en formatos como PNG, XLS, XLSX, DOC o PDF.</span>
                                 </div>
                             </div>
-                            <input type="file" name="archivo_excel[]" id="archivo"
+                            <input type="file" name="archivo_excel" id="archivo"
                                 accept="image/png,.xls,.xlsx,.doc,.pdf" class="crs-form-input" multiple required>
                         </div>
 
@@ -265,8 +265,7 @@
                                             trabajo.</span>
                                     </div>
                                 </div>
-                                <select name="Estado_republica" id="Estado_republica" onchange="mostrarEstados()"
-                                    class="crs-form-input" required>
+                                <select name="Estado_republica" id="Estado_republica"  class="crs-form-input" required>
                                     <option value="Aguascalientes">Aguascalientes</option>
                                     <option value="Baja_California">Baja California</option>
                                     <option value="Baja_California_Sur">Baja California Sur</option>
@@ -805,19 +804,18 @@
             </form>
         </div>
     </div>
-
+    <div id="foto-modal"
+        style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.7); justify-content:center; align-items:center; z-index:9999;">
+        <img id="foto-modal-img" src="" alt="Foto" style="max-width:80vw; max-height:80vh; border:5px solid #fff;">
+        <button onclick="document.getElementById('foto-modal').style.display='none'"
+            style="position:absolute; top:20px; right:40px; font-size:2em;">×</button>
+    </div>
     <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
     <script type="module" src="./public/js/script.js"></script>
     <script type="module" src="./public/js/logout.js"></script>
     <!-- <script src="./resource/js/meet.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/8.3.2/intro.min.js"></script>
     <script type="module" src="./public/js/protect.js"></script>
-<div id="foto-modal"
-    style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.7); justify-content:center; align-items:center; z-index:9999;">
-    <img id="foto-modal-img" src="" alt="Foto" style="max-width:80vw; max-height:80vh; border:5px solid #fff;">
-    <button onclick="document.getElementById('foto-modal').style.display='none'"
-        style="position:absolute; top:20px; right:40px; font-size:2em;">×</button>
-</div>
 </body>
 
 </html>
