@@ -93,7 +93,7 @@ switch($method){
                         if ($_FILES['archivo_excel']['error'][$i] === UPLOAD_ERR_OK) {
                             # code...
                             $clientData['archivo_excel_tmp'][] = $_FILES['archivo_excel']['tmp_name'][$i];
-                            $clientData['archivo_excel_name'][] = $_FILES['archivo_excel']['name'];
+                            $clientData['archivo_excel_name'][] = $_FILES['archivo_excel']['name'][$i];
 
                             error_log("Archivo[".$i."] temporal: " . $_FILES['archivo_excel']['tmp_name'][$i]);
                         }else{
@@ -101,13 +101,12 @@ switch($method){
                         }
                     }
 
-
-                    error_log("Archivo temporal: " . $clientData['archivo_excel_tmp']);
-                    error_log("Existe archivo temporal: " . (file_exists($clientData['archivo_excel_tmp']) ? 'SI' : 'NO'));
+                    // error_log("Archivo temporal: " . $clientData['archivo_excel_tmp']);
+                    // error_log("Existe archivo temporal: " . (file_exists($clientData['archivo_excel_tmp']) ? 'SI' : 'NO'));
                 }else{
                     $clientData['archivo_excel_tmp'] = null;
                     $clientData['archivo_excel_name'] = 'archivo_excel';
-                    error_log("No se subió archivo o error en upload Excel");
+                    // error_log("No se subió archivo o error en upload Excel");
                 }
 
                 $resultado = $model->addClient($clientData);

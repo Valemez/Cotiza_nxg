@@ -170,6 +170,7 @@ class clienteModel{
             mkdir($path, 0777, true);
         }
         $destino = $path . '/' . $logo_name;
+        move_uploaded_file($logo_tmp, $destino);
         if (move_uploaded_file($logo_tmp, $destino)) {
             // Archivo movido exitosamente
             // Verificar si el archivo existe en el destino
@@ -192,35 +193,48 @@ class clienteModel{
     private function manyFiles(array $file_tmp, array $file_name, int $idCliente){
         # code ...
             if (empty($file_tmp)) {
-            return;
-        }
-
-        foreach($file_tmp as $i =>$tmp){}
-
-        $path ="../filesCliente/id/" . $idCliente;
-
-        if (!file_exists($path)) {
-            mkdir($path, 0777, true);
-        }
-
-        $destino = $path . '/' . $file_name;
-
-        if (move_uploaded_file($file_tmp, $destino)) {
-            // Archivo movido exitosamente
-            // Verificar si el archivo existe en el destino
-            if (file_exists($destino)) {
-                error_log("Archivo confirmado en destino: " . $destino);
-            } else {
-                error_log("ERROR: Archivo no encontrado en destino: " . $destino);
-                // Verificar permisos de directorio
-                if (!is_writable($path)) {
-                    error_log("ERROR: Directorio sin permisos de escritura: " . $path);
-                }
+                return;
             }
-        } else {
-            // Error al mover el archivo
-            error_log("Error moviendo archivo: " . $file_tmp . " a " . $destino);
+
+        foreach($file_tmp as $i =>$tmp_path){
+            //obtener el nomnre
+            $original_name = $file_name[$i];
+
+            #código temporal, despues borrar
+            if (is_array($original_name)) {
+                # code...
+                error_log("Error: Se esperaba un string como nombre de archivo en el índice $i, pero se recibió un array.");
+                continue;
+            }
+
+            $path ="../filesCliente/id/" . $idCliente;
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
+    
+            # limpiar el nombre
+            $clean_name = preg_replace("/[^a-zA-Z0-9._-]/", "", basename($original_name));
+            $destino = $path . '/' . $clean_name;
+            
+            if (move_uploaded_file($tmp_path, $destino)) {
+                // Archivo movido exitosamente
+                // Verificar si el archivo existe en el destino
+                if (file_exists($destino)) {
+                    error_log("Archivo confirmado en destino: " . $destino);
+                } else {
+                    error_log("ERROR: Archivo no encontrado en destino: " . $destino);
+                    // Verificar permisos de directorio
+                    // if (!is_writable($path)) {
+                    //     error_log("ERROR: Directorio sin permisos de escritura: " . $path);
+                    // }
+                }
+            } else {
+                // Error al mover el archivo
+                error_log("Error moviendo archivo: " . $tmp_path . " a " . $destino);
+            }
         }
+
+
     }
 
 }
