@@ -201,11 +201,11 @@ class clienteModel{
             $original_name = $file_name[$i];
 
             #código temporal, despues borrar
-            if (is_array($original_name)) {
-                # code...
-                error_log("Error: Se esperaba un string como nombre de archivo en el índice $i, pero se recibió un array.");
-                continue;
-            }
+            // if (is_array($original_name)) {
+            //     # code...
+            //     error_log("Error: Se esperaba un string como nombre de archivo en el índice $i, pero se recibió un array.");
+            //     continue;
+            // }
 
             $path ="../filesCliente/id/" . $idCliente;
             if (!file_exists($path)) {

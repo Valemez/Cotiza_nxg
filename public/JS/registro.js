@@ -9,7 +9,7 @@ document.getElementById('btn-registrar').addEventListener('click', function (e) 
     console.log(data);
 
     // uso del fetch par la comunicación entre el cliente servidor
-    fetch(URL + '/src/php/api.php/registro',
+    fetch(URL + '/src/php/api.php/register',
         {
             method: "POST", //protocolo http que se utiliza en el formulario
             // headers: { "Content-type": "application/json;charset-UTF-8"},
@@ -19,8 +19,6 @@ document.getElementById('btn-registrar').addEventListener('click', function (e) 
         .then(selfdata => {
 
             if (selfdata['status'] == 'success') {
-                //   console.log('ingreso correcto');
-                //     console.log(selfdata);
                 localStorage.setItem('nombre', selfdata['nombre']);
                 localStorage.setItem('email', selfdata['email']);
                 localStorage.setItem('password', selfdata['password']);
@@ -30,15 +28,11 @@ document.getElementById('btn-registrar').addEventListener('click', function (e) 
                         draggable: true,
                         showConfirmButton: false
                     });
-                setTimeout(() => {
-                    window.location.replace(URL + '/index.html');
-                }, 
-            );
             } else {
                 swal.fire({
                     icon: 'error',
-                    title: 'Datos incorrectos',
-                    text: 'Tus datos de acceso son incorrectos, por favor verifica',
+                    title: 'Error',
+                    text: selfdata['message'],
                 });
             }
             // console.log(selfdata);

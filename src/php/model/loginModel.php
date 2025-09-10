@@ -43,7 +43,7 @@ class LoginModel{
 
     }
 
-    public function validateEmail($correo){
+    private function validateEmail($correo){
         $stmt = $this->conn->prepare("SELECT * FROM usuarios WHERE email = :email and status_user = 1");
         $stmt->bindParam(':email', $correo);
         $stmt->execute();
@@ -55,12 +55,12 @@ class LoginModel{
         }
     }
 
-    public function calculateToken($param){
+    private function calculateToken($param){
         $token = hash('sha256', "Prosmacrs" . $param);
         return $token;
     }
 
-    public function sessionExists($token){
+    private function sessionExists($token){
         if($_SESSION['token'] === $token){
             return true;
         }else{
@@ -68,7 +68,7 @@ class LoginModel{
         }
     }
 
-    public function getInformacion($correo){
+    private function getInformacion($correo){
         $stmt = $this->conn->prepare("SELECT nombre FROM nxgcommx_cotizaciones_prosman.usuarios WHERE email = :email");
         $stmt->bindParam(':email', $correo);
 
@@ -81,7 +81,7 @@ class LoginModel{
         }
     }
 
-    public function validarStatus($correo){
+    private function validarStatus($correo){
         $stmt = $this->conn->prepare("SELECT status_user FROM usuarios WHERE email = :email");
         $stmt->bindParam(':email', $correo);
         $stmt->execute();
@@ -98,6 +98,58 @@ class LoginModel{
         //     return false;
         // }
     }
+
+    public function addUser($data){
+        # code ...
+        $email = $data['email'];
+        $name = $data['nombre'];
+        $pwd = $data['password'];
+
+        #sanitizar datos
+        try {
+            $stmt = $this->conn->prepare("INSERT INTO usuarios (
+                email, 
+                password,
+                nombre
+            ) VALUES (
+                :email,
+                :password,
+                :nombre
+            )");
+    
+            $hashedPassword = password_hash($pwd, PASSWORD_DEFAULT);
+            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':password', $hashedPassword);
+            $stmt->bindParam('nombre', $name);
+    
+            if($stmt->execute()){
+                return [
+                    'status' => 'success',
+                    'message' => 'Registro exitoso '
+                ];
+            }else{
+                return [
+                    'status' => 'error',
+                    'message' => $stmt->errorInfo()
+                ];
+            }
+        } catch (PDOException $e) {
+            //throw $th;
+            if ($e->errorInfo[1] == 1062) { // Código de error para duplicados
+                return [
+                    'status' => 'error',
+                    'message' => 'El correo ya está registrado, intenta con otro.'
+                ];
+            } else {
+                return [
+                    'status' => 'error',
+                    'message' => 'Error en el registro: ' . $e->getMessage()
+                ];
+            }
+        }
+
+    }
+    
 }
 
 ?>

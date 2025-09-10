@@ -33,7 +33,10 @@ switch($method){
                 echo json_encode($model->login($email, $password));
             break;
             case 'register':
-                echo json_encode(['status' => 'success', 'message' => 'Registro exitoso']);
+                $model = new LoginModel();
+                $data = json_decode(file_get_contents('php://input'), true);
+                echo json_encode($model->addUser($data));
+                // echo json_encode(['status' => 'success', 'message' => 'Registro exitoso']);
             break;
             case 'logout':
                 //Destruir la sesión
@@ -80,7 +83,8 @@ switch($method){
                     $clientData['logo_name'] = 'logo';
                     error_log("No se subió archivo o error en upload");
                 }
-                # es para recibir el archivo
+
+                # es para recibir los archivos excel
                 $clientData['archivo_excel_tmp'] = [];
                 $clientData['archivo_excel_name'] = [];
 
