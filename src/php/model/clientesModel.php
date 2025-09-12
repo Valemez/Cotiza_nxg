@@ -1,11 +1,14 @@
 <?php
 require_once('connect.php');
+require_once('wordModel.php');
 
 class clienteModel{
     private $conn;
+    private $generateDocumet;
 
-    public function __construct(){
+    public function __construct(wordModel $generateDocumet){
         $this->conn = Conexion::getInstance();
+        $this->generateDocumet = $generateDocumet;
     }
 
     public function addClient(array $data){
@@ -47,6 +50,8 @@ class clienteModel{
                 $idServicio = $this->addServices($idPropuesta, $data);
 
                 $this->addItem($idServicio, $data);
+
+                // $this->generateDocumet->generateDocument();
 
                 // --- Si todo fue exitoso, confirma la transacción ---
                 if($this->conn->commit()){

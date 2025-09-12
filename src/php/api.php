@@ -9,6 +9,7 @@ header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
 require_once('./model/loginModel.php');
 require_once('./model/UsuarioModel.php');
 require_once('./model/clientesModel.php');
+require_once('./model/wordModel.php');
 
 
 $method=$_SERVER["REQUEST_METHOD"];
@@ -45,7 +46,8 @@ switch($method){
                 echo json_encode(['status' => 'success', 'message' => 'Logout exitoso']);
             break;
             case 'formulario':
-                $model = new clienteModel();
+                $generateDocumet = new wordModel();
+                $model = new clienteModel($generateDocumet);
 
                 $clientData = [];
 
