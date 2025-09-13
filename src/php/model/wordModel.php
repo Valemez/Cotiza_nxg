@@ -26,59 +26,25 @@ class wordModel
     }
 
     public function generateDocument(int $idCliente, array $data){
-        // 
+        // probar y quitarlo al final cuando ya este listo el mètodo
         $documento = new \PhpOffice\PhpWord\PhpWord();
         $propiedades = $documento->getDocInfo();
         $propiedades->setCreator("Parzibyte");
         $propiedades->setCompany("Texto");
 
-        #Portada
-        $portada = $documento->addSection([
-            'marginTop' => 0,
-            'marginBottom' => 0,
-            'marginLeft' => 0,
-            'marginRight' => 0,
-        ]);
+        $imagenPortada = __DIR__ . '/../../assets/Portada_prosman.png';
+        $imagenIntroducción = __DIR__ . '/../../assets/Introduccion.png';
+        $imagenFondo1 = __DIR__ . '/../../assets/fondo-1.png';
+        $imagenFondo2 = __DIR__ . '/../../assets/fondo-2.png';
+        $imagenFondo3 = __DIR__ . '/../../assets/fondo-3.png';
+        $imagenFondoFinal = __DIR__ . '/../../assets/fondo-final.png';
 
-        $ImagenPortada = __DIR__ . '/../../assets/Portada_prosman.png'; //parametro de la ruta para la nueva función
-
-        $portada->addImage(
-            $ImagenPortada,
-            [
-            'width'         => \PhpOffice\PhpWord\Shared\Converter::cmToPixel(16),   // ancho A4
-            'height'        => \PhpOffice\PhpWord\Shared\Converter::cmToPixel(25),// alto A4
-            'positioning'   => \PhpOffice\PhpWord\Style\Image::POSITION_ABSOLUTE,
-            'posHorizontal' => \PhpOffice\PhpWord\Style\Image::POSITION_HORIZONTAL_LEFT,
-            'posVertical'   => \PhpOffice\PhpWord\Style\Image::POSITION_VERTICAL_TOP,
-            'marginTop'     => 0,
-            'marginLeft'    => 0,
-            'marginRight'    => 0,
-            ]
-        );
-
-        #Introdicción
-        $introduccion = $documento->addSection([
-            'marginTop' => 0,
-            'marginBottom' => 0,
-            'marginLeft' => 0,
-            'marginRight' => 0,
-        ]);
-
-        
-        $ImagenIntroducción = __DIR__ . '/../../assets/Introduccion.png'; //parametro de la ruta para la nueva función
-        $introduccion->addImage(
-            $ImagenIntroducción,
-            [
-            'width'         => \PhpOffice\PhpWord\Shared\Converter::cmToPixel(16),   // ancho A4
-            'height'        => \PhpOffice\PhpWord\Shared\Converter::cmToPixel(22.7),// alto A4
-            'positioning'   => \PhpOffice\PhpWord\Style\Image::POSITION_ABSOLUTE,
-            'posHorizontal' => \PhpOffice\PhpWord\Style\Image::POSITION_HORIZONTAL_LEFT,
-            'posVertical'   => \PhpOffice\PhpWord\Style\Image::POSITION_VERTICAL_TOP,
-            'marginTop'     => 0,
-            'marginLeft'    => 0,
-            'marginRight'    => 0,
-            ]
-        );
+        $this->addImageToSection($documento, $imagenPortada, 16, 25);
+        $this->addImageToSection($documento, $imagenIntroducción, 16, 22.7);
+        $this->addImageToSection($documento, $imagenFondo1, 16, 22.7);
+        $this->addImageToSection($documento, $imagenFondo2, 16, 22.7);
+        $this->addImageToSection($documento, $imagenFondo3, 16, 22.7);
+        $this->addImageToSection($documento, $imagenFondoFinal, 16, 22.7);
 
         # Agregar texto...
         $seccion = $documento->addSection();
@@ -141,8 +107,13 @@ class wordModel
         // $db = Conexion::getInstance();
     }
 
-    private function addImageToSection($imagen, $ancho, $alto, $seccion){
+    private function addImageToSection(\PhpOffice\PhpWord\PhpWord $documento, string $imagen, float $ancho, float $alto){
         // code ...
+        // $documento = new \PhpOffice\PhpWord\PhpWord();
+        $propiedades = $documento->getDocInfo();
+        $propiedades->setCreator("Parzibyte");
+        $propiedades->setCompany("Texto");
+        
          $seccion = $documento->addSection([
             'marginTop' => 0,
             'marginBottom' => 0,
@@ -150,13 +121,13 @@ class wordModel
             'marginRight' => 0,
         ]);
 
-        $ImagenPortada = $imagen; //parametro de la ruta para la nueva función
+        $ImagenSeccion = $imagen; //parametro de la ruta para la nueva función
 
-        $portada->addImage(
-            $ImagenPortada,
+        $seccion->addImage(
+            $ImagenSeccion,
             [
-            'width'         => \PhpOffice\PhpWord\Shared\Converter::cmToPixel(16),   // ancho A4
-            'height'        => \PhpOffice\PhpWord\Shared\Converter::cmToPixel(25),// alto A4
+            'width'         => \PhpOffice\PhpWord\Shared\Converter::cmToPixel($ancho),   // ancho A4
+            'height'        => \PhpOffice\PhpWord\Shared\Converter::cmToPixel($alto),// alto A4
             'positioning'   => \PhpOffice\PhpWord\Style\Image::POSITION_ABSOLUTE,
             'posHorizontal' => \PhpOffice\PhpWord\Style\Image::POSITION_HORIZONTAL_LEFT,
             'posVertical'   => \PhpOffice\PhpWord\Style\Image::POSITION_VERTICAL_TOP,
