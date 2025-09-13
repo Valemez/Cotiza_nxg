@@ -21,12 +21,65 @@ class wordModel
         // $this->conn = Conexion::getInstance();
     }
 
+    private function sanitize(string $text):string{
+        return htmlspecialchars($text, ENT_QUOTES, 'UTF-8');
+    }
+
     public function generateDocument(int $idCliente, array $data){
         // 
         $documento = new \PhpOffice\PhpWord\PhpWord();
         $propiedades = $documento->getDocInfo();
         $propiedades->setCreator("Parzibyte");
         $propiedades->setCompany("Texto");
+
+        #Portada
+        $portada = $documento->addSection([
+            'marginTop' => 0,
+            'marginBottom' => 0,
+            'marginLeft' => 0,
+            'marginRight' => 0,
+        ]);
+
+        $ImagenPortada = __DIR__ . '/../../assets/Portada_prosman.png'; //parametro de la ruta para la nueva función
+
+        $portada->addImage(
+            $ImagenPortada,
+            [
+            'width'         => \PhpOffice\PhpWord\Shared\Converter::cmToPixel(16),   // ancho A4
+            'height'        => \PhpOffice\PhpWord\Shared\Converter::cmToPixel(25),// alto A4
+            'positioning'   => \PhpOffice\PhpWord\Style\Image::POSITION_ABSOLUTE,
+            'posHorizontal' => \PhpOffice\PhpWord\Style\Image::POSITION_HORIZONTAL_LEFT,
+            'posVertical'   => \PhpOffice\PhpWord\Style\Image::POSITION_VERTICAL_TOP,
+            'marginTop'     => 0,
+            'marginLeft'    => 0,
+            'marginRight'    => 0,
+            ]
+        );
+
+        #Introdicción
+        $introduccion = $documento->addSection([
+            'marginTop' => 0,
+            'marginBottom' => 0,
+            'marginLeft' => 0,
+            'marginRight' => 0,
+        ]);
+
+        
+        $ImagenIntroducción = __DIR__ . '/../../assets/Introduccion.png'; //parametro de la ruta para la nueva función
+        $introduccion->addImage(
+            $ImagenIntroducción,
+            [
+            'width'         => \PhpOffice\PhpWord\Shared\Converter::cmToPixel(16),   // ancho A4
+            'height'        => \PhpOffice\PhpWord\Shared\Converter::cmToPixel(22.7),// alto A4
+            'positioning'   => \PhpOffice\PhpWord\Style\Image::POSITION_ABSOLUTE,
+            'posHorizontal' => \PhpOffice\PhpWord\Style\Image::POSITION_HORIZONTAL_LEFT,
+            'posVertical'   => \PhpOffice\PhpWord\Style\Image::POSITION_VERTICAL_TOP,
+            'marginTop'     => 0,
+            'marginLeft'    => 0,
+            'marginRight'    => 0,
+            ]
+        );
+
         # Agregar texto...
         $seccion = $documento->addSection();
 
@@ -46,6 +99,7 @@ class wordModel
             "bold" => true,
         ];
         $seccion->addText("Hola, esto es algo de texto Misael Gomez", $fuente);
+        $texto2 = "hola" . $this->sanitize($nombre) . "esto es una prueba con mi nuevo método de sanitización";
         # Hipervínculo
         $fuenteHipervinculo = [
             "name" => "Arial",
