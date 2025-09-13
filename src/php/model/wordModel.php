@@ -104,7 +104,6 @@ class wordModel
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($documento, "Word2007");
         
         $objWriter->save("3-texto.docx");
-        // $db = Conexion::getInstance();
     }
 
     private function addImageToSection(\PhpOffice\PhpWord\PhpWord $documento, string $imagen, float $ancho, float $alto){
