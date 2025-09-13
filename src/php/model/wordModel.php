@@ -21,7 +21,7 @@ class wordModel
         // $this->conn = Conexion::getInstance();
     }
 
-    public function generateDocument(int $idCliente){
+    public function generateDocument(int $idCliente, array $data){
         // 
         $documento = new \PhpOffice\PhpWord\PhpWord();
         $propiedades = $documento->getDocInfo();
@@ -29,8 +29,14 @@ class wordModel
         $propiedades->setCompany("Texto");
         # Agregar texto...
         $seccion = $documento->addSection();
+
+        $nombre = $data['nombre'] ?? '';
+        $destinatario = $data['destinatario'] ?? '';
         # Simple texto
-        $seccion->addText("Hola, esto es algo de texto" . htmlspecialchars($idCliente));
+        // $seccion->addText("Hola, esto es algo de texto " . htmlspecialchars($idCliente) . " " . htmlspecialchars($nombre) . " -------" );
+        $texto = "Hola $nombre, tu id es: $idCliente";
+        $seccion->addText(htmlspecialchars($texto, ENT_QUOTES, 'UTF-8'));
+
         # Con fuentes personalizadas
         $fuente = [
             "name" => "Arial",

@@ -51,7 +51,7 @@ class clienteModel{
 
                 $this->addItem($idServicio, $data);
 
-                $this->generateDocumet->generateDocument($idCliente);
+                $this->generateDocumet->generateDocument($idCliente, $data);
 
                 // --- Si todo fue exitoso, confirma la transacción ---
                 if($this->conn->commit()){
