@@ -140,5 +140,33 @@ class wordModel
         $objWriter->save("3-texto.docx");
         // $db = Conexion::getInstance();
     }
+
+    private function addImageToSection($imagen, $ancho, $alto, $seccion){
+        // code ...
+         $seccion = $documento->addSection([
+            'marginTop' => 0,
+            'marginBottom' => 0,
+            'marginLeft' => 0,
+            'marginRight' => 0,
+        ]);
+
+        $ImagenPortada = $imagen; //parametro de la ruta para la nueva función
+
+        $portada->addImage(
+            $ImagenPortada,
+            [
+            'width'         => \PhpOffice\PhpWord\Shared\Converter::cmToPixel(16),   // ancho A4
+            'height'        => \PhpOffice\PhpWord\Shared\Converter::cmToPixel(25),// alto A4
+            'positioning'   => \PhpOffice\PhpWord\Style\Image::POSITION_ABSOLUTE,
+            'posHorizontal' => \PhpOffice\PhpWord\Style\Image::POSITION_HORIZONTAL_LEFT,
+            'posVertical'   => \PhpOffice\PhpWord\Style\Image::POSITION_VERTICAL_TOP,
+            'marginTop'     => 0,
+            'marginLeft'    => 0,
+            'marginRight'    => 0,
+            ]
+        );
+
+
+    }
 }
 
