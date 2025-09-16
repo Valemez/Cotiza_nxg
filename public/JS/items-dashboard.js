@@ -43,15 +43,59 @@ const cargarCliente = () => {
 
 
 const cargarItemPaginacion = () =>{
-    document.querySelector("#items").innerHTML = "";
+    const itemsContainer = document.querySelector("#items");
+    itemsContainer.innerHTML = "";
 
-    for (let index = 0; index < paginas; index++) {
-        const item = document.createElement("li");
-        item.classList = `page-item ${paginaActiva ==index+1 ? "active": ''}`;
-        const enlace = `<button class="page-link" onclick="pasarPagina(${index})">${index+1}</button>`;
-        item.innerHTML = enlace;
-        document.querySelector("#items").append(item);
+    const maxVisible = 10; //paginas visibles
+    const totalPages = Math.ceil(info.length / limite);
+
+    let start = Math.max(1, paginaActiva - 2);
+    let end = Math.min(totalPages, paginaActiva + 2);
+
+    // Ajustar cuando estamos cerca del inicio
+    if(paginaActiva <= 3){
+        start = 1;
+        end = Math.min(totalPages, maxVisible);
     }
+
+    if(paginaActiva >= totalPages - 2){
+        start = Math.max(1, totalPages - (maxVisible - 1));
+        end = totalPages;
+    }
+
+    //pagina 1 siempre visible
+    if(start > 1){
+        addPageButton(1);
+        if(start > 2 ) addDots(); //puntos ...
+    }
+
+
+    for (let index = start; index <= end; index++) {
+        addPageButton(index, index === paginaActiva);
+    }
+
+    //Ultima siempre visible
+    if(end < totalPages){
+        if(end < totalPages - 1) addDots();
+        addPageButton(totalPages);
+    }
+}
+
+
+function addPageButton(page, isActive = false){
+    const item = document.createElement("li");
+    item.classList = `page-item ${paginaActiva ==page ? "active": ''}`;
+    const enlace = `<button class="page-link" onclick="pasarPagina(${page - 1})">${page}</button>`;
+    item.innerHTML = enlace;
+    document.querySelector("#items").append(item);
+
+}
+
+function addDots(){
+    const item = document.createElement("li");
+    item.classList = "page-item disabled";
+    item.innerHTML = `<span class="page-link">...</span>`;
+    document.querySelector("#items").append(item);
 }
 
 const modifyArrayClient = () =>{
