@@ -131,7 +131,10 @@ switch($method){
                 $model = new UsuarioModel();
                 echo json_encode($user = $model->verificacionUsuario($requestUri[5]));
                 break;
-            
+            case 'informacion':
+                $model = new clienteModel();
+                echo $model->getInfoClient();
+            break;
             default:
                 echo json_encode(['status' => 'error', 'message' => 'No autorizado']);
                 break;

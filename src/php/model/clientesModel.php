@@ -5,8 +5,9 @@ require_once('wordModel.php');
 class clienteModel{
     private $conn;
     private $generateDocumet;
+    private $tableClientes = "clientes";
 
-    public function __construct(wordModel $generateDocumet){
+    public function __construct(?wordModel $generateDocumet = null){
         $this->conn = Conexion::getInstance();
         $this->generateDocumet = $generateDocumet;
     }
@@ -51,7 +52,10 @@ class clienteModel{
 
                 $this->addItem($idServicio, $data);
 
-                $this->generateDocumet->generateDocument($idCliente, $data);
+                // $this->generateDocumet->generateDocument($idCliente, $data);
+                if ($this->generateDocumet) {
+                    $this->generateDocumet->generateDocument($idCliente, $data);
+                }
 
                 // --- Si todo fue exitoso, confirma la transacción ---
                 if($this->conn->commit()){
@@ -240,6 +244,19 @@ class clienteModel{
         }
 
 
+    }
+
+    public function getInfoClient(){
+        try {
+            $sql = "SELECT id_cliente, nombre, asunto, created_at FROM  $this->tableClientes order by id_cliente desc";
+            $stm = $this->conn->prepare($sql);
+            $stm->execute();
+            return json_encode($stm->fetchAll(PDO::FETCH_OBJ));
+        } catch (PDOException $e) {
+            $response['success'] = false;
+            $response['message'] = 'Error de base de datos: ' . $e->getMessage();
+            return $response;
+        }
     }
 
 }
