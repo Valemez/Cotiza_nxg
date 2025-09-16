@@ -1,0 +1,57 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
+.table-responsive-custom{
+    width: 100%;
+    overflow-x: auto;
+}
+
+th, td{
+    padding: 1rem;
+    border: 1px solid #ddd;
+}
+
+/* Para dispositivoos moviles */
+@media(max-width: 768px){
+    table thead{
+        display: none;
+    }
+
+    table, table tbody, table tr, table td{
+        display: block;
+        width: 100%;
+    }
+
+    table tr{
+        margin-bottom: 1px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        padding: 10px;
+        background: #fafafa;
+    }
+
+    table td{
+        text-align: left;
+        padding-left: 50%;
+        position: relative;
+        border: none;
+        border-bottom: 1px solid #eee;
+    }
+
+    table td:last-child{
+        border-bottom: none;
+    }
+
+    table td::before{
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        font-weight: bold;
+        color: #333;
+    }
+}

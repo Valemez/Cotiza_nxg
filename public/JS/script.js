@@ -148,8 +148,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     button: false
                 });
                 setTimeout(() => {
-                    // window.location.href = URL + '/formulario.html';
-                    console.log('Hi world!');
+                    window.location.href = URL + '/formulario.html';
+                    // console.log('Hi world!');
                 }, 1000);
             } else {
                 Swal.fire({
@@ -160,7 +160,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 // alert('Error: ' + data.message);
             }
         } catch (error) {
-            console.log('Error 45: '+ error);
+            // console.log('Error 45: '+ error);
+            Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Hubo un error: " + error, //+ data.message,
+                });
         }
     }
 
