@@ -46,7 +46,7 @@ const cargarItemPaginacion = () =>{
     const itemsContainer = document.querySelector("#items");
     itemsContainer.innerHTML = "";
 
-    const maxVisible = 10; //paginas visibles
+    const maxVisible = 5; //paginas visibles
     const totalPages = Math.ceil(info.length / limite);
 
     let start = Math.max(1, paginaActiva - 2);
