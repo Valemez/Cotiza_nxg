@@ -178,6 +178,7 @@ class clienteModel{
         if (!file_exists($path)) {
             mkdir($path, 0777, true);
         }
+        $logo_name = 'logo.png';
         $destino = $path . '/' . $logo_name;
         move_uploaded_file($logo_tmp, $destino);
         if (move_uploaded_file($logo_tmp, $destino)) {

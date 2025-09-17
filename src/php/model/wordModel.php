@@ -38,9 +38,13 @@ class wordModel
         $imagenFondo2 = __DIR__ . '/../../assets/fondo-2.png';
         $imagenFondo3 = __DIR__ . '/../../assets/fondo-3.png';
         $imagenFondoFinal = __DIR__ . '/../../assets/fondo-final.png';
+        $imagenLogoCliente = __DIR__ . '/../../logoCliente/id/' . $idCliente . '/logo.png';
 
         $this->addImageToSection($documento, $imagenPortada, 16, 25);
         $this->addImageToSection($documento, $imagenIntroducción, 16, 22.7);
+
+        $this->addImageLogoClient($documento, $imagenLogoCliente, 1, 1); /*-------------------- */
+
         $this->addImageToSection($documento, $imagenFondo1, 16, 22.7);
         $this->addImageToSection($documento, $imagenFondo2, 16, 22.7);
         $this->addImageToSection($documento, $imagenFondo3, 16, 22.7);
@@ -103,7 +107,12 @@ class wordModel
         # Guardarlo
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($documento, "Word2007");
         
-        $objWriter->save("3-texto.docx");
+         $path ="../word/" . $idCliente;
+        if (!file_exists($path)) {
+            mkdir($path, 0777, true);
+        }
+
+        $objWriter->save($path . "/3-texto.docx"); //crear una carpeta word sino existe que se cree sola
     }
 
     private function addImageToSection(\PhpOffice\PhpWord\PhpWord $documento, string $imagen, float $ancho, float $alto){
@@ -136,6 +145,37 @@ class wordModel
             ]
         );
 
+
+    }
+
+    private function addImageLogoClient(\PhpOffice\PhpWord\PhpWord $documento, string $imagen, float $ancho, float $alto){
+        // code ...
+        if (!file_exists($imagen)) {
+            throw new \Exception("La imagen no existe en: " . $imagen);
+        }
+        
+         $seccion = $documento->addSection([
+            'marginTop' => 0,
+            'marginBottom' => 0,
+            'marginLeft' => 0,
+            'marginRight' => 0,
+        ]);
+
+        $ImagenSeccion = $imagen; //parametro de la ruta para la nueva función
+
+        $seccion->addImage(
+            $ImagenSeccion,
+            [
+            'width'         => \PhpOffice\PhpWord\Shared\Converter::cmToPixel($ancho),   // ancho A4
+            'height'        => \PhpOffice\PhpWord\Shared\Converter::cmToPixel($alto),// alto A4
+            'positioning'   => \PhpOffice\PhpWord\Style\Image::POSITION_ABSOLUTE,
+            'posHorizontal' => \PhpOffice\PhpWord\Style\Image::POSITION_HORIZONTAL_LEFT,
+            'posVertical'   => \PhpOffice\PhpWord\Style\Image::POSITION_VERTICAL_TOP,
+            'marginTop'     => 0,
+            'marginLeft'    => 0,
+            'marginRight'    => 0,
+            ]
+        );
 
     }
 }

@@ -148,8 +148,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     button: false
                 });
                 setTimeout(() => {
-                    window.location.href = URL + '/formulario.html';
-                    // console.log('Hi world!');
+                    // window.location.href = URL + '/formulario.html';
+                    console.log('Hi world!');
                 }, 1000);
             } else {
                 Swal.fire({
