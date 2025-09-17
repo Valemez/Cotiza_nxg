@@ -27,10 +27,10 @@ const cargarCliente = () => {
             <td>${cliente.asunto}</td>
             <td>${cliente.created_at}</td>
             <td>
-                <button type="button" class="btn  btn-outline-info btn-sm">
+                <button type="button" class="btn  btn-outline-info btn-sm word">
                     <i class="fa-solid fa-file-word"></i>
                 </button>
-                <button type="button" class="btn  btn-outline-danger btn-sm">
+                <button type="button" class="btn  btn-outline-danger btn-sm pdf">
                     <i class="fa-solid fa-file-pdf"></i>
                 </button>
             </td>

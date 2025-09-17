@@ -174,29 +174,67 @@ class clienteModel{
         if ($logo_tmp === null || !file_exists($logo_tmp)) {
             return;
         }
+
         $path ="../logoCliente/id/" . $idCliente;
+
         if (!file_exists($path)) {
             mkdir($path, 0777, true);
         }
         $logo_name = 'logo.png';
         $destino = $path . '/' . $logo_name;
-        move_uploaded_file($logo_tmp, $destino);
-        if (move_uploaded_file($logo_tmp, $destino)) {
-            // Archivo movido exitosamente
-            // Verificar si el archivo existe en el destino
-            if (file_exists($destino)) {
-                error_log("Archivo confirmado en destino: " . $destino);
-            } else {
-                error_log("ERROR: Archivo no encontrado en destino: " . $destino);
-                // Verificar permisos de directorio
-                if (!is_writable($path)) {
-                    error_log("ERROR: Directorio sin permisos de escritura: " . $path);
-                }
-            }
-        } else {
-            // Error al mover el archivo
-            error_log("Error moviendo archivo: " . $logo_tmp . " a " . $destino);
+
+        $info = getimagesize($logo_tmp);
+
+        if($info === false){
+            error_log("El archivo no es una imagen valida " . $logo_tmp);
+            return;
         }
+
+        switch ($info['mime']) {
+        case 'image/png':
+            $img = imagecreatefrompng($logo_tmp);
+            break;
+        case 'image/jpeg':
+            $img = imagecreatefromjpeg($logo_tmp);
+            break;
+        case 'image/gif':
+            $img = imagecreatefromgif($logo_tmp);
+            break;
+        default:
+            error_log("Formato no soportado: " . $info['mime']);
+            return;
+    }
+
+    if ($img === false) {
+        error_log("No se pudo procesar la imagen.");
+        return;
+    }
+
+    // Guardar como PNG válido
+    if (!imagepng($img, $destino)) {
+        error_log("No se pudo guardar la imagen en destino: " . $destino);
+    } else {
+        error_log("Logo guardado correctamente en: " . $destino);
+    }
+
+    imagedestroy($img);
+
+        // if (move_uploaded_file($logo_tmp, $destino)) {
+        //     // Archivo movido exitosamente
+        //     // Verificar si el archivo existe en el destino
+        //     if (file_exists($destino)) {
+        //         error_log("Archivo confirmado en destino: " . $destino);
+        //     } else {
+        //         error_log("ERROR: Archivo no encontrado en destino: " . $destino);
+        //         // Verificar permisos de directorio
+        //         if (!is_writable($path)) {
+        //             error_log("ERROR: Directorio sin permisos de escritura: " . $path);
+        //         }
+        //     }
+        // } else {
+        //     // Error al mover el archivo
+        //     error_log("Error moviendo archivo: " . $logo_tmp . " a " . $destino);
+        // }
     }
 
     // método para subir varios archivos
