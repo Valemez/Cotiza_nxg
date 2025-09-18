@@ -27,10 +27,10 @@ const cargarCliente = () => {
             <td>${cliente.asunto}</td>
             <td>${cliente.created_at}</td>
             <td>
-                <button type="button" class="btn  btn-outline-info btn-sm word">
+                <button type="button" class="btn  btn-outline-info btn-sm word" onclick="descargarWord(${cliente.id_cliente})">
                     <i class="fa-solid fa-file-word"></i>
                 </button>
-                <button type="button" class="btn  btn-outline-danger btn-sm pdf">
+                <button type="button" class="btn  btn-outline-danger btn-sm pdf" onclick="descargarPDF(${cliente.id_cliente})">
                     <i class="fa-solid fa-file-pdf"></i>
                 </button>
             </td>
@@ -126,6 +126,20 @@ window.previusPage= () =>{
         desde -=5;
         modifyArrayClient();
     }
+}
+
+window.descargarWord = (id_cliente) =>{
+    let fileURL = `./src/word/${id_cliente}/3-texto.docx`;
+    console.log(fileURL);
+    window.location.href = fileURL;
+}
+
+window.descargarPDF = (id_cliente) =>{
+    console.log('descargando PDF' + id_cliente);
+    /*Si no exizte el archivo ->  */
+    let fileURL = `./src/word/${id_cliente}/3-texto.pdf`;
+    console.log(fileURL);
+    window.location.href = fileURL;
 }
 
 cargarCliente();

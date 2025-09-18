@@ -218,23 +218,6 @@ class clienteModel{
     }
 
     imagedestroy($img);
-
-        // if (move_uploaded_file($logo_tmp, $destino)) {
-        //     // Archivo movido exitosamente
-        //     // Verificar si el archivo existe en el destino
-        //     if (file_exists($destino)) {
-        //         error_log("Archivo confirmado en destino: " . $destino);
-        //     } else {
-        //         error_log("ERROR: Archivo no encontrado en destino: " . $destino);
-        //         // Verificar permisos de directorio
-        //         if (!is_writable($path)) {
-        //             error_log("ERROR: Directorio sin permisos de escritura: " . $path);
-        //         }
-        //     }
-        // } else {
-        //     // Error al mover el archivo
-        //     error_log("Error moviendo archivo: " . $logo_tmp . " a " . $destino);
-        // }
     }
 
     // método para subir varios archivos

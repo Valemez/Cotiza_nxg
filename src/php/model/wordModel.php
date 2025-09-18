@@ -1,21 +1,12 @@
 <?php
-/*
-TO-DO
-* Para que me de el documento correcto hacer un fetch, en el localStorage ya recupero un dato, en este caso se considera el id del cliente, 
-  Buscar la forma de recuperar este dato para mandar la cotizaciòn correcta, ya sea que esto sea una funcion y desde el mismo php donde se 
-  insertan recuperar el id y hacer el recorrido
- */
 
-// require_once "../../../vendor/autoload.php";
 require_once('../../vendor/autoload.php');
-// require_once('connect.php');
 
 use PhpOffice\PhpWord\Style\Language;
 
 
 class wordModel
 {
-    private $conn;
 
     public function __construct() {
         // $this->conn = Conexion::getInstance();
@@ -26,8 +17,8 @@ class wordModel
     }
 
     public function generateDocument(int $idCliente, array $data){
-        // probar y quitarlo al final cuando ya este listo el mètodo
         $documento = new \PhpOffice\PhpWord\PhpWord();
+        // probar y quitarlo al final cuando ya este listo el mètodo
         $propiedades = $documento->getDocInfo();
         $propiedades->setCreator("Parzibyte");
         $propiedades->setCompany("Texto");
@@ -105,14 +96,16 @@ class wordModel
         $documento->getSettings()->setThemeFontLang(new Language("ES-MX"));
         
         # Guardarlo
-        $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($documento, "Word2007");
         
-         $path ="../word/" . $idCliente;
+        $path ="../word/" . $idCliente;
         if (!file_exists($path)) {
             mkdir($path, 0777, true);
         }
+        
+        $docxPath = $path . "/mgc_$idCliente.docx";
+        $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($documento, "Word2007");
+        $objWriter->save($docxPath);
 
-        $objWriter->save($path . "/3-texto.docx"); //crear una carpeta word sino existe que se cree sola
     }
 
     private function addImageToSection(\PhpOffice\PhpWord\PhpWord $documento, string $imagen, float $ancho, float $alto){
@@ -178,5 +171,6 @@ class wordModel
         );
 
     }
+
 }
 
