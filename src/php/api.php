@@ -120,6 +120,16 @@ switch($method){
 
                 // echo json_encode([$clientData]) ;
 
+            case 'pdf_upload':
+                $pdf_update = $_FILES['editable_pdf'];
+
+                if(isset($pdf_update) && $_FILES['editable_pdf']['error'] === UPLOAD_ERR_OK){
+                    echo json_encode(['status' => 'success', 'message' => 'Piikachu']);
+                }
+
+                // echo json_encode(['status' => 'success', 'message' => 'Logout exitoso']);
+                // echo $pdf_update;
+            break;
             default:
                 return http_response_code(404);
         }

@@ -6,6 +6,7 @@ const info = await getData(URL + "/src/php/api.php/informacion");
 
 const cuerpoTabla = document.querySelector("#cuerpo-tabla");
 
+
 //paginación
 let limite = 5;
 let desde = 0;
@@ -21,22 +22,40 @@ const cargarCliente = () => {
   arreglo.map((cliente) => {
     const fila = document.createElement("tr");
     fila.setAttribute("key", cliente.id_cliente);
+
+    // Usamos un ID único para la etiqueta para asociarla con el input oculto
+        const inputId = `archivo_editable_pdf_${cliente.id_cliente}`;
+
     const contenido = `
             <td scope="row">${cliente.id_cliente}</td>
             <td>${cliente.nombre}</td>
             <td>${cliente.asunto}</td>
             <td>${cliente.created_at}</td>
             <td>
+            <div class="w-75 d-flex justify-content-around">
                 <button type="button" class="btn  btn-outline-info btn-sm word" onclick="descargarWord(${cliente.id_cliente})">
                     <i class="fa-solid fa-file-word"></i>
                 </button>
                 <button type="button" class="btn  btn-outline-danger btn-sm pdf" onclick="descargarPDF(${cliente.id_cliente})">
                     <i class="fa-solid fa-file-pdf"></i>
                 </button>
+                <div >
+                    <label for="${inputId}" class="btn-custom">Subir PDF</label>
+                    <input type="file" id="${inputId}" class="archivo_editable_pdf" name="editable_pdf" accept=".pdf" hidden>
+                </div>
+            </div>
             </td>
         `;
         fila.innerHTML = contenido;
         cuerpoTabla.append(fila);
+
+        // Encuentra el input recién creado y adjúntale un "change" listener
+        const fileInput = document.getElementById(inputId);
+        if (fileInput) {
+            fileInput.addEventListener('change', async () => {
+                await uploadPDF(cliente.id_cliente, fileInput);
+            });
+        }
   });
   cargarItemPaginacion();
 };
@@ -129,17 +148,64 @@ window.previusPage= () =>{
 }
 
 window.descargarWord = (id_cliente) =>{
-    let fileURL = `./src/word/${id_cliente}/3-texto.docx`;
+    let fileURL = `./src/word/${id_cliente}/mgc_${id_cliente}.docx`;
     console.log(fileURL);
     window.location.href = fileURL;
 }
 
-window.descargarPDF = (id_cliente) =>{
-    console.log('descargando PDF' + id_cliente);
-    /*Si no exizte el archivo ->  */
-    let fileURL = `./src/word/${id_cliente}/3-texto.pdf`;
-    console.log(fileURL);
-    window.location.href = fileURL;
-}
+window.descargarPDF = async (id_cliente) => {
+    console.log('descargando PDF ' + id_cliente);
+
+    let fileURL = `./src/word/${id_cliente}/mgc_${id_cliente}.pdf`;
+
+    try {
+        let response = await fetch(fileURL, { method: 'HEAD' });
+        if (response.ok) {
+            // El archivo existe → descargar
+            window.location.href = fileURL;
+        } else {
+            alert('El PDF no existe, vuelve a generarlo.');
+        }
+    } catch (error) {
+        alert('Error al verificar el archivo.');
+        console.error(error);
+    }
+};
+
+
+window.uploadPDF = async (id_cliente, fileInput) => {
+    try {
+        if (!fileInput.files.length) {
+            alert('No has seleccionado ningún archivo.');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('editable_pdf', fileInput.files[0]);
+        // Es una buena práctica también enviar el ID del cliente con el archivo
+        formData.append('id_cliente', id_cliente);
+
+        const res = await fetch(URL + '/src/php/api.php/pdf_upload', {
+            method: 'POST',
+            body: formData
+        });
+
+        if (res.ok) {
+            const result = await res.json();
+            alert('Archivo subido con éxito: ' + result.message);
+            console.log(result);
+            // Opcional: limpiar el input de archivo después de una subida exitosa
+            fileInput.value = '';
+        } else {
+            // Nota: 'response' no estaba definido, así que usamos 'res.status'
+            alert('Error al subir el archivo. Estado: ' + res.status);
+        }
+    } catch (error) {
+        alert('Error de red al intentar subir el archivo.');
+        console.error(error);
+    }
+};
+
+
 
 cargarCliente();

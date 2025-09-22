@@ -15,6 +15,21 @@ th, td{
     border: 1px solid #ddd;
 }
 
+/* #archivo_pdf_upload */
+.btn-custom {
+  display: inline-block;
+  padding: 4px 10px;
+  font-size: 12px;
+  background: #007bff;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.btn-custom:hover {
+  background: #0056b3;
+}
+
+
 /* Para dispositivoos moviles */
 @media(max-width: 768px){
     table thead{
