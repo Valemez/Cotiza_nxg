@@ -182,8 +182,7 @@ window.uploadPDF = async (id_cliente, fileInput) => {
 
         const formData = new FormData();
         formData.append('editable_pdf', fileInput.files[0]);
-        // Es una buena práctica también enviar el ID del cliente con el archivo
-        formData.append('id_cliente', id_cliente);
+        formData.append('id_cliente', id_cliente); //mandar el id_cliente
 
         const res = await fetch(URL + '/src/php/api.php/pdf_upload', {
             method: 'POST',

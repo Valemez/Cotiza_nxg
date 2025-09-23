@@ -109,10 +109,6 @@ switch($method){
 
                     // error_log("Archivo temporal: " . $clientData['archivo_excel_tmp']);
                     // error_log("Existe archivo temporal: " . (file_exists($clientData['archivo_excel_tmp']) ? 'SI' : 'NO'));
-                }else{
-                    $clientData['archivo_excel_tmp'] = null;
-                    $clientData['archivo_excel_name'] = 'archivo_excel';
-                    // error_log("No se subió archivo o error en upload Excel");
                 }
 
                 $resultado = $model->addClient($clientData);
@@ -121,13 +117,13 @@ switch($method){
                 // echo json_encode([$clientData]) ;
 
             case 'pdf_upload':
+                $model = new clienteModel();
+
                 $pdf_update = $_FILES['editable_pdf'];
+                $id_cliente = $_POST['id_cliente'] ?? null;
+                $resultado = $model->pdfUpload($id_cliente, $pdf_update);
 
-                if(isset($pdf_update) && $_FILES['editable_pdf']['error'] === UPLOAD_ERR_OK){
-                    echo json_encode(['status' => 'success', 'message' => 'Piikachu']);
-                }
-
-                // echo json_encode(['status' => 'success', 'message' => 'Logout exitoso']);
+                // echo json_encode(['status' => 'success', 'message' => 'Logout exitoso ' . $pdf_update['name']]);
                 // echo $pdf_update;
             break;
             default:
