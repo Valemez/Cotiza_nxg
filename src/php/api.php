@@ -115,7 +115,7 @@ switch($method){
                 echo json_encode($resultado) ;
 
                 // echo json_encode([$clientData]) ;
-
+                break;
             case 'pdf_upload':
                 $model = new clienteModel();
 
