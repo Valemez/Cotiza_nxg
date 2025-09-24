@@ -240,7 +240,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         // Resumen de colaboradores
-        const numColaboradores = formData.get('numero_colaboradores');
+        const numColaboradores = formData.get('numero_colaborador'); //numero_colaboradores
         if (numColaboradores) {
             summaryHTML += `
                             <div style="margin-bottom: 20px;">

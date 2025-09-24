@@ -97,7 +97,7 @@ class clienteModel{
     //método para agregar los servicios
     private function addServices(int $id_propuesta, array $data){
         # code ...
-        $num_colaborador = $data['numero_colaboradores'];
+        $num_colaborador = $data['numero_colaborador'];
         $estado_republica = $data['Estado_republica'];
         $centro_trabajo = $data['Centro_trabajo'];
         $supervisor = $data['supervisor'];
