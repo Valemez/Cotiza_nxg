@@ -272,72 +272,130 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Validación del formulario
-    function validateStep(step) {
-        let isValid = true;
+    // function validateStep(step) {
+    //     let isValid = true;
 
-        if (step === 0) {
-            // Validacion de los campos del formulario
-            const requiredFields = ['logo', 'nombre', 'destinatario', 'puesto', 'asunto'];
-            requiredFields.forEach(fieldId => {
-                const field = document.getElementById(fieldId);
-                if (!field.value.trim()) {
-                    field.style.borderColor = 'red';
-                    isValid = false;
-                } else {
-                    field.style.borderColor = '#DDE3EC';
-                }
-            });
+    //     if (step === 0) {
+    //         // Validacion de los campos del formulario
+    //         const requiredFields = ['logo', 'nombre', 'destinatario', 'puesto', 'asunto'];
+    //         requiredFields.forEach(fieldId => {
+    //             const field = document.getElementById(fieldId);
+    //             if (!field.value.trim()) {
+    //                 field.style.borderColor = 'red';
+    //                 isValid = false;
+    //             } else {
+    //                 field.style.borderColor = '#DDE3EC';
+    //             }
+    //         });
 
-            // Mostrar términos y condiciones en el último paso
-            if (step === 4) {
-                Swal.fire({
-                    title: 'Términos y Condiciones',
-                    html: `<div style="text-align:left;max-height:250px;overflow-y:auto;">
-                    <p>Al enviar este formulario, aceptas los términos y condiciones de uso del servicio. Por favor, lee cuidadosamente antes de continuar.</p>
-                    <p>1. La información proporcionada será utilizada únicamente para fines de cotización.</p>
-                    <p>2. Nos comprometemos a proteger tus datos personales conforme a la ley.</p>
-                    <p>3. El envío del formulario no garantiza la prestación del servicio.</p>
-         
-                    
-                    <br>
-                    <label>
-                        <input type="checkbox" id="acepto_terminos_sw" />
-                        Acepto los términos y condiciones
-                    </label>
-                </div>`,
-                    icon: 'info',
-                    iconColor: '#001550',
-                    confirmButtonText: 'Continuar',
-                    preConfirm: () => {
-                        const checkbox = Swal.getPopup().querySelector('#acepto_terminos_sw');
-                        if (!checkbox.checked) {
-                            Swal.showValidationMessage('Debes aceptar los términos y condiciones para continuar.');
-                            return false;
-                        }
-                        return true;
-                    }
-                }).then((result) => {
-                    if (!result.isConfirmed) {
-                        isValid = false;
-                    }
-                });
-            }
+    //         // Mostrar términos y condiciones en el último paso
+    //         if (step === 4) {
+    //             Swal.fire({
+    //                 title: 'Términos y Condiciones',
+    //                 html: `<div style="text-align:left;max-height:250px;overflow-y:auto;">
+    //                 <p>Al enviar este formulario, aceptas los términos y condiciones de uso del servicio. Por favor, lee cuidadosamente antes de continuar.</p>
+    //                 <p>1. La información proporcionada será utilizada únicamente para fines de cotización.</p>
+    //                 <p>2. Nos comprometemos a proteger tus datos personales conforme a la ley.</p>
+    //                 <p>3. El envío del formulario no garantiza la prestación del servicio.</p>
+    //                 <br>
+    //                 <label>
+    //                     <input type="checkbox" id="acepto_terminos_sw" />
+    //                     Acepto los términos y condiciones
+    //                 </label>
+    //             </div>`,
+    //                 icon: 'info',
+    //                 iconColor: '#001550',
+    //                 confirmButtonText: 'Continuar',
+    //                 preConfirm: () => {
+    //                     const checkbox = Swal.getPopup().querySelector('#acepto_terminos_sw');
+    //                     if (!checkbox.checked) {
+    //                         Swal.showValidationMessage('Debes aceptar los términos y condiciones para continuar.');
+    //                         return false;
+    //                     }
+    //                     return true;
+    //                 }
+    //             }).then((result) => {
+    //                 if (!result.isConfirmed) {
+    //                     isValid = false;
+    //                 }
+    //             });
+    //         }
 
-            return isValid;
+    //         return isValid;
 
-            if (!isValid) {
-                Swal.fire({
-                    title: 'Datos incompletos',
-                    text: 'Por favor, complete todos los campos obligatorios.',
-                    icon: 'warning',
-                    iconColor: '#001550',
-                    confirmButtonText: 'Entendido'
-                });
-            }
-        }
+    //         if (!isValid) {
+    //             Swal.fire({
+    //                 title: 'Datos incompletos',
+    //                 text: 'Por favor, complete todos los campos obligatorios.',
+    //                 icon: 'warning',
+    //                 iconColor: '#001550',
+    //                 confirmButtonText: 'Entendido'
+    //             });
+    //         }
+    //     }
 
-        return isValid;
+    //     return isValid;
+    // }
+
+    // VERSIÓN CORREGIDA
+function validateStep(step) {
+    let isValid = true;
+    let requiredFields = [];
+
+    switch (step) {
+        case 0:
+            requiredFields = ['nombre', 'destinatario', 'puesto', 'asunto'];
+            // Nota: La validación de 'logo' (archivo) es más compleja, pero por ahora validamos los de texto.
+            break;
+
+        case 1: // Validación del Paso 2: Detalles del servicio
+            requiredFields = ['servicios', 'descripcion_servicio'];
+            break;
+
+        case 2: // Validación del Paso 3: Detalles de colaboradores (¡AQUÍ ESTÁ!)
+            requiredFields = ['numero_colaborador', 'Estado_republica', 'Centro_trabajo', 'Turno_trabajo'];
+            break;
+            
+        case 3: // Validación del Paso 4: Equipos y materiales
+            // Agrega aquí los campos obligatorios del paso 4 si los tienes
+            // requiredFields = ['algun_campo_del_paso_4'];
+            break;
+
+        case 4: // Último paso: Mostrar términos y condiciones antes de enviar
+            // No hay campos que validar, pero podrías tener lógica aquí
+            break;
     }
+
+    // --- Lógica de validación ---
+    if (requiredFields.length > 0) {
+        requiredFields.forEach(fieldId => {
+            const field = document.getElementById(fieldId);
+            if (!field || !field.value.trim()) { // Comprueba si el campo existe y tiene valor
+                if (field) {
+                    field.style.borderColor = 'red'; // Marca el campo vacío en rojo
+                }
+                isValid = false;
+            } else {
+                if (field) {
+                    field.style.borderColor = '#DDE3EC'; // Restaura el borde si está lleno
+                }
+            }
+        });
+    }
+
+    // --- Mostrar alerta de error  ---
+    if (!isValid) {
+        Swal.fire({
+            title: 'Datos incompletos',
+            text: 'Por favor, completa todos los campos marcados en rojo.',
+            icon: 'warning',
+            iconColor: '#001550',
+            confirmButtonText: 'Entendido'
+        });
+    }
+
+    return isValid;
+}
 });
 
 // Inicializar tooltips
