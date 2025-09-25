@@ -47,14 +47,14 @@ switch($method){
             break;
             case 'formulario':
                 // VALIDACIÓN 
-                if (!isset($_POST['numero_colaborador']) || empty(trim($_POST['numero_colaborador']))) {
-                    // Si el campo está vacío o no se envió, detén la ejecución y envía un error.
-                    echo json_encode([
-                        'success' => false,
-                        'message' => 'El campo "Número de colaboradores" es obligatorio.'
-                    ]);
-                    break; // Detiene la ejecución del switch
-                }
+                // if (!isset($_POST['numero_colaborador']) || empty(trim($_POST['numero_colaborador']))) {
+                //     // Si el campo está vacío o no se envió, detén la ejecución y envía un error.
+                //     echo json_encode([
+                //         'success' => false,
+                //         'message' => 'El campo "Número de colaboradores" es obligatorio.'
+                //     ]);
+                //     break; // Detiene la ejecución del switch
+                // }
                 $generateDocumet = new wordModel();
                 $model = new clienteModel($generateDocumet);
 
