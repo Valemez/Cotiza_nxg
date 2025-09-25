@@ -122,6 +122,12 @@ switch($method){
 
             case 'pdf_upload':
                 $pdf_update = $_FILES['editable_pdf'];
+                $uploadDir = 'pdf/';
+
+                if (!is_dir($uploadDir)) {
+                    mkdir($uploadDir, 0755, true);
+                }
+
 
                 if(isset($pdf_update) && $_FILES['editable_pdf']['error'] === UPLOAD_ERR_OK){
                     echo json_encode(['status' => 'success', 'message' => 'Piikachu']);
