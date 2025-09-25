@@ -30,11 +30,28 @@ class wordModel
         $imagenFondo3 = __DIR__ . '/../../assets/fondo-3.png';
         $imagenFondoFinal = __DIR__ . '/../../assets/fondo-final.png';
         $imagenLogoCliente = __DIR__ . '/../../logoCliente/id/' . $idCliente . '/logo.png';
-
+        $imagenHeader = __DIR__ . '/../../assets/header.png';
+        
+        // Primera hoja - Portada
         $this->addImageToSection($documento, $imagenPortada, 16, 25);
+        // Indice
         $this->addImageToSection($documento, $imagenIntroducción, 16, 22.7);
 
-        $this->addImageLogoClient($documento, $imagenLogoCliente, 1, 1); /*-------------------- */
+        // Primera hoja - Información del cliente
+        /*
+        Folio
+        Necesito Agregar la fecha del lado izquiero
+         el logo del lado derecho 
+         Nombre de la empresa
+         nombre del Puesto
+         Departamento
+         Asunto
+         Limpieza y Mantenimiento 
+         Texto....
+         Imagen del sello
+         */
+
+        $this->addImageLogoClient($documento, $imagenLogoCliente, 1, 1, $imagenHeader); /*-------logo------------- */
 
         $this->addImageToSection($documento, $imagenFondo1, 16, 22.7);
         $this->addImageToSection($documento, $imagenFondo2, 16, 22.7);
@@ -141,7 +158,7 @@ class wordModel
 
     }
 
-    private function addImageLogoClient(\PhpOffice\PhpWord\PhpWord $documento, string $imagen, float $ancho, float $alto){
+    private function addImageLogoClient(\PhpOffice\PhpWord\PhpWord $documento, string $imagen, float $ancho, float $alto,  string $imagenHeader){
         // code ...
         if (!file_exists($imagen)) {
             throw new \Exception("La imagen no existe en: " . $imagen);
@@ -155,6 +172,7 @@ class wordModel
         ]);
 
         $ImagenSeccion = $imagen; //parametro de la ruta para la nueva función
+        //******************************************************************************************************************************** */
 
         $seccion->addImage(
             $ImagenSeccion,
@@ -163,6 +181,21 @@ class wordModel
             'height'        => \PhpOffice\PhpWord\Shared\Converter::cmToPixel($alto),// alto A4
             'positioning'   => \PhpOffice\PhpWord\Style\Image::POSITION_ABSOLUTE,
             'posHorizontal' => \PhpOffice\PhpWord\Style\Image::POSITION_HORIZONTAL_LEFT,
+            'posVertical'   => \PhpOffice\PhpWord\Style\Image::POSITION_VERTICAL_TOP,
+            'marginTop'     => 0,
+            'marginLeft'    => 0,
+            'marginRight'    => 0,
+            ]
+        );
+
+        $header = $seccion->addHeader();
+        $header->addImage(
+            $imagenHeader,
+            [
+            'width'         => \PhpOffice\PhpWord\Shared\Converter::cmToPixel(15),
+            'height'        => \PhpOffice\PhpWord\Shared\Converter::cmToPixel(1),
+            'positioning'   => \PhpOffice\PhpWord\Style\Image::POSITION_ABSOLUTE,
+            'posHorizontal' => \PhpOffice\PhpWord\Style\Image::POSITION_HORIZONTAL_RIGHT,
             'posVertical'   => \PhpOffice\PhpWord\Style\Image::POSITION_VERTICAL_TOP,
             'marginTop'     => 0,
             'marginLeft'    => 0,
