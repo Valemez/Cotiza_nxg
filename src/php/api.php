@@ -51,7 +51,7 @@ switch($method){
 
                 $clientData = [];
 
-                $textFields = ['nombre', 'destinatario', 'puesto', 'asunto', 'servicios', 'descripcion_servicio', 'numero_colaboradores', 'Estado_republica', 'Centro_trabajo', 'Operario_maquinaria', 'Turno_trabajo',  'num_dotaciones_anual_epp', 'num_dotaciones_anual_maquinaria', 'Operario_limpieza', 'ayudante_general', 'supervisor', 'Numero_dotaciones_anuales_uniforme', 'Materiales', 'Fecha_entrega_jarseria', 'num_dotaciones_anual_jarcieria', 'Fecha_entrega_jarcieria', 'Fecha_entrega_mobilario', 'num_dotaciones_anual_mobiliario'];
+                $textFields = ['nombre', 'destinatario', 'puesto', 'asunto', 'servicios', 'descripcion_servicio', 'numero_colaborador', 'Estado_republica', 'Centro_trabajo', 'Operario_maquinaria', 'Turno_trabajo',  'num_dotaciones_anual_epp', 'num_dotaciones_anual_maquinaria', 'Operario_limpieza', 'ayudante_general', 'supervisor', 'Numero_dotaciones_anuales_uniforme', 'Materiales', 'Fecha_entrega_jarseria', 'num_dotaciones_anual_jarcieria', 'Fecha_entrega_jarcieria', 'Fecha_entrega_mobilario', 'num_dotaciones_anual_mobiliario'];
 
                 $textFieldJson = ['uniforme_superior', 'uniforme_inferior', 'epp_cabeza', 'epp_cuerpo', 'maquinaria', 'quimicos', 'jarcieria', 'mobiliario'];
 
@@ -109,31 +109,21 @@ switch($method){
 
                     // error_log("Archivo temporal: " . $clientData['archivo_excel_tmp']);
                     // error_log("Existe archivo temporal: " . (file_exists($clientData['archivo_excel_tmp']) ? 'SI' : 'NO'));
-                }else{
-                    $clientData['archivo_excel_tmp'] = null;
-                    $clientData['archivo_excel_name'] = 'archivo_excel';
-                    // error_log("No se subió archivo o error en upload Excel");
                 }
 
                 $resultado = $model->addClient($clientData);
                 echo json_encode($resultado) ;
 
                 // echo json_encode([$clientData]) ;
-
+                break;
             case 'pdf_upload':
+                $model = new clienteModel();
+
                 $pdf_update = $_FILES['editable_pdf'];
-                $uploadDir = 'pdf/';
+                $id_cliente = $_POST['id_cliente'] ?? null;
+                $resultado = $model->pdfUpload($id_cliente, $pdf_update);
 
-                if (!is_dir($uploadDir)) {
-                    mkdir($uploadDir, 0755, true);
-                }
-
-
-                if(isset($pdf_update) && $_FILES['editable_pdf']['error'] === UPLOAD_ERR_OK){
-                    echo json_encode(['status' => 'success', 'message' => 'Piikachu']);
-                }
-
-                // echo json_encode(['status' => 'success', 'message' => 'Logout exitoso']);
+                // echo json_encode(['status' => 'success', 'message' => 'Logout exitoso ' . $pdf_update['name']]);
                 // echo $pdf_update;
             break;
             default:

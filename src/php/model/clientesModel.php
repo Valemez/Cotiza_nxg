@@ -97,7 +97,7 @@ class clienteModel{
     //método para agregar los servicios
     private function addServices(int $id_propuesta, array $data){
         # code ...
-        $num_colaborador = $data['numero_colaboradores'];
+        $num_colaborador = $data['numero_colaborador'];
         $estado_republica = $data['Estado_republica'];
         $centro_trabajo = $data['Centro_trabajo'];
         $supervisor = $data['supervisor'];
@@ -126,48 +126,48 @@ class clienteModel{
     }
 
     //metodo para insertar los items
-        private function addItem(int $idServicio, array $data){
-            # code ...
-            $numero_dotaciones_anuales_uniforme = $data['Numero_dotaciones_anuales_uniforme'];
-             $uniforme_superior_json = json_encode($data['uniforme_superior'] ?? [], JSON_UNESCAPED_UNICODE);
-             $uniforme_inferior_json = json_encode($data['uniforme_inferior'] ?? [], JSON_UNESCAPED_UNICODE);
-             $epp_cabeza = json_encode($data['epp_cabeza'] ?? [], JSON_UNESCAPED_UNICODE);
-             $epp_cuerpo = json_encode($data['epp_cuerpo'] ?? [], JSON_UNESCAPED_UNICODE);
-             $maquinaria = json_encode($data['maquinaria'] ?? [], JSON_UNESCAPED_UNICODE);
-             $quimicos = json_encode($data['quimicos'] ?? [], JSON_UNESCAPED_UNICODE);
-             $jarcieria = json_encode($data['jarcieria'] ?? [], JSON_UNESCAPED_UNICODE);
-             $mobiliario = json_encode($data['mobiliario'] ?? [], JSON_UNESCAPED_UNICODE);
-             $num_dotaciones_anual_jarcieria =$data['num_dotaciones_anual_jarcieria'];
-            $num_dotaciones_anual_epp = $data['num_dotaciones_anual_epp'];
-            $num_dotaciones_anual_maquinaria = $data['num_dotaciones_anual_maquinaria'];
-            $materiales = $data['Materiales'];
-            $fecha_entrega_jarcieria = $data['Fecha_entrega_jarcieria'];
-            $fecha_entrega_mobilario = $data['Fecha_entrega_mobilario'];
-            $num_dotaciones_anual_mobiliario = $data['num_dotaciones_anual_mobiliario'];
+    private function addItem(int $idServicio, array $data){
+        # code ...
+        $numero_dotaciones_anuales_uniforme = $data['Numero_dotaciones_anuales_uniforme'];
+            $uniforme_superior_json = json_encode($data['uniforme_superior'] ?? [], JSON_UNESCAPED_UNICODE);
+            $uniforme_inferior_json = json_encode($data['uniforme_inferior'] ?? [], JSON_UNESCAPED_UNICODE);
+            $epp_cabeza = json_encode($data['epp_cabeza'] ?? [], JSON_UNESCAPED_UNICODE);
+            $epp_cuerpo = json_encode($data['epp_cuerpo'] ?? [], JSON_UNESCAPED_UNICODE);
+            $maquinaria = json_encode($data['maquinaria'] ?? [], JSON_UNESCAPED_UNICODE);
+            $quimicos = json_encode($data['quimicos'] ?? [], JSON_UNESCAPED_UNICODE);
+            $jarcieria = json_encode($data['jarcieria'] ?? [], JSON_UNESCAPED_UNICODE);
+            $mobiliario = json_encode($data['mobiliario'] ?? [], JSON_UNESCAPED_UNICODE);
+            $num_dotaciones_anual_jarcieria =$data['num_dotaciones_anual_jarcieria'];
+        $num_dotaciones_anual_epp = $data['num_dotaciones_anual_epp'];
+        $num_dotaciones_anual_maquinaria = $data['num_dotaciones_anual_maquinaria'];
+        $materiales = $data['Materiales'];
+        $fecha_entrega_jarcieria = $data['Fecha_entrega_jarcieria'];
+        $fecha_entrega_mobilario = $data['Fecha_entrega_mobilario'];
+        $num_dotaciones_anual_mobiliario = $data['num_dotaciones_anual_mobiliario'];
 
-            $sql = 'INSERT INTO items(id_servicio, uniforme_superior, uniforme_inferior, num_dotaciones_anual_uniforme, epp_cabeza, epp_cuerpo, num_dotaciones_anual_epp, maquinaria, num_dotaciones_anual_maquinaria, Sin_materiales, quimicos, jarseria, cantidad_jarseria, fecha_entrega_jarseria, mobiliario, fecha_entrega_mobiliario, cantidad_mobiliario) VALUES(:id_servicio, :uniforme_superior, :uniforme_inferior, :num_dotaciones_anual_uniforme, :epp_cabeza, :epp_cuerpo, :num_dotaciones_anual_epp, :maquinaria, :num_dotaciones_anual_maquinaria, :Sin_materiales, :quimicos, :jarseria, :cantidad_jarseria, :fecha_entrega_jarseria, :mobiliario, :fecha_entrega_mobiliario, :cantidad_mobiliario)';
-            $stmt = $this->conn->prepare($sql);
-            $stmt->bindParam('id_servicio', $idServicio);
-            $stmt->bindParam('uniforme_superior', $uniforme_superior_json);
-            $stmt->bindParam('uniforme_inferior', $uniforme_inferior_json);
-            $stmt->bindParam('num_dotaciones_anual_uniforme', $numero_dotaciones_anuales_uniforme);
-            $stmt->bindParam('epp_cabeza', $epp_cabeza);
-            $stmt->bindParam('epp_cuerpo', $epp_cuerpo);
-            $stmt->bindParam('num_dotaciones_anual_epp', $num_dotaciones_anual_epp);
-            $stmt->bindParam('maquinaria', $maquinaria);
-            $stmt->bindParam('num_dotaciones_anual_maquinaria', $num_dotaciones_anual_maquinaria);
-            $stmt->bindParam('Sin_materiales', $materiales);
-            $stmt->bindParam('quimicos', $quimicos);
-            $stmt->bindParam('jarseria', $jarcieria);
-            $stmt->bindParam('cantidad_jarseria', $num_dotaciones_anual_jarcieria);
-            $stmt->bindParam('fecha_entrega_jarseria', $fecha_entrega_jarcieria);
-            $stmt->bindParam('mobiliario', $mobiliario);
-            $stmt->bindParam('fecha_entrega_mobiliario', $fecha_entrega_mobilario);
-            $stmt->bindParam('cantidad_mobiliario', $num_dotaciones_anual_mobiliario);
+        $sql = 'INSERT INTO items(id_servicio, uniforme_superior, uniforme_inferior, num_dotaciones_anual_uniforme, epp_cabeza, epp_cuerpo, num_dotaciones_anual_epp, maquinaria, num_dotaciones_anual_maquinaria, Sin_materiales, quimicos, jarseria, cantidad_jarseria, fecha_entrega_jarseria, mobiliario, fecha_entrega_mobiliario, cantidad_mobiliario) VALUES(:id_servicio, :uniforme_superior, :uniforme_inferior, :num_dotaciones_anual_uniforme, :epp_cabeza, :epp_cuerpo, :num_dotaciones_anual_epp, :maquinaria, :num_dotaciones_anual_maquinaria, :Sin_materiales, :quimicos, :jarseria, :cantidad_jarseria, :fecha_entrega_jarseria, :mobiliario, :fecha_entrega_mobiliario, :cantidad_mobiliario)';
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam('id_servicio', $idServicio);
+        $stmt->bindParam('uniforme_superior', $uniforme_superior_json);
+        $stmt->bindParam('uniforme_inferior', $uniforme_inferior_json);
+        $stmt->bindParam('num_dotaciones_anual_uniforme', $numero_dotaciones_anuales_uniforme);
+        $stmt->bindParam('epp_cabeza', $epp_cabeza);
+        $stmt->bindParam('epp_cuerpo', $epp_cuerpo);
+        $stmt->bindParam('num_dotaciones_anual_epp', $num_dotaciones_anual_epp);
+        $stmt->bindParam('maquinaria', $maquinaria);
+        $stmt->bindParam('num_dotaciones_anual_maquinaria', $num_dotaciones_anual_maquinaria);
+        $stmt->bindParam('Sin_materiales', $materiales);
+        $stmt->bindParam('quimicos', $quimicos);
+        $stmt->bindParam('jarseria', $jarcieria);
+        $stmt->bindParam('cantidad_jarseria', $num_dotaciones_anual_jarcieria);
+        $stmt->bindParam('fecha_entrega_jarseria', $fecha_entrega_jarcieria);
+        $stmt->bindParam('mobiliario', $mobiliario);
+        $stmt->bindParam('fecha_entrega_mobiliario', $fecha_entrega_mobilario);
+        $stmt->bindParam('cantidad_mobiliario', $num_dotaciones_anual_mobiliario);
 
-            // $stmt->bindParam('fecha_entrega_jarseria', $fecha_entrega_jarseria);
-            return $stmt->execute();
-        }
+        // $stmt->bindParam('fecha_entrega_jarseria', $fecha_entrega_jarseria);
+        return $stmt->execute();
+    }
 
     // funcion para subir el logo
     private function uploadFile(?string $logo_tmp, string $logo_name, int $idCliente): void{
@@ -231,13 +231,6 @@ class clienteModel{
             //obtener el nomnre
             $original_name = $file_name[$i];
 
-            #código temporal, despues borrar
-            // if (is_array($original_name)) {
-            //     # code...
-            //     error_log("Error: Se esperaba un string como nombre de archivo en el índice $i, pero se recibió un array.");
-            //     continue;
-            // }
-
             $path ="../filesCliente/id/" . $idCliente;
             if (!file_exists($path)) {
                 mkdir($path, 0777, true);
@@ -254,10 +247,6 @@ class clienteModel{
                     error_log("Archivo confirmado en destino: " . $destino);
                 } else {
                     error_log("ERROR: Archivo no encontrado en destino: " . $destino);
-                    // Verificar permisos de directorio
-                    // if (!is_writable($path)) {
-                    //     error_log("ERROR: Directorio sin permisos de escritura: " . $path);
-                    // }
                 }
             } else {
                 // Error al mover el archivo
@@ -278,6 +267,16 @@ class clienteModel{
             $response['success'] = false;
             $response['message'] = 'Error de base de datos: ' . $e->getMessage();
             return $response;
+        }
+    }
+
+
+    public function pdfUpload(int $idCliente, string $pdf_update){
+        # code ...
+        if(isset($pdf_update) && $_FILES['editable_pdf']['error'] === UPLOAD_ERR_OK){
+            return json_encode(['status' => 'success', 'message' => "PDF subido correctamente con id: $idCliente"]);
+        }else{
+            return json_encode(['status' => 'error', 'message' => 'Error al subir el PDF']);
         }
     }
 
