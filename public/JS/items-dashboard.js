@@ -156,7 +156,8 @@ window.descargarWord = (id_cliente) =>{
 window.descargarPDF = async (id_cliente) => {
     console.log('descargando PDF ' + id_cliente);
 
-    let fileURL = `./src/word/${id_cliente}/mgc_${id_cliente}.pdf`;
+    // let fileURL = `./src/PDF/${id_cliente}/mgc_${id_cliente}.pdf`;
+    let fileURL = `./src/PDF/${id_cliente}/mgc_${id_cliente}.pdf`;
 
     try {
         let response = await fetch(fileURL, { method: 'HEAD' });

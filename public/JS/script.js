@@ -337,7 +337,7 @@ document.addEventListener('DOMContentLoaded', function () {
     //     return isValid;
     // }
 
-    // VERSIÓN CORREGIDA
+    // función de validación en un solo lugar
 function validateStep(step) {
     let isValid = true;
     let requiredFields = [];

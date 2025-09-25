@@ -271,19 +271,10 @@ class clienteModel{
     }
 
 
-    // public function pdfUpload(int $idCliente, array $pdf_update){
-    //     # code ...
-    //     if(isset($pdf_update) && $_FILES['editable_pdf']['error'] === UPLOAD_ERR_OK){
-    //         return json_encode(['status' => 'success', 'message' => "PDF subido correctamente con id: $idCliente"]);
-    //     }else{
-    //         return json_encode(['status' => 'error', 'message' => 'Error al subir el PDF']);
-    //     }
-    // }
-
     public function pdfUpload(int $idCliente, array $pdfFile) {
-        // 1. Validar que el archivo se subió correctamente
+        // Validar que el archivo se subió correctamente
         if (!isset($pdfFile) || $pdfFile['error'] !== UPLOAD_ERR_OK) {
-            // Devolver un error más específico si es posible
+            // Devolver un error más específico
             $uploadErrors = [
                 UPLOAD_ERR_INI_SIZE   => 'El archivo excede la directiva upload_max_filesize en php.ini.',
                 UPLOAD_ERR_FORM_SIZE  => 'El archivo excede la directiva MAX_FILE_SIZE especificada en el formulario HTML.',
@@ -295,34 +286,27 @@ class clienteModel{
             ];
             $errorCode = $pdfFile['error'];
             $errorMessage = $uploadErrors[$errorCode] ?? 'Error desconocido al subir el archivo.';
-            
-            // http_response_code(400); // Bad Request
+
             return json_encode(['status' => 'error', 'message' => $errorMessage]);
         }
 
-        // 2. Definir la ruta de la carpeta de subidas y la carpeta del cliente
-        $baseUploadDir = __DIR__ . '/../uploads/'; // Carpeta 'uploads' al mismo nivel que 'model'
+        // Definir la ruta de la carpeta de subidas y la carpeta del cliente
+        $baseUploadDir = __DIR__ . '/../../PDF/'; 
         $clientDir = $baseUploadDir . $idCliente . '/';
 
-        // 3. Crear el directorio del cliente si no existe
         if (!is_dir($clientDir)) {
-            // mkdir crea el directorio. El 'true' permite crear directorios anidados (recursivo)
             if (!mkdir($clientDir, 0775, true)) {
-                // http_response_code(500); // Internal Server Error
                 return json_encode(['status' => 'error', 'message' => 'Error: no se pudo crear el directorio del cliente.']);
             }
         }
 
-        // 4. Mover el archivo a su destino final
-        $fileName = basename($pdfFile['name']); // Obtener el nombre original del archivo de forma segura
+        // Mover el archivo a su destino final
+        $fileName = basename($pdfFile['name']); // Obtener el nombre original del archivo
         $destinationPath = $clientDir . $fileName;
 
-        if (move_uploaded_file($pdfFile['tmp_name'], $destinationPath)) {
-            // ¡Éxito! ✅
+        if (move_uploaded_file($pdfFile['tmp_name'], $destinationPath)) { // Se mueve de la carpeta temporal a la carpeta de destino
             return json_encode(['status' => 'success', 'message' => "Archivo '$fileName' subido correctamente a la carpeta del cliente $idCliente."]);
         } else {
-            // Error al mover el archivo 📂
-            // http_response_code(500); // Internal Server Error
             return json_encode(['status' => 'error', 'message' => 'Error: no se pudo mover el archivo a su destino.']);
         }
     }

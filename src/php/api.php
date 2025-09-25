@@ -86,9 +86,6 @@ switch($method){
                 if (isset($_FILES['logo']) && $_FILES['logo']['error'] === UPLOAD_ERR_OK) {
                     $clientData['logo_tmp'] = $_FILES['logo']['tmp_name'];
                     $clientData['logo_name'] = $_FILES['logo']['name'];
-                    // Debug: verificar que el archivo temporal existe
-                    // error_log("Archivo temporal: " . $clientData['logo_tmp']);
-                    // error_log("Existe archivo temporal: " . (file_exists($clientData['logo_tmp']) ? 'SI' : 'NO'));
                 }else{
                     $clientData['logo_tmp'] = null;
                     $clientData['logo_name'] = 'logo';
@@ -99,7 +96,7 @@ switch($method){
                 $clientData['archivo_excel_tmp'] = [];
                 $clientData['archivo_excel_name'] = [];
 
-                if(isset($_FILES['archivo_excel'])){ //&& $_FILES['archivo_excel'] === UPLOAD_ERR_OK
+                if(isset($_FILES['archivo_excel'])){
 
                     $fileCount = count($_FILES['archivo_excel']['name']);
 
@@ -116,35 +113,26 @@ switch($method){
                         }
                     }
 
-                    // error_log("Archivo temporal: " . $clientData['archivo_excel_tmp']);
-                    // error_log("Existe archivo temporal: " . (file_exists($clientData['archivo_excel_tmp']) ? 'SI' : 'NO'));
                 }
 
                 $resultado = $model->addClient($clientData);
                 echo json_encode($resultado) ;
-
-                // echo json_encode([$clientData]) ;
                 break;
             case 'pdf_upload':
                 $model = new clienteModel();
 
                 $pdf_file = $_FILES['editable_pdf'] ?? null;
                 $id_cliente = isset($_POST['id_cliente']) ? (int)$_POST['id_cliente'] : 0;
-                // $resultado = $model->pdfUpload($id_cliente, $pdf_file);
-                 // Validar que recibimos los datos necesarios
+
                 if ($pdf_file && $id_cliente > 0) {
                     $resultado = $model->pdfUpload($id_cliente, $pdf_file);
                     
-                    // LÍNEA CLAVE FALTANTE: Imprimir la respuesta JSON
                     echo $resultado; 
 
                 } else {
-                    // Si faltan datos, envía una respuesta de error clara
-                    http_response_code(400); // Bad Request
+                    http_response_code(400);
                     echo json_encode(['status' => 'error', 'message' => 'Faltan datos requeridos (ID de cliente o archivo).']);
                 }
-                // echo json_encode(['status' => 'success', 'message' => 'Logout exitoso ' . $pdf_update['name']]);
-                // echo $pdf_update;
             break;
             default:
                 return http_response_code(404);
