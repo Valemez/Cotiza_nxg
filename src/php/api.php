@@ -119,10 +119,21 @@ switch($method){
             case 'pdf_upload':
                 $model = new clienteModel();
 
-                $pdf_update = $_FILES['editable_pdf'];
-                $id_cliente = $_POST['id_cliente'] ?? null;
-                $resultado = $model->pdfUpload($id_cliente, $pdf_update);
+                $pdf_file = $_FILES['editable_pdf'] ?? null;
+                $id_cliente = isset($_POST['id_cliente']) ? (int)$_POST['id_cliente'] : 0;
+                // $resultado = $model->pdfUpload($id_cliente, $pdf_file);
+                 // Validar que recibimos los datos necesarios
+                if ($pdf_file && $id_cliente > 0) {
+                    $resultado = $model->pdfUpload($id_cliente, $pdf_file);
+                    
+                    // LÍNEA CLAVE FALTANTE: Imprimir la respuesta JSON
+                    echo $resultado; 
 
+                } else {
+                    // Si faltan datos, envía una respuesta de error clara
+                    http_response_code(400); // Bad Request
+                    echo json_encode(['status' => 'error', 'message' => 'Faltan datos requeridos (ID de cliente o archivo).']);
+                }
                 // echo json_encode(['status' => 'success', 'message' => 'Logout exitoso ' . $pdf_update['name']]);
                 // echo $pdf_update;
             break;

@@ -186,7 +186,8 @@ window.uploadPDF = async (id_cliente, fileInput) => {
 
         const res = await fetch(URL + '/src/php/api.php/pdf_upload', {
             method: 'POST',
-            body: formData
+            body: formData,
+            credentials: 'include' 
         });
 
         if (res.ok) {
