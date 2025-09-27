@@ -11,6 +11,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Libreria del mapa -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link rel="stylesheet" href="./public/CSS/map.css">
+
 </head>
 
 <body>
@@ -27,9 +32,10 @@
             </div>
             <!-- Pasos para el registro -->
             <div class="crs-form-content">
-                <!-- <form action="http://localhost/Cotiza_nxg/src/php/api.php/formulario" method="post" enctype="multipart/form-data"> -->
+                <form action="http://localhost/Cotiza_nxg/src/php/api.php/formulario" method="post" enctype="multipart/form-data">
                 <!-- <form action="http://localhost:8080/Cotiza_nxg/src/php/api.php/formulario" method="post" enctype="multipart/form-data"> -->
-                <form action="http://intranetipm.ddns.net:5000/Cotiza_nxg/src/php/api.php/formulario" method="post" enctype="multipart/form-data">
+                <!-- <form action="http://intranetipm.ddns.net:5000/Cotiza_nxg/src/php/api.php/formulario" method="post"
+                    enctype="multipart/form-data"> -->
                     <!-- Menu -->
                     <div class="crs-steps">
                         <ul>
@@ -190,7 +196,7 @@
                                 </div>
                             </div>
                             <input type="file" name="archivo_excel[]" id="archivo"
-                                accept="image/png,.xls,.xlsx,.doc,.pdf" class="crs-form-input" multiple required>
+                                accept="image/png,.xls,.xlsx,.doc,.pdf" class="crs-form-input" multiple>
                         </div>
 
                         <div class="crs-input-group" data-title="Descripción del servicio"
@@ -214,143 +220,162 @@
                     </div>
 
                     <!-- Paso 3: Selección de colaboradores -->
-                    <div class="crs-form-step-3">
+                     <div class="crs-form-step-3">
                         <div class="crs-input-group">
                             <div class="crs-label-wrapper">
-                                <label for="Turno_trabajo" class="crs-form-label"> Seleccione el turno de
-                                    trabajo:
-                                </label>
+                                <label class="crs-form-label">Ubicación en el mapa:</label>
                                 <div class="help-icon" tabindex="0"
-                                    aria-label="Ayuda: Selecciona el turno de trabajo requerido, ya sea de 4, 6 u 8 horas.">
+                                    aria-label="Ayuda: Selecciona la ubicación exacta en el mapa o ingresa manualmente las coordenadas.">
                                     ?
-                                    <span class="tooltip">Ayuda: Selecciona el turno de trabajo requerido, ya sea de
-                                        4, 6 u 8 horas.</span>
+                                    <span class="tooltip">Ayuda: Selecciona la ubicación exacta en el mapa o ingresa
+                                        manualmente las coordenadas.</span>
                                 </div>
                             </div>
                             </label>
-                            <select name="Turno_trabajo" id="Turno_trabajo" class="crs-form-input" required>
-                                <option value="8">8 horas</option>
-                                <option value="6">6 horas</option>
-                                <option value="4">4 horas</option>
-                            </select>
+                            <button class="crs-map-button" id="crs-map-button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                                <p>Abrir Prosman Maps</p>
+                            </button>
                         </div>
 
-                        <div class="crs-input-group" data-title="Detalles de los colaboradores"
-                            data-intro="Especifica el número de colaboradores necesarios, el estado y centro de trabajo, así como los roles específicos como supervisores y operarios.">
-                            <div class="crs-label-wrapper">
-                                <!-- <label for="numero_colaboradores" class="crs-form-label">Detalles de los -->
-                                <label for="numero_colaborador" class="crs-form-label">Detalles de los
-                                    colaboradores</label>
-                                <div class="help-icon" tabindex="0"
-                                    aria-label="Ayuda: Especifica el número de colaboradores necesarios, el estado y centro de trabajo, así como los roles específicos como supervisores y operarios.">
-                                    ?
-                                    <span class="tooltip">Ayuda: Especifica el número de colaboradores necesarios, el
-                                        estado y centro de trabajo, así como los roles específicos como supervisores y
-                                        operarios.</span>
-                                </div>
-                            </div>
-                            <div class="crs-input-group">
-                                <input type="number" name="numero_colaborador" id="numero_colaborador"
-                                    placeholder="Ej. 20" class="crs-form-input" min="1" required>
-                            </div>
-                            <!-- div estado de la republica -->
-                            <div class="crs-input-group" data-title="Estado de trabajo"
-                                data-intro="Selecciona el estado donde se realizará el trabajo.">
-                                <div class="crs-label-wrapper">
-                                    <label for="Estado_republica" class="crs-form-label">Selecciona el estado de
-                                        trabajo:
-                                    </label>
-                                    <div class="help-icon" tabindex="0"
-                                        aria-label="Ayuda: Selecciona el estado donde se realizará el trabajo.">
-                                        ?
-                                        <span class="tooltip">Ayuda: Selecciona el estado donde se realizará el
-                                            trabajo.</span>
-                                    </div>
-                                </div>
-                                <select name="Estado_republica" id="Estado_republica"  class="crs-form-input" required>
-                                    <option value="Aguascalientes">Aguascalientes</option>
-                                    <option value="Baja_California">Baja California</option>
-                                    <option value="Baja_California_Sur">Baja California Sur</option>
-                                    <option value="Campeche">Campeche</option>
-                                    <option value="Ciudad_de_México">Ciudad de Méxicol</option>
-                                    <option value="Coahuila">Coahuila</option>
-                                    <option value="Colima">Colima</option>
-                                    <option value="Chiapas">Chiapas</option>
-                                    <option value="Chihuahua">Chihuahua</option>
-                                    <option value="Durango">Durango</option>
-                                    <option value="Estado_de_México">Estado de México</option>
-                                    <option value="Guanajuato">Guanajuato</option>
-                                    <option value="Guerrero">Guerrero</option>
-                                    <option value="Hidalgo">Hidalgo</option>
-                                    <option value="Jalisco">Jalisco</option>
-                                    <option value="Michoacán">Michoacán</option>
-                                    <option value="Morelos">Morelos</option>
-                                    <option value="Nayarit">Nayarit</option>
-                                    <option value="Nuevo_León">Nuevo León</option>
-                                    <option value="Oaxaca">Oaxaca</option>
-                                    <option value="Puebla">Puebla</option>
-                                    <option value="Querétaro">Querétaro</option>
-                                    <option value="Quintana_Roo">Quintana Roo</option>
-                                    <option value="San_Luis_Potosí">San Luis Potosí</option>
-                                    <option value="Sinaloa">Sinaloa</option>
-                                    <option value="Sonora">Sonora</option>
-                                    <option value="Tabasco">Tabasco</option>
-                                    <option value="Tamaulipas">Tamaulipas</option>
-                                    <option value="Tlaxcala">Tlaxcala</option>
-                                    <option value="Veracruz">Veracruz</option>
-                                    <option value="Yucatán">Yucatán</option>
-                                    <option value="Zacatecas">Zacatecas</option>
-                                </select>
+                        <!-- Modal para el mapa -->
+                        <div class="crs-modalMapa" id="crs-map-modal">
+                            <div class="crs-modal-header">
+                                <h2>Prosman Maps</h2>
+                                <button class="crs-close-button" id="crs-close-modal">&times;</button>
                             </div>
 
-                            <div class="crs-input-group">
-                                <div class="crs-label-wrapper">
-                                    <label for="Centro_trabajo" class="crs-form-label"> Seleccione centro de
-                                        trabajo:
-                                    </label>
-                                    <div class="help-icon" tabindex="0"
-                                        aria-label="Ayuda: Selecciona el centro de trabajo específico dentro del estado elegido.">
-                                        ?
-                                        <span class="tooltip">Ayuda: Selecciona el centro de trabajo específico dentro
-                                            del estado elegido.</span>
+                            <!-- Botón para activar modo de colocación de pin -->
+                            <button class="add-pin-btn" id="add-pin-btn" title="Agregar nueva ubicación">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <line x1="12" y1="10" x2="12" y2="16"></line>
+                                    <line x1="9" y1="13" x2="15" y2="13"></line>
+                                </svg>
+                            </button>
+
+                            <!-- Tabla de ubicaciones -->
+                            <div class="locations-table" id="locations-table">
+                                <h3>Zonas de trabajo</h3>
+                                <table>
+                                    <thead>
+
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Coordenadas</th>
+                                            <th>Numero de colaboradores</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="locations-list">
+                                        <!-- Las ubicaciones se agregarán aquí dinámicamente -->
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- Instrucciones -->
+                            <div class="instructions">
+                                Haz clic en el botón "+" para agregar un pin, luego arrástralo a la posición deseada
+                            </div>
+
+                            <div id="mapa"></div>
+                        </div>
+
+                        <!-- Formulario emergente para información del pin -->
+                        <div class="pin-form-modal" id="pin-form-modal">
+                            <div class="pin-form-content">
+                                <h3>Agregar nueva ubicación</h3>
+                                <form id="pin-form">
+                                    <input type="hidden" id="pin-lat">
+                                    <input type="hidden" id="pin-lng">
+
+                                    <div class="crs-input-group" data-title="Nombre del centro de trabajo"
+                                        data-intro="Proporciona el nombre completo del centro de trabajo.">
+
+                                        <div class="crs-label-wrapper">
+                                            <label for="Centro_trabajo" class="crs-form-label">Nombre del centro de
+                                                trabajo:</label>
+                                            <div class="help-icon" tabindex="0"
+                                                aria-label="Ayuda: Ingresa el nombre completo del centro de trabajo.">
+                                                ?
+                                                <span class="tooltip">Ayuda: Ingresa el nombre completo del centro de
+                                                    trabajo.</span>
+                                            </div>
+                                        </div>
+                                        <input type="text" name="Centro_trabajo" id="Centro_trabajo"
+                                            placeholder="Ej. Cedis Maxicali" class="crs-form-input" required>
                                     </div>
-                                </div>
-                                <select name="Centro_trabajo" id="Centro_trabajo" class="crs-form-input" required>
-                                    <option value="">--- Seleccione estado---</option>
-                                </select>
-                            </div>
-                            <!-- div de COLABORADORES -->
-                            <!-- FALTAAAAAAAAA  PONER EL ? -->
-                            <div class="crs-input-flex">
-                                <!-- Div de operario de maquinario -->
-                                <div class="crs-input-group">
-                                    <label for="Operario_maquinaria" class="crs-form-label">Número de operario de
-                                        maquinaria: </label>
-                                    <input type="number" name="Operario_maquinaria" id="Operario_maquinaria"
-                                        placeholder="Ej. 12" class="crs-form-input" min="1">
-                                </div>
-                                <!-- Div de operario de limpieza -->
-                                <div class="crs-input-group">
-                                    <label for="Operario_limpieza" class="crs-form-label">Número de operario de
-                                        limpieza: </label>
-                                    <input type="number" name="Operario_limpieza" id="Operario_limpieza"
-                                        placeholder="Ej. 12" class="crs-form-input" min="1">
-                                </div>
-                            </div>
-                            <div class="crs-input-flex">
-                                <!-- Div de supervisor -->
-                                <div class="crs-input-group">
-                                    <label for="supervisor" class="crs-form-label">Número de supervisor: </label>
-                                    <input type="number" name="supervisor" id="supervisor" placeholder="Ej. 12"
-                                        class="crs-form-input" min="1">
-                                </div>
-                                <!-- Div de ayudante general-->
-                                <div class="crs-input-group">
-                                    <label for="ayudante_general" class="crs-form-label">Número de ayudante general:
-                                    </label>
-                                    <input type="number" name="ayudante_general" id="ayudante_general"
-                                        placeholder="Ej. 12" class="crs-form-input" min="1">
-                                </div>
+
+                                    <div class="crs-label-wrapper">
+                                        <label for="Turno_trabajo" class="crs-form-label"> Seleccione el turno de
+                                            trabajo:
+                                        </label>
+                                        <div class="help-icon" tabindex="0"
+                                            aria-label="Ayuda: Selecciona el turno de trabajo requerido, ya sea de 4, 6 u 8 horas.">
+                                            ?
+                                            <span class="tooltip">Ayuda: Selecciona el turno de trabajo requerido, ya
+                                                sea de
+                                                4, 6 u 8 horas.</span>
+                                        </div>
+                                    </div>
+                                    <select name="Turno_trabajo" id="Turno_trabajo" class="crs-form-input" required>
+                                        <option value="8">8 horas</option>
+                                        <option value="6">6 horas</option>
+                                        <option value="4">4 horas</option>
+                                    </select>
+
+                                    <div class="crs-input-group" data-title="Detalles de los colaboradores"
+                                        data-intro="Especifica el número de colabooraodres, así como los roles específicos como supervisores y operarios.">
+                                        <!-- div de COLABORADORES -->
+                                        <!-- FALTAAAAAAAAA  PONER EL ? -->
+                                        <div class="crs-input-flex">
+                                            <!-- Div de operario de maquinario -->
+                                            <div class="crs-input-group">
+                                                <label for="Operario_maquinaria" class="crs-form-label">Número de
+                                                    operario de
+                                                    maquinaria: </label>
+                                                <input type="number" name="Operario_maquinaria" id="Operario_maquinaria"
+                                                    placeholder="Ej. 12" class="crs-form-input" min="1">
+                                            </div>
+                                            <!-- Div de operario de limpieza -->
+                                            <div class="crs-input-group">
+                                                <label for="Operario_limpieza" class="crs-form-label">Número de operario
+                                                    de
+                                                    limpieza: </label>
+                                                <input type="number" name="Operario_limpieza" id="Operario_limpieza"
+                                                    placeholder="Ej. 12" class="crs-form-input" min="1">
+                                            </div>
+                                        </div>
+                                        <div class="crs-input-flex">
+                                            <!-- Div de supervisor -->
+                                            <div class="crs-input-group">
+                                                <label for="supervisor" class="crs-form-label">Número de supervisor:
+                                                </label>
+                                                <input type="number" name="supervisor" id="supervisor"
+                                                    placeholder="Ej. 12" class="crs-form-input" min="1">
+                                            </div>
+                                            <!-- Div de ayudante general-->
+                                            <div class="crs-input-group">
+                                                <label for="ayudante_general" class="crs-form-label">Número de ayudante
+                                                    general:
+                                                </label>
+                                                <input type="number" name="ayudante_general" id="ayudante_general"
+                                                    placeholder="Ej. 12" class="crs-form-input" min="1">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-buttons">
+                                        <button type="button" class="cancel-btn" id="cancel-pin">Cancelar</button>
+                                        <button type="submit" class="save-btn">Guardar ubicación</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -383,22 +408,22 @@
                                         </label><br />
                                         <label><input type="checkbox" id="" value="Playera polo manga larga"
                                                 name="uniforme_superior[]" />Playera polo manga larga
-                                             <button type="button" class="ver-foto-btn"
+                                            <button type="button" class="ver-foto-btn"
                                                 onclick="verFoto('polo_manga_larga')">Ver
                                                 foto</button>
-                                            </label><br />
+                                        </label><br />
                                         <label><input type="checkbox" id="" value="Playera polo manga corta"
                                                 name="uniforme_superior[]" />Playera polo manga corta
-                                             <button type="button" class="ver-foto-btn"
+                                            <button type="button" class="ver-foto-btn"
                                                 onclick="verFoto('polo_manga_corta')">Ver
                                                 foto</button>
-                                            </label><br />
+                                        </label><br />
                                         <label><input type="checkbox" id="" value="Poncho para lluvia"
                                                 name="uniforme_superior[]" />Poncho para lluvia
-                                             <button type="button" class="ver-foto-btn"
+                                            <button type="button" class="ver-foto-btn"
                                                 onclick="verFoto('poncho_lluvia')">Ver
                                                 foto</button>
-                                            </label><br />
+                                        </label><br />
                                     </div>
                                     <br>
                                     <div>
@@ -409,27 +434,27 @@
                                             <button type="button" class="ver-foto-btn"
                                                 onclick="verFoto('pantalon_bata')">Ver
                                                 foto</button>
-                                            </label><br />
+                                        </label><br />
                                         <label><input type="checkbox" id="" value="Pantalon de mesclilla"
                                                 name="uniforme_inferior[]" />Pantalon de mezclilla
                                             <button type="button" class="ver-foto-btn"
                                                 onclick="verFoto('Pantalon_mezclilla')">Ver
                                                 foto</button>
-                                            </label><br />
+                                        </label><br />
                                         <label><input type="checkbox" id="" value="Plantalon caqui"
                                                 name="uniforme_inferior[]" />Plantalon caqui
                                             <button type="button" class="ver-foto-btn"
                                                 onclick="verFoto('Pantalon_caqui')">Ver
                                                 foto</button>
-                                            </label><br />
+                                        </label><br />
                                     </div>
                                 </div>
 
                                 <div class="crs-input-group">
-                                        dotaciones (Anuales):</label>
+                                    dotaciones (Anuales):</label>
                                     <input type="number" name="num_dotaciones_anual_uniforme"
-                                        id="num_dotaciones_anual_uniforme" placeholder="Ej. 12"
-                                        class="crs-form-input" min="1">
+                                        id="num_dotaciones_anual_uniforme" placeholder="Ej. 12" class="crs-form-input"
+                                        min="1">
                                 </div>
                             </div>
                             <!-- SELECCION DE EPP -->
@@ -448,41 +473,36 @@
                                     </div>
                                     <div>
                                         <label for="epp_cabeza" class="crs-form-label">Cabeza</label>
-                                        <label><input type="checkbox" id="" value="Cascos"
-                                                name="epp_cabeza[]" />Cascos
-                                            <button type="button" class="ver-foto-btn"
-                                                onclick="verFoto('cascos')">Ver
+                                        <label><input type="checkbox" id="" value="Cascos" name="epp_cabeza[]" />Cascos
+                                            <button type="button" class="ver-foto-btn" onclick="verFoto('cascos')">Ver
                                                 foto</button>
-                                            </label><br />
+                                        </label><br />
                                         <label><input type="checkbox" id="" value="Lentes de protección"
                                                 name="epp_cabeza[]" />Lentes de
                                             protección
-                                         <button type="button" class="ver-foto-btn"
-                                                onclick="verFoto('Lentes')">Ver
+                                            <button type="button" class="ver-foto-btn" onclick="verFoto('Lentes')">Ver
                                                 foto</button>
                                         </label><br />
                                         <label><input type="checkbox" id="" value="Tapones"
                                                 name="epp_cabeza[]" />Tapones
-                                            <button type="button" class="ver-foto-btn"
-                                                onclick="verFoto('tapones')">Ver
+                                            <button type="button" class="ver-foto-btn" onclick="verFoto('tapones')">Ver
                                                 foto</button>
-                                            </label><br />
+                                        </label><br />
                                         <label><input type="checkbox" id="" value="Cubrebocas"
                                                 name="epp_cabeza[]" />Cubrebocas
                                             <button type="button" class="ver-foto-btn"
                                                 onclick="verFoto('cubrebocas')">Ver
                                                 foto</button>
-                                            </label><br />
+                                        </label><br />
                                     </div>
                                     <br>
                                     <div>
                                         <label for="epp_cuerpo" class="crs-form-label">Cuerpo</label>
                                         <label><input type="checkbox" id="" value="Chaleco"
                                                 name="epp_cuerpo[]" />Chaleco
-                                            <button type="button" class="ver-foto-btn"
-                                                onclick="verFoto('Chaleco')">Ver
+                                            <button type="button" class="ver-foto-btn" onclick="verFoto('Chaleco')">Ver
                                                 foto</button>
-                                            </label><br />
+                                        </label><br />
 
                                     </div>
                                 </div>
@@ -524,22 +544,21 @@
                                                 name="maquinaria[]" />Fregadoras
                                             de
                                             piso
-                                        <button type="button" class="ver-foto-btn"
+                                            <button type="button" class="ver-foto-btn"
                                                 onclick="verFoto('fregadora')">Ver
                                                 foto</button>
                                         </label><br />
                                         <label><input type="checkbox" id="" value="Pulidora"
                                                 name="maquinaria[]" />Pulidora
-                                            <button type="button" class="ver-foto-btn"
-                                                onclick="verFoto('pulidora')">Ver
+                                            <button type="button" class="ver-foto-btn" onclick="verFoto('pulidora')">Ver
                                                 foto</button>
-                                            </label><br />
+                                        </label><br />
                                         <label><input type="checkbox" id="" value="Barredora"
                                                 name="maquinaria[]" />Barredora
                                             <button type="button" class="ver-foto-btn"
                                                 onclick="verFoto('barredora')">Ver
                                                 foto</button>
-                                            </label><br />
+                                        </label><br />
                                         <!-- <label><input type="checkbox" id="" value="" /></label><br /> -->
                                     </div>
                                 </div>
@@ -597,19 +616,17 @@
                                         <label><input type="checkbox" id="" value="Jabon_multiusos"
                                                 name="quimicos[]" />Jabon
                                             multiusos
-                                        <button type="button" class="ver-foto-btn"
+                                            <button type="button" class="ver-foto-btn"
                                                 onclick="verFoto('jabon_multiusos')">Ver
                                                 foto</button></label><br />
-                                        <label><input type="checkbox" id="" value="Cloro"
-                                                name="quimicos[]" />Cloro
-                                            <button type="button" class="ver-foto-btn"
-                                                onclick="verFoto('cloro')">Ver
+                                        <label><input type="checkbox" id="" value="Cloro" name="quimicos[]" />Cloro
+                                            <button type="button" class="ver-foto-btn" onclick="verFoto('cloro')">Ver
                                                 foto</button>
-                                            </label><br />
+                                        </label><br />
                                         <label><input type="checkbox" id="" value="Jabon_polvo"
                                                 name="quimicos[]" />Jabon en
                                             polvo
-                                        <button type="button" class="ver-foto-btn"
+                                            <button type="button" class="ver-foto-btn"
                                                 onclick="verFoto('jabon_polvo')">Ver
                                                 foto</button>
                                         </label><br />
@@ -617,7 +634,7 @@
                                                 name="quimicos[]" />Limpiador
                                             de
                                             vidrios
-                                        <button type="button" class="ver-foto-btn"
+                                            <button type="button" class="ver-foto-btn"
                                                 onclick="verFoto('limpia_vidrios')">Ver
                                                 foto</button>
                                         </label><br>
@@ -626,11 +643,11 @@
                                             <button type="button" class="ver-foto-btn"
                                                 onclick="verFoto('sarricida')">Ver
                                                 foto</button>
-                                            </label><br />
+                                        </label><br />
                                         <label><input type="checkbox" id="" value="Limpiador_desengrasante"
                                                 name="quimicos[]" />Limpiador
                                             desengrasante
-                                        <button type="button" class="ver-foto-btn"
+                                            <button type="button" class="ver-foto-btn"
                                                 onclick="verFoto('desengrasante')">Ver
                                                 foto</button>
                                         </label><br />
@@ -646,7 +663,7 @@
                                                 name="quimicos[]" />Jabón
                                             para
                                             manos
-                                        <button type="button" class="ver-foto-btn"
+                                            <button type="button" class="ver-foto-btn"
                                                 onclick="verFoto('jabon_manos')">Ver
                                                 foto</button>
                                         </label><br />
@@ -655,69 +672,59 @@
                                             <button type="button" class="ver-foto-btn"
                                                 onclick="verFoto('destapacaños')">Ver
                                                 foto</button>
-                                            </label><br />
+                                        </label><br />
                                         <!-- Jarcieria -->
                                         <label for="jarcieria" class="crs-form-label">Jarcieria</label>
                                         <label><input type="checkbox" id="" value="Escobas avanico"
                                                 name="jarcieria[]" />Escobas
                                             avanico
-                                        <button type="button" class="ver-foto-btn"
-                                                onclick="verFoto('escobas')">Ver
+                                            <button type="button" class="ver-foto-btn" onclick="verFoto('escobas')">Ver
                                                 foto</button>
                                         </label><br />
                                         <label><input type="checkbox" id="" value="Cepillo_rigido"
                                                 name="jarcieria[]" />Cepillo
                                             rigido
-                                        <button type="button" class="ver-foto-btn"
-                                                onclick="verFoto('cepillo')">Ver
+                                            <button type="button" class="ver-foto-btn" onclick="verFoto('cepillo')">Ver
                                                 foto</button>
                                         </label><br />
-                                        <label><input type="checkbox" id="" value="Cubetas"
-                                                name="jarcieria[]" />Cubetas
-                                            <button type="button" class="ver-foto-btn"
-                                                onclick="verFoto('cubetas')">Ver
+                                        <label><input type="checkbox" id="" value="Cubetas" name="jarcieria[]" />Cubetas
+                                            <button type="button" class="ver-foto-btn" onclick="verFoto('cubetas')">Ver
                                                 foto</button>
-                                            </label><br />
+                                        </label><br />
                                         <label><input type="checkbox" id="" value="Microfibras"
                                                 name="jarcieria[]" />Microfibras
                                             <button type="button" class="ver-foto-btn"
                                                 onclick="verFoto('microfibras')">Ver
                                                 foto</button>
-                                            </label><br />
-                                        <label><input type="checkbox" id="" value="Franela"
-                                                name="jarcieria[]" />Franela
-                                            <button type="button" class="ver-foto-btn"
-                                                onclick="verFoto('franelas')">Ver
+                                        </label><br />
+                                        <label><input type="checkbox" id="" value="Franela" name="jarcieria[]" />Franela
+                                            <button type="button" class="ver-foto-btn" onclick="verFoto('franelas')">Ver
                                                 foto</button>
-                                            </label><br />
+                                        </label><br />
                                         <label><input type="checkbox" id="" value="Recogedores_lamina"
                                                 name="jarcieria[]" />Recogedores
                                             de
                                             lamina
-                                        <button type="button" class="ver-foto-btn"
+                                            <button type="button" class="ver-foto-btn"
                                                 onclick="verFoto('recogedores')">Ver
                                                 foto</button>
                                         </label><br />
                                         <label><input type="checkbox" id="" value="Mechudos"
                                                 name="jarcieria[]" />Mechudos
-                                            <button type="button" class="ver-foto-btn"
-                                                onclick="verFoto('mechudos')">Ver
+                                            <button type="button" class="ver-foto-btn" onclick="verFoto('mechudos')">Ver
                                                 foto</button>
-                                            </label><br />
-                                        <label><input type="checkbox" id="" value="Mops"
-                                                name="jarcieria[]" />Mops
-                                            <button type="button" class="ver-foto-btn"
-                                                onclick="verFoto('mops')">Ver
+                                        </label><br />
+                                        <label><input type="checkbox" id="" value="Mops" name="jarcieria[]" />Mops
+                                            <button type="button" class="ver-foto-btn" onclick="verFoto('mops')">Ver
                                                 foto</button>
-                                            </label><br />
+                                        </label><br />
                                         <!-- numero de dotaciones anuales -->
                                         <div class="crs-input-group">
                                             <label for="cantidad_jarseria" class="crs-form-label">Número
                                                 de
                                                 dotaciones (Anuales):</label>
-                                            <input type="number" name="cantidad_jarseria"
-                                                id="cantidad_jarseria" placeholder="Ej. 12"
-                                                class="crs-form-input" min="1">
+                                            <input type="number" name="cantidad_jarseria" id="cantidad_jarseria"
+                                                placeholder="Ej. 12" class="crs-form-input" min="1">
                                         </div>
                                         <!-- tiempo de entrega de dotaciones anuales -->
                                         <div class="crs-input-group">
@@ -726,15 +733,16 @@
                                                 la
                                                 fecha de entrega que
 
-                                            <label for="fecha_entrega_jarseria" class="crs-form-label">Seleccione la fecha de entrega que
-                                                requiere.</label>
-                                            <select name="fecha_entrega_jarseria" id="fecha_entrega_jarseria"
-                                                class="crs-form-input">
-                                                <option value="bimestral">Bimestral</option>
-                                                <option value="trimestarl">Trimestral</option>
-                                                <option value="cuatrimestral">Cuatrimestral</option>
-                                                <option value="semestral">Semestral</option>
-                                            </select>
+                                                <label for="fecha_entrega_jarseria" class="crs-form-label">Seleccione la
+                                                    fecha de entrega que
+                                                    requiere.</label>
+                                                <select name="fecha_entrega_jarseria" id="fecha_entrega_jarseria"
+                                                    class="crs-form-input">
+                                                    <option value="bimestral">Bimestral</option>
+                                                    <option value="trimestarl">Trimestral</option>
+                                                    <option value="cuatrimestral">Cuatrimestral</option>
+                                                    <option value="semestral">Semestral</option>
+                                                </select>
                                         </div>
                                         <!-- Mobiliario de limpieza -->
                                         <label for="mobiliario" class="crs-form-label">Mobiliario de
@@ -742,8 +750,7 @@
                                         <label><input type="checkbox" id="" value="Despachador_jabon"
                                                 name="mobiliario[]" />Despachador de
                                             jabon
-                                        <button type="button" class="ver-foto-btn"
-                                                onclick="verFoto('Lentes')">Ver
+                                            <button type="button" class="ver-foto-btn" onclick="verFoto('Lentes')">Ver
                                                 foto</button>
                                         </label><br />
                                         <label><input type="checkbox" id="" value="Despachador_manitas"
@@ -761,13 +768,13 @@
                                             <label for="cantidad_mobiliario" class="crs-form-label">Número
                                                 de
                                                 dotaciones (Anuales):</label>
-                                            <input type="number" name="cantidad_mobiliario"
-                                                id="cantidad_mobiliario" placeholder="Ej. 12"
-                                                class="crs-form-input" min="1">
+                                            <input type="number" name="cantidad_mobiliario" id="cantidad_mobiliario"
+                                                placeholder="Ej. 12" class="crs-form-input" min="1">
                                         </div>
                                         <!-- tiempo de entrega de dotaciones anuales -->
                                         <div class="crs-input-group">
-                                            <label for="fecha_entrega_mobilario" class="crs-form-label">Seleccione la fecha de entrega que requiere.</label>
+                                            <label for="fecha_entrega_mobilario" class="crs-form-label">Seleccione la
+                                                fecha de entrega que requiere.</label>
                                             <select name="fecha_entrega_mobilario" id="fecha_entrega_mobilario"
                                                 class="crs-form-input">
                                                 <option value="semestral">Semestral</option>
@@ -818,6 +825,10 @@
     <!-- <script src="./resource/js/meet.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/8.3.2/intro.min.js"></script>
     <script type="module" src="./public/js/protect.js"></script>
+    <!-- js del mapa -->
+     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+     <script type="module" src="./public/js/mapa.js"></script>   
 </body>
 
 </html>

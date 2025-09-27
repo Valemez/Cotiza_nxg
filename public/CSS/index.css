@@ -14,7 +14,7 @@
 }
 
 body {
-    background-image: url('../Assets/logos/fondo.png');
+    background-image: url('../Assets/fondo.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -30,14 +30,14 @@ body {
     margin: 0 auto;
     max-width: 450px;
     width: 100%;
-    background: var(--colorFondo);
+    background: rgba(214, 207, 207, 0.767);
     border-radius: 15px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.562);
     overflow: hidden;
 }
 
 .crs-form-header {
-    background: var(--colorSecundario);
+    background-color: #03588C ;
     padding: 30px 20px;
     display: flex;
     justify-content: center;
@@ -47,6 +47,7 @@ body {
 .crs-form-header img {
     height: 90px;
     max-width: 100%;
+    filter: drop-shadow(1px 1px 12px white);
 }
 
 .crs-form-content {
@@ -108,7 +109,7 @@ body {
     padding: 12px 40px;
     border: none;
     font-weight: 600;
-    background-color: var(--colorSecundario);
+    background-color: #03588C;
     color: white;
     cursor: pointer;
     transition: all 0.3s ease;
