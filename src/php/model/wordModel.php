@@ -33,9 +33,9 @@ class wordModel
         $imagenHeader = __DIR__ . '/../../assets/header.png';
         
         // Primera hoja - Portada
-        $this->addImageToSection($documento, $imagenPortada, 16, 25);
+        $this->addImageToSection($documento, $imagenPortada, 16, 22.3);
         // Indice
-        $this->addImageToSection($documento, $imagenIntroducción, 16, 22.7);
+        $this->addImageToSection($documento, $imagenIntroducción, 16, 22.3);
 
         // Primera hoja - Información del cliente
         /*
@@ -114,12 +114,14 @@ class wordModel
         
         # Guardarlo
         
-        $path ="../word/" . $idCliente;
+        # $path ="../word/" . $idCliente;
+        $path ="../word/temporal";
         if (!file_exists($path)) {
             mkdir($path, 0777, true);
         }
         
-        $docxPath = $path . "/mgc_$idCliente.docx";
+        # $docxPath = $path . "/mgc_$idCliente.docx";
+        $docxPath = $path . "/temporal.docx";
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($documento, "Word2007");
         $objWriter->save($docxPath);
 
@@ -139,6 +141,9 @@ class wordModel
             'marginRight' => 0,
         ]);
 
+        $seccion->addHeader();
+
+
         $ImagenSeccion = $imagen; //parametro de la ruta para la nueva función
 
         $seccion->addImage(
@@ -154,8 +159,6 @@ class wordModel
             'marginRight'    => 0,
             ]
         );
-
-
     }
 
     private function addImageLogoClient(\PhpOffice\PhpWord\PhpWord $documento, string $imagen, float $ancho, float $alto,  string $imagenHeader){
@@ -164,12 +167,13 @@ class wordModel
             throw new \Exception("La imagen no existe en: " . $imagen);
         }
         
-         $seccion = $documento->addSection([
-            'marginTop' => 0,
-            'marginBottom' => 0,
-            'marginLeft' => 0,
-            'marginRight' => 0,
-        ]);
+        //  $seccion = $documento->addSection([
+        //     'marginTop' => 0,
+        //     'marginBottom' => 0,
+        //     'marginLeft' => 0,
+        //     'marginRight' => 0,
+        // ]);
+         $seccion = $documento->addSection();
 
         $ImagenSeccion = $imagen; //parametro de la ruta para la nueva función
         //******************************************************************************************************************************** */
@@ -192,8 +196,8 @@ class wordModel
         $header->addImage(
             $imagenHeader,
             [
-            'width'         => \PhpOffice\PhpWord\Shared\Converter::cmToPixel(15),
-            'height'        => \PhpOffice\PhpWord\Shared\Converter::cmToPixel(1),
+            'width'         => \PhpOffice\PhpWord\Shared\Converter::cmToPixel(26),
+            'height'        => \PhpOffice\PhpWord\Shared\Converter::cmToPixel(5),
             'positioning'   => \PhpOffice\PhpWord\Style\Image::POSITION_ABSOLUTE,
             'posHorizontal' => \PhpOffice\PhpWord\Style\Image::POSITION_HORIZONTAL_RIGHT,
             'posVertical'   => \PhpOffice\PhpWord\Style\Image::POSITION_VERTICAL_TOP,
