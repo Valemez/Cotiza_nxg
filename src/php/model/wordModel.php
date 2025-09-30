@@ -33,9 +33,9 @@ class wordModel
         $imagenHeader = __DIR__ . '/../../assets/header.png';
         
         // Primera hoja - Portada
-        $this->addImageToSection($documento, $imagenPortada, 16, 25);
+        $this->addImageToSection($documento, $imagenPortada, 16, 22.3);
         // Indice
-        $this->addImageToSection($documento, $imagenIntroducción, 16, 22.7);
+        $this->addImageToSection($documento, $imagenIntroducción, 16, 22.3);
 
         // Primera hoja - Información del cliente
         /*
@@ -114,12 +114,14 @@ class wordModel
         
         # Guardarlo
         
-        $path ="../word/" . $idCliente;
+        # $path ="../word/" . $idCliente;
+        $path ="../word/temporal";
         if (!file_exists($path)) {
             mkdir($path, 0777, true);
         }
         
-        $docxPath = $path . "/mgc_$idCliente.docx";
+        # $docxPath = $path . "/mgc_$idCliente.docx";
+        $docxPath = $path . "/temporal.docx";
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($documento, "Word2007");
         $objWriter->save($docxPath);
 
@@ -127,21 +129,21 @@ class wordModel
 
     private function addImageToSection(\PhpOffice\PhpWord\PhpWord $documento, string $imagen, float $ancho, float $alto){
         // code ...
-        // $documento = new \PhpOffice\PhpWord\PhpWord();
         $propiedades = $documento->getDocInfo();
         $propiedades->setCreator("Parzibyte");
         $propiedades->setCompany("Texto");
         
-         $seccion = $documento->addSection([
+         $seccion2 = $documento->addSection([
             'marginTop' => 0,
             'marginBottom' => 0,
             'marginLeft' => 0,
             'marginRight' => 0,
         ]);
 
+
         $ImagenSeccion = $imagen; //parametro de la ruta para la nueva función
 
-        $seccion->addImage(
+        $seccion2->addImage(
             $ImagenSeccion,
             [
             'width'         => \PhpOffice\PhpWord\Shared\Converter::cmToPixel($ancho),   // ancho A4
@@ -154,8 +156,6 @@ class wordModel
             'marginRight'    => 0,
             ]
         );
-
-
     }
 
     private function addImageLogoClient(\PhpOffice\PhpWord\PhpWord $documento, string $imagen, float $ancho, float $alto,  string $imagenHeader){
@@ -164,21 +164,17 @@ class wordModel
             throw new \Exception("La imagen no existe en: " . $imagen);
         }
         
-         $seccion = $documento->addSection([
-            'marginTop' => 0,
-            'marginBottom' => 0,
-            'marginLeft' => 0,
-            'marginRight' => 0,
-        ]);
+         $seccion2 = $documento->addSection();
 
         $ImagenSeccion = $imagen; //parametro de la ruta para la nueva función
+
         //******************************************************************************************************************************** */
 
-        $seccion->addImage(
-            $ImagenSeccion,
+        $seccion2->addImage(
+            $imagenHeader,
             [
-            'width'         => \PhpOffice\PhpWord\Shared\Converter::cmToPixel($ancho),   // ancho A4
-            'height'        => \PhpOffice\PhpWord\Shared\Converter::cmToPixel($alto),// alto A4
+            'width'         => \PhpOffice\PhpWord\Shared\Converter::cmToPixel(14),
+            'height'        => \PhpOffice\PhpWord\Shared\Converter::cmToPixel(1),
             'positioning'   => \PhpOffice\PhpWord\Style\Image::POSITION_ABSOLUTE,
             'posHorizontal' => \PhpOffice\PhpWord\Style\Image::POSITION_HORIZONTAL_LEFT,
             'posVertical'   => \PhpOffice\PhpWord\Style\Image::POSITION_VERTICAL_TOP,
@@ -188,22 +184,44 @@ class wordModel
             ]
         );
 
-        $header = $seccion->addHeader();
-        $header->addImage(
-            $imagenHeader,
+        // poner Puebla, Puebla y la fecha
+        $seccion2->addTextBreak(5);
+
+        $seccion2->addImage(
+            $ImagenSeccion,
             [
-            'width'         => \PhpOffice\PhpWord\Shared\Converter::cmToPixel(15),
-            'height'        => \PhpOffice\PhpWord\Shared\Converter::cmToPixel(1),
-            'positioning'   => \PhpOffice\PhpWord\Style\Image::POSITION_ABSOLUTE,
-            'posHorizontal' => \PhpOffice\PhpWord\Style\Image::POSITION_HORIZONTAL_RIGHT,
-            'posVertical'   => \PhpOffice\PhpWord\Style\Image::POSITION_VERTICAL_TOP,
-            'marginTop'     => 0,
-            'marginLeft'    => 0,
-            'marginRight'    => 0,
+                'width'         => \PhpOffice\PhpWord\Shared\Converter::cmToPixel($ancho),
+                'height'        => \PhpOffice\PhpWord\Shared\Converter::cmToPixel($alto),
+                'positioning'   => 'relative',
+                'marginTop'     => \PhpOffice\PhpWord\Shared\Converter::cmToPoint(5), // Ajusta este valor
+                'marginLeft'    => \PhpOffice\PhpWord\Shared\Converter::cmToPoint(2), // Ajusta este valor
             ]
         );
 
+        //Poner el nombre de la empresa
+        //Poner el nombre dej responsable
+        //data.
+        //Asunto
+        //
+        
+
+        // $header = $seccion2->addHeader();
+        // $header->addImage(
+        //     $imagenHeader,
+        //     [
+        //     'width'         => \PhpOffice\PhpWord\Shared\Converter::cmToPixel(26),
+        //     'height'        => \PhpOffice\PhpWord\Shared\Converter::cmToPixel(5),
+        //     'positioning'   => \PhpOffice\PhpWord\Style\Image::POSITION_ABSOLUTE,
+        //     'posHorizontal' => \PhpOffice\PhpWord\Style\Image::POSITION_HORIZONTAL_RIGHT,
+        //     'posVertical'   => \PhpOffice\PhpWord\Style\Image::POSITION_VERTICAL_TOP,
+        //     'marginTop'     => 0,
+        //     'marginLeft'    => 0,
+        //     'marginRight'    => 0,
+        //     ]
+        // );
+
     }
+    
 
 }
 
