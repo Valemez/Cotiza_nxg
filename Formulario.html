@@ -11,10 +11,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- Libreria del mapa -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    <link rel="stylesheet" href="./public/CSS/map.css">
 
 </head>
 
@@ -220,8 +216,8 @@
                     </div>
 
                     <!-- Paso 3: Selección de colaboradores -->
-                     <div class="crs-form-step-3">
-                        <div class="crs-input-group">
+                     <div class="crs-form-step-3"> 
+                        <div class="crs-input-group"> <!-- div para ingresar al html del mapa, no borrar -->
                             <div class="crs-label-wrapper">
                                 <label class="crs-form-label">Ubicación en el mapa:</label>
                                 <div class="help-icon" tabindex="0"
@@ -239,144 +235,8 @@
                                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                                     <circle cx="12" cy="10" r="3"></circle>
                                 </svg>
-                                <p>Abrir Prosman Maps</p>
+                                <a href="./mapa.html">Abrir Prosman MAPS</a>
                             </button>
-                        </div>
-
-                        <!-- Modal para el mapa -->
-                        <div class="crs-modalMapa" id="crs-map-modal">
-                            <div class="crs-modal-header">
-                                <h2>Prosman Maps</h2>
-                                <button class="crs-close-button" id="crs-close-modal">&times;</button>
-                            </div>
-
-                            <!-- Botón para activar modo de colocación de pin -->
-                            <button class="add-pin-btn" id="add-pin-btn" title="Agregar nueva ubicación">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                    <line x1="12" y1="10" x2="12" y2="16"></line>
-                                    <line x1="9" y1="13" x2="15" y2="13"></line>
-                                </svg>
-                            </button>
-
-                            <!-- Tabla de ubicaciones -->
-                            <div class="locations-table" id="locations-table">
-                                <h3>Zonas de trabajo</h3>
-                                <table>
-                                    <thead>
-
-                                        <tr>
-                                            <th>Nombre</th>
-                                            <th>Coordenadas</th>
-                                            <th>Numero de colaboradores</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="locations-list">
-                                        <!-- Las ubicaciones se agregarán aquí dinámicamente -->
-                                    </tbody>
-                                </table>
-                            </div>
-
-                            <!-- Instrucciones -->
-                            <div class="instructions">
-                                Haz clic en el botón "+" para agregar un pin, luego arrástralo a la posición deseada
-                            </div>
-
-                            <div id="mapa"></div>
-                        </div>
-
-                        <!-- Formulario emergente para información del pin -->
-                        <div class="pin-form-modal" id="pin-form-modal">
-                            <div class="pin-form-content">
-                                <h3>Agregar nueva ubicación</h3>
-                                <form id="pin-form">
-                                    <input type="hidden" id="pin-lat">
-                                    <input type="hidden" id="pin-lng">
-
-                                    <div class="crs-input-group" data-title="Nombre del centro de trabajo"
-                                        data-intro="Proporciona el nombre completo del centro de trabajo.">
-
-                                        <div class="crs-label-wrapper">
-                                            <label for="Centro_trabajo" class="crs-form-label">Nombre del centro de
-                                                trabajo:</label>
-                                            <div class="help-icon" tabindex="0"
-                                                aria-label="Ayuda: Ingresa el nombre completo del centro de trabajo.">
-                                                ?
-                                                <span class="tooltip">Ayuda: Ingresa el nombre completo del centro de
-                                                    trabajo.</span>
-                                            </div>
-                                        </div>
-                                        <input type="text" name="Centro_trabajo" id="Centro_trabajo"
-                                            placeholder="Ej. Cedis Maxicali" class="crs-form-input" required>
-                                    </div>
-
-                                    <div class="crs-label-wrapper">
-                                        <label for="Turno_trabajo" class="crs-form-label"> Seleccione el turno de
-                                            trabajo:
-                                        </label>
-                                        <div class="help-icon" tabindex="0"
-                                            aria-label="Ayuda: Selecciona el turno de trabajo requerido, ya sea de 4, 6 u 8 horas.">
-                                            ?
-                                            <span class="tooltip">Ayuda: Selecciona el turno de trabajo requerido, ya
-                                                sea de
-                                                4, 6 u 8 horas.</span>
-                                        </div>
-                                    </div>
-                                    <select name="Turno_trabajo" id="Turno_trabajo" class="crs-form-input" required>
-                                        <option value="8">8 horas</option>
-                                        <option value="6">6 horas</option>
-                                        <option value="4">4 horas</option>
-                                    </select>
-
-                                    <div class="crs-input-group" data-title="Detalles de los colaboradores"
-                                        data-intro="Especifica el número de colabooraodres, así como los roles específicos como supervisores y operarios.">
-                                        <!-- div de COLABORADORES -->
-                                        <!-- FALTAAAAAAAAA  PONER EL ? -->
-                                        <div class="crs-input-flex">
-                                            <!-- Div de operario de maquinario -->
-                                            <div class="crs-input-group">
-                                                <label for="Operario_maquinaria" class="crs-form-label">Número de
-                                                    operario de
-                                                    maquinaria: </label>
-                                                <input type="number" name="Operario_maquinaria" id="Operario_maquinaria"
-                                                    placeholder="Ej. 12" class="crs-form-input" min="1">
-                                            </div>
-                                            <!-- Div de operario de limpieza -->
-                                            <div class="crs-input-group">
-                                                <label for="Operario_limpieza" class="crs-form-label">Número de operario
-                                                    de
-                                                    limpieza: </label>
-                                                <input type="number" name="Operario_limpieza" id="Operario_limpieza"
-                                                    placeholder="Ej. 12" class="crs-form-input" min="1">
-                                            </div>
-                                        </div>
-                                        <div class="crs-input-flex">
-                                            <!-- Div de supervisor -->
-                                            <div class="crs-input-group">
-                                                <label for="supervisor" class="crs-form-label">Número de supervisor:
-                                                </label>
-                                                <input type="number" name="supervisor" id="supervisor"
-                                                    placeholder="Ej. 12" class="crs-form-input" min="1">
-                                            </div>
-                                            <!-- Div de ayudante general-->
-                                            <div class="crs-input-group">
-                                                <label for="ayudante_general" class="crs-form-label">Número de ayudante
-                                                    general:
-                                                </label>
-                                                <input type="number" name="ayudante_general" id="ayudante_general"
-                                                    placeholder="Ej. 12" class="crs-form-input" min="1">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-buttons">
-                                        <button type="button" class="cancel-btn" id="cancel-pin">Cancelar</button>
-                                        <button type="submit" class="save-btn">Guardar ubicación</button>
-                                    </div>
-                                </form>
-                            </div>
                         </div>
                     </div>
 
@@ -822,13 +682,9 @@
     <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
     <script type="module" src="./public/js/script.js"></script>
     <script type="module" src="./public/js/logout.js"></script>
-    <!-- <script src="./resource/js/meet.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/8.3.2/intro.min.js"></script>
     <script type="module" src="./public/js/protect.js"></script>
-    <!-- js del mapa -->
-     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-     <script type="module" src="./public/js/mapa.js"></script>   
+
 </body>
 
 </html>

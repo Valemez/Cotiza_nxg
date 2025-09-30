@@ -1,11 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const mapButton = document.getElementById('crs-map-button');
-    const mapModal = document.getElementById('crs-map-modal');
-    const closeModal = document.getElementById('crs-close-modal');
     const addPinBtn = document.getElementById('add-pin-btn');
     const pinFormModal = document.getElementById('pin-form-modal');
     const pinForm = document.getElementById('pin-form');
     const cancelPinBtn = document.getElementById('cancel-pin');
+    const adicionalPinBtn = document.getElementById('adicional-pin');
     const locationsList = document.getElementById('locations-list');
     
     let map = null;
@@ -13,32 +11,14 @@ document.addEventListener('DOMContentLoaded', function () {
     let markers = [];
     let currentMarker = null;
     let markerCount = 0;
+    
+    // Inicializa el mapa inmediatamente
+    initMap();
 
-    // Abrir modal del mapa
-    mapButton.addEventListener('click', function () {
-        mapModal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-
-        // Inicializa el mapa si no se ha hecho antes
-        if (!map) {
-            // Retraso para que el modal se muestre completamente
-            setTimeout(initMap, 100);
-        }
-    });
-
-    // Cerrar modal
-    closeModal.addEventListener('click', function () {
-        mapModal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-        disableAddPinMode();
-    });
-
-    // Cerrar modal al hacer clic fuera del contenido
-    mapModal.addEventListener('click', function (e) {
-        if (e.target === mapModal) {
-            mapModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-            disableAddPinMode();
+    // Configurar el mapa para ocupar toda la ventana disponible
+    window.addEventListener('resize', function() {
+        if (map) {
+            map.invalidateSize();
         }
     });
 
@@ -47,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
         addPinMode = !addPinMode;
         
         if (addPinMode) {
-            addPinBtn.style.backgroundColor = '#2563eb';
+            addPinBtn.style.backgroundColor = '#25ebc0ff';
             addPinBtn.style.color = 'white';
             if (map) map.getContainer().style.cursor = 'crosshair';
         } else {
@@ -70,17 +50,24 @@ document.addEventListener('DOMContentLoaded', function () {
     pinForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        const name = document.getElementById('pin-name').value;
-        const description = document.getElementById('pin-description').value;
-        const type = document.getElementById('pin-type').value;
+        const Centro_trabajo = document.getElementById('Centro_trabajo').value;
+        const Turno_trabajo = document.getElementById('Turno_trabajo').value;
+        const operario_maquinaria = document.getElementById('operario_maquinaria').value;
+        const operario_limpieza = document.getElementById('operario_limpieza').value;
+        const supervisor = document.getElementById('supervisor').value;
+        const ayudante_general = document.getElementById('ayudante_general').value;
+        
         const lat = document.getElementById('pin-lat').value;
         const lng = document.getElementById('pin-lng').value;
         
         // Guardar la ubicación en el mapa
         saveLocation({
-            name,
-            description,
-            type,
+            Centro_trabajo,
+            Turno_trabajo,
+            operario_maquinaria,
+            operario_limpieza,
+            supervisor,
+            ayudante_general,
             lat,
             lng
         });

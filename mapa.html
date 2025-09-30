@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prosman MAPS</title>
+    <link rel="stylesheet" href="public/CSS/map.css">
+    <!-- Libreria del mapa -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+        <!-- Libreria del iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    </head>
+
+<body>
+    <Nav>
+        <button class="crs-map-button">
+            <a href="./Formulario.html">Regresar al Formulario</a>
+        </button>
+    </Nav>
+
+    <!-- Contenedor del mapa -->
+    <div id="mapa"></div>
+
+    <!-- Botón para agregar pin -->
+    <button id="add-pin-btn" class="add-pin-btn">
+        <i style="font-size: xx-large; color: aqua;" class="fa-solid fa-location-dot"></i>
+    </button>
+
+    <!-- Tabla de ubicaciones -->
+    <div class="locations-table" id="locations-table">
+        <h3>Zonas de trabajo</h3>
+        <table>
+            <thead>
+
+                <tr>
+                    <th>Nombre</th>
+                    <th>Coordenadas</th>
+                    <th>Numero de colaboradores</th>
+                </tr>
+            </thead>
+            <tbody id="locations-list">
+                <!-- Las ubicaciones se agregarán aquí dinámicamente -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Instrucciones -->
+    <div class="instructions">
+        Haz clic en el botón "+" para agregar un pin, luego arrástralo a la posición deseada
+    </div>
+
+    <!-- Formulario para agregar pin -->
+    <div class="pin-form-modal" id="pin-form-modal">
+        <div class="pin-form-content">
+            <h3>Agregar nueva ubicación</h3>
+            <form id="pin-form">
+                <input type="hidden" id="pin-lat">
+                <input type="hidden" id="pin-lng">
+
+                <div class="crs-input-group" data-title="Nombre del centro de trabajo"
+                    data-intro="Proporciona el nombre completo del centro de trabajo.">
+
+                    <div class="crs-label-wrapper">
+                        <label for="Centro_trabajo" class="crs-form-label">Nombre del centro de
+                            trabajo:</label>
+                        <div class="help-icon" tabindex="0"
+                            aria-label="Ayuda: Ingresa el nombre completo del centro de trabajo.">
+                            ?
+                            <span class="tooltip">Ayuda: Ingresa el nombre completo del centro de
+                                trabajo.</span>
+                        </div>
+                    </div>
+                    <input type="text" name="Centro_trabajo" id="Centro_trabajo" placeholder="Ej. Cedis Maxicali"
+                        class="crs-form-input">
+                </div>
+
+                <div class="crs-label-wrapper">
+                    <label for="Turno_trabajo" class="crs-form-label"> Seleccione el turno de
+                        trabajo:
+                    </label>
+                    <div class="help-icon" tabindex="0"
+                        aria-label="Ayuda: Selecciona el turno de trabajo requerido, ya sea de 4, 6 u 8 horas.">
+                        ?
+                        <span class="tooltip">Ayuda: Selecciona el turno de trabajo requerido, ya
+                            sea de
+                            4, 6 u 8 horas.</span>
+                    </div>
+                </div>
+                <select name="Turno_trabajo" id="Turno_trabajo" class="crs-form-input" required>
+                    <option value="8">8 horas</option>
+                    <option value="6">6 horas</option>
+                    <option value="4">4 horas</option>
+                </select>
+
+                <div class="crs-input-group" data-title="Detalles de los colaboradores"
+                    data-intro="Especifica el número de colabooraodres, así como los roles específicos como supervisores y operarios.">
+                    <!-- div de COLABORADORES -->
+                    <!-- FALTAAAAAAAAA  PONER EL ? -->
+                    <div class="crs-input-flex">
+                        <!-- Div de operario de maquinario -->
+                        <div class="crs-input-group">
+                            <label for="Operario_maquinaria" class="crs-form-label">Número de
+                                operario de
+                                maquinaria: </label>
+                            <input type="number" name="operario_maquinaria" id="operario_maquinaria"
+                                placeholder="Ej. 12" class="crs-form-input" min="1">
+                        </div>
+                        <!-- Div de operario de limpieza -->
+                        <div class="crs-input-group">
+                            <label for="Operario_limpieza" class="crs-form-label">Número de operario
+                                de
+                                limpieza: </label>
+                            <input type="number" name="operario_limpieza" id="operario_limpieza" placeholder="Ej. 12"
+                                class="crs-form-input" min="1">
+                        </div>
+                    </div>
+                    <div class="crs-input-flex">
+                        <!-- Div de supervisor -->
+                        <div class="crs-input-group">
+                            <label for="supervisor" class="crs-form-label">Número de supervisor:
+                            </label>
+                            <input type="number" name="supervisor" id="supervisor" placeholder="Ej. 12"
+                                class="crs-form-input" min="1">
+                        </div>
+                        <!-- Div de ayudante general-->
+                        <div class="crs-input-group">
+                            <label for="ayudante_general" class="crs-form-label">Número de ayudante
+                                general:
+                            </label>
+                            <input type="number" name="ayudante_general" id="ayudante_general" placeholder="Ej. 12"
+                                class="crs-form-input" min="1">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-buttons">
+                    <button type="button" class="adicional-btn" id="adicional-pin">Agrega más</button>
+                    <button type="button" class="cancel-btn" id="cancel-pin">Cancelar</button>
+                    <button type="button" class="save-btn">Guardar ubicación</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script type="module" src="./public/JS/mapa.js"></script>
+</body>
+
+</html>

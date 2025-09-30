@@ -203,6 +203,7 @@ body {
     margin-bottom: 18px;
 }
 
+
 .crs-input-flex {
     display: flex;
     gap: 15px;
@@ -360,6 +361,26 @@ select.crs-form-input {
 
 .crs-form-content::-webkit-scrollbar-thumb:hover {
     background: #a8a8a8;
+}
+
+/* Boton para abrir el mapa */
+
+.crs-map-button{
+    width: 100%;
+    background: cadetblue;
+    text-align: center;
+    border-radius: 50px;
+    height: 4.6vh;
+
+    a{
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: ;
+        text-align: center;
+        
+    }
 }
 
 /* RESPONSIVE DESIGN */
