@@ -11,70 +11,12 @@ introJs.tour().onbeforeexit(function () {
     //return confirm("ANTES DE CERRAR DEBES TERMINAR EL RECORRIDO GUIADO, ¿DESEAS CONTINUAR?");
 }).start()
 
-// Datos de centros de trabajo por estado
-const centrosTrabajo = {
-    Aguascalientes: ["Aguascalientes Centro", "Aguascalientes Norte", "Aguascalientes Sur"],
-    Baja_California: ["Tijuana", "Mexicali", "Ensenada"],
-    Baja_California_Sur: ["La Paz", "Cabo San Lucas", "San José del Cabo"],
-    Campeche: ["Campeche Centro", "Ciudad del Carmen", "Champotón"],
-    Ciudad_de_México: ["Alcaldía Cuauhtémoc", "Alcaldía Benito Juárez", "Alcaldía Miguel Hidalgo"],
-    Coahuila: ["Saltillo", "Torreón", "Monclova"],
-    Colima: ["Colima", "Manzanillo", "Tecomán"],
-    Chiapas: ["Tuxtla Gutiérrez", "Tapachula", "San Cristóbal de las Casas"],
-    Chihuahua: ["Chihuahua", "Juárez", "Cuauhtémoc"],
-    Durango: ["Durango", "Gómez Palacio", "Lerdo"],
-    Estado_de_México: ["Toluca", "Ecatepec", "Nezahualcóyotl"],
-    Guanajuato: ["León", "Irapuato", "Celaya"],
-    Guerrero: ["Acapulco", "Chilpancingo", "Iguala"],
-    Hidalgo: ["Pachuca", "Tulancingo", "Tizayuca"],
-    Jalisco: ["Guadalajara", "Zapopan", "Tlaquepaque"],
-    Michoacán: ["Morelia", "Uruapan", "Zamora"],
-    Morelos: ["Cuernavaca", "Jiutepec", "Cuautla"],
-    Nayarit: ["Tepic", "Xalisco", "Santiago Ixcuintla"],
-    Nuevo_León: ["Monterrey", "San Pedro Garza García", "Guadalupe"],
-    Oaxaca: ["Oaxaca", "Salina Cruz", "Juchitán"],
-    Puebla: ["Puebla", "Tehuacán", "San Martín Texmelucan"],
-    Querétaro: ["Querétaro", "San Juan del Río", "Corregidora"],
-    Quintana_Roo: ["Cancún", "Chetumal", "Playa del Carmen"],
-    San_Luis_Potosí: ["San Luis Potosí", "Soledad", "Ciudad Valles"],
-    Sinaloa: ["Culiacán", "Mazatlán", "Los Mochis"],
-    Sonora: ["Hermosillo", "Ciudad Obregón", "Nogales"],
-    Tabasco: ["Villahermosa", "Cárdenas", "Comalcalco"],
-    Tamaulipas: ["Reynosa", "Matamoros", "Nuevo Laredo"],
-    Tlaxcala: ["Tlaxcala", "Apizaco", "Chiautempan"],
-    Veracruz: ["Veracruz", "Xalapa", "Coatzacoalcos"],
-    Yucatán: ["Mérida", "Valladolid", "Progreso"],
-    Zacatecas: ["Zacatecas", "Fresnillo", "Guadalupe"]
-};
-
-// Función para mostrar los centros de trabajo según el estado seleccionado
-function mostrarEstados() {
-    const estadoSelect = document.getElementById('Estado_republica');
-    const centroSelect = document.getElementById('Centro_trabajo');
-    const estado = estadoSelect.value.replace(/ /g, '_'); // Reemplazar espacios por guiones bajos
-
-    // Limpiar opciones actuales
-    centroSelect.innerHTML = '<option value="">--- Seleccione centro de trabajo ---</option>';
-
-    // Agregar nuevas opciones según el estado seleccionado
-    if (estado && centrosTrabajo[estado]) {
-        centrosTrabajo[estado].forEach(centro => {
-            const option = document.createElement('option');
-            option.value = centro;
-            option.textContent = centro;
-            centroSelect.appendChild(option);
-        });
-    }
-}
 
 // Mostrar/ocultar materiales según selección
-document.getElementById('Materiales').addEventListener('change', function () {
-    const materialesContainer = document.getElementById('materiales-container');
-    materialesContainer.style.display = this.value === 'con_materiales' ? 'block' : 'none';
-});
-
-// Agregar event listener para el cambio de estado
-document.getElementById('Estado_republica')?.addEventListener('change', mostrarEstados);
+// document.getElementById('Materiales').addEventListener('change', function () {
+//     const materialesContainer = document.getElementById('materiales-container');
+//     materialesContainer.style.display = this.value === 'con_materiales' ? 'block' : 'none';
+// });
 
 document.addEventListener('DOMContentLoaded', function () {
     // elementos
@@ -82,16 +24,14 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelector('.crs-step-menu1'),
         document.querySelector('.crs-step-menu2'),
         document.querySelector('.crs-step-menu3'),
-        document.querySelector('.crs-step-menu4'),
-        document.querySelector('.crs-step-menu5')
+        document.querySelector('.crs-step-menu4')
     ];
 
     const steps = [
         document.querySelector('.crs-form-step-1'),
         document.querySelector('.crs-form-step-2'),
         document.querySelector('.crs-form-step-3'),
-        document.querySelector('.crs-form-step-4'),
-        document.querySelector('.crs-form-step-5')
+        document.querySelector('.crs-form-step-4')
     ];
 
     const nextBtn = document.getElementById('next-btn');
@@ -107,15 +47,14 @@ document.addEventListener('DOMContentLoaded', function () {
     // funcion del botón siguiente
     nextBtn.addEventListener('click', function () {
         if (validateStep(currentStep)) {
-            if (currentStep === 4) {
+            if (currentStep === 3) {
                 updateSummary();
             }
 
-            if (currentStep < 4) {
+            if (currentStep < 3) {
                 currentStep++;
                 updateStepDisplay();
             } else {
-                // form.submit();
                 sendForm();
             }
         }
@@ -191,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // funcion del boton
         backBtn.style.display = currentStep > 0 ? 'block' : 'none';
 
-        if (currentStep === 4) {
+        if (currentStep === 3) {
             nextBtn.textContent = 'Enviar';
         } else {
             nextBtn.textContent = 'Siguiente';
@@ -353,7 +292,7 @@ function validateStep(step) {
             break;
 
         case 2: // Validación del Paso 3: Detalles de colaboradores (¡AQUÍ ESTÁ!)
-            requiredFields = ['numero_colaborador', 'Estado_republica', 'Centro_trabajo', 'Turno_trabajo'];
+            // requiredFields = ['numero_colaborador', 'Estado_republica', 'Centro_trabajo', 'Turno_trabajo'];
             break;
             
         case 3: // Validación del Paso 4: Equipos y materiales
