@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // funcion del botón siguiente
     nextBtn.addEventListener('click', function () {
         if (validateStep(currentStep)) {
-            if (currentStep === 3) {
+            if (currentStep === 2) {
                 updateSummary();
             }
 
