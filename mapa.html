@@ -58,125 +58,63 @@
     <div class="pin-form-modal" id="pin-form-modal">
         <div class="pin-form-content">
             <h3>Datos de cotización</h3>
-            <!--Pasos -->
-            <div class="pin-form-steps">
-                <div class="pin-form-step active" data-step="1">
-                    <span>1</span>
-                    <div>Datos básicos</div>
-                </div>
-                <div class="pin-form-step" data-step="2">
-                    <span>2</span>
-                    <div>Items</div>
-                </div>
-            </div>
             <form id="pin-form" action="">
                 <input type="hidden" id="pin-lat">
                 <input type="hidden" id="pin-lng">
-                <!-- Paso 1. colaboradores -->
-                <div class="step" id="step-1">
-                    <h3>Agregar centro de trabajo</h3>
-                    <div class="crs-input-group" data-title="Nombre del centro de trabajo"
-                        data-intro="Proporciona el nombre completo del centro de trabajo.">
-
-                        <div class="crs-label-wrapper">
-                            <label for="Centro_trabajo" class="crs-form-label">Nombre del centro de
-                                trabajo:</label>
-                            <div class="help-icon" tabindex="0"
-                                aria-label="Ayuda: Ingresa el nombre completo del centro de trabajo.">
-                                ?
-                                <span class="tooltip">Ayuda: Ingresa el nombre completo del centro de
-                                    trabajo.</span>
-                            </div>
-                        </div>
-                        <input type="text" name="Centro_trabajo" id="Centro_trabajo" placeholder="Ej. Cedis Maxicali"
-                            class="crs-form-input">
-                    </div>
-
-                    <div class="crs-label-wrapper">
-                        <label for="Turno_trabajo" class="crs-form-label"> Seleccione el turno de
-                            trabajo:
-                        </label>
-                        <div class="help-icon" tabindex="0"
-                            aria-label="Ayuda: Selecciona el turno de trabajo requerido, ya sea de 4, 6 u 8 horas.">
-                            ?
-                            <span class="tooltip">Ayuda: Selecciona el turno de trabajo requerido, ya
-                                sea de
-                                4, 6 u 8 horas.</span>
-                        </div>
-                    </div>
-                    <select name="Turno_trabajo" id="Turno_trabajo" class="crs-form-input" required>
-                        <option value="8">8 horas</option>
-                        <option value="6">6 horas</option>
-                        <option value="4">4 horas</option>
-                    </select>
-
-                    <div class="crs-input-group" data-title="Detalles de los colaboradores"
-                        data-intro="Especifica el número de colabooraodres, así como los roles específicos como supervisores y operarios.">
-                        <!-- div de COLABORADORES -->
-                        <!-- FALTAAAAAAAAA  PONER EL ? -->
-                        <div class="crs-input-flex">
-                            <!-- Div de operario de maquinario -->
-                            <div class="crs-input-group">
-                                <label for="Operario_maquinaria" class="crs-form-label">Número de Ope. Maquinaria:
-                                </label>
-                                <div class="help-icon" tabindex="0"
-                                    aria-label="Ayuda: Selecciona el numero de Operario de Maquinaria.">?
-                                    <span class="tooltip">Ayuda: Selecciona el numero de Operario de Maquinaria.</span>
-                                </div>
-                                <input type="number" name="operario_maquinaria" id="operario_maquinaria"
-                                    placeholder="Ej. 12" class="crs-form-input" min="1">
-                            </div>
-                            <!-- Div de operario de limpieza -->
-                            <div class="crs-input-group">
-                                <label for="Operario_limpieza" class="crs-form-label">Número de operario
-                                    de
-                                    limpieza: </label>
-                                <input type="number" name="operario_limpieza" id="operario_limpieza"
-                                    placeholder="Ej. 12" class="crs-form-input" min="1">
-                            </div>
-                        </div>
-                        <div class="crs-input-flex">
-                            <!-- Div de supervisor -->
-                            <div class="crs-input-group">
-                                <label for="supervisor" class="crs-form-label">Número de supervisor:
-                                </label>
-                                <input type="number" name="supervisor" id="supervisor" placeholder="Ej. 12"
-                                    class="crs-form-input" min="1">
-                            </div>
-                            <!-- Div de ayudante general-->
-                            <div class="crs-input-group">
-                                <label for="ayudante_general" class="crs-form-label">Número de ayudante
-                                    general:
-                                </label>
-                                <input type="number" name="ayudante_general" id="ayudante_general" placeholder="Ej. 12"
-                                    class="crs-form-input" min="1">
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <button type="button" class="adicional-btn" id="adicional-pin" style="display: none;">Agrega
-                            más</button>
-                    </div>
+                <!-- centro de trabajo -->
+                <div class="form-group">
+                    <label for="centro-trabajo">Centro de Trabajo:</label>
+                    <input type="text" id="centro-trabajo" placeholder="Ingrese el centro de trabajo">
                 </div>
-                <!-- Paso 2. items-->
-                <div class="step" id="step-2">
-                    <div class="crs-input-group">
-                        <label class="crs-form-label">Selecciona los ITEMS requeridos:</label>
-                        <!-- Selección de uniforme -->
+                <!-- nuemero de colaboradores -->
+                <div class="form-group">
+                    <label for="num-colaboradores">Número de Colaboradores:</label>
+                    <input type="number" id="num-colaboradores" min="1" value="1">
+                </div>
+                <!-- iniciar -->
+                <button id="btn-iniciar">Iniciar</button>
+                <!-- restante de colaboradores -->
+                <div id="seccion-colaboradores" class="hidden">
+                    <div class="collaborator-count">
+                        Colaboradores restantes: <span id="contador-colaboradores">0</span>
+                    </div>
 
-                        <div class="crs-input-group">
-                            <div class="crs-label-wrapper">
-                                <label for="uniforme" class="crs-form-label"
-                                    style="font-size: 20px; font-weight: bold;">Uniforme</label>
-                                <div class="help-icon" tabindex="0"
-                                    aria-label="Ayuda: Selecciona los tipos de uniforme que se requieren para los colaboradores.">
-                                    ?
-                                    <span class="tooltip">Ayuda: Selecciona los tipos de uniforme que se
-                                        requieren
-                                        para los colaboradores.</span>
-                                </div>
-                            </div>
-                            <div>
+                    <div id="formulario-colaborador" class="collaborator-form">
+                        <h3>Datos del Colaborador</h3>
+                        <!-- tipo de turno -->
+                        <div class="section">
+                            <label for="tipo-turno">Tipo de Turno:</label>
+                            <select id="tipo-turno">
+                                <option value="">Seleccione un turno</option>
+                                <option value="ocho">8 horas</option>
+                                <option value="seis">6 horas</option>
+                                <option value="Cuatro">4 horas</option>
+                                <option value="tiempo-completo">Tiempo completo</option>
+                            </select>
+                        </div>
+                        <!-- tipo de colaborador -->
+                        <div class="section">
+                            <label for="tipo-colaborador">Tipo de Colaborador:</label>
+                            <select id="tipo-colaborador">
+                                <option value="">Seleccione un tipo</option>
+                                <option value="operario_maquinaria">Operario de maquinaria</option>
+                                <option value="operario_limpieza">Operario de limpieza</option>
+                                <option value="supervisor">Supervisor</option>
+                                <option value="Ayudante_general">Ayudante general</option>
+                            </select>
+                        </div>
+                        <!-- Uniforme -->
+                        <div class="section">
+                            <label>Uniforme:</label>
+                            <!-- <div class="help-icon" tabindex="0"
+                                aria-label="Ayuda: Selecciona los tipos de uniforme que se requieren para los colaboradores.">
+                                ?
+                                <span class="tooltip">Ayuda: Selecciona los tipos de uniforme que se
+                                    requieren
+                                    para los colaboradores.</span>
+                            </div> -->
+                            <div class="checkbox-group">
+                                <!-- Uniforme superior -->
                                 <label for="uniforme_superior" class="crs-form-label">Parte superior</label>
                                 <label><input type="checkbox" checked id="" value="Bata de la casaca"
                                         name="uniforme_superior[]" />Bata de la casaca
@@ -198,9 +136,7 @@
                                     <button type="button" class="ver-foto-btn" onclick="verFoto('poncho_lluvia')">Ver
                                         foto</button>
                                 </label><br />
-                            </div>
-                            <br>
-                            <div>
+                                <!-- Uniforme inderior -->
                                 <label for="uniforme_inferior" class="crs-form-label">Parte
                                     inferior</label>
                                 <label><input type="checkbox" checked id="" value="Pantalon de la bata"
@@ -219,112 +155,101 @@
                                     <button type="button" class="ver-foto-btn" onclick="verFoto('Pantalon_caqui')">Ver
                                         foto</button>
                                 </label><br />
+
+                                <div class="crs-input-group">
+                                    dotaciones (Anuales):</label>
+                                    <input type="number" name="num_dotaciones_anual_uniforme"
+                                        id="num_dotaciones_anual_uniforme" placeholder="Ej. 12" class="crs-form-input"
+                                        min="1">
+                                </div>
                             </div>
                         </div>
-
-                        <div class="crs-input-group">
-                            dotaciones (Anuales):</label>
-                            <input type="number" name="num_dotaciones_anual_uniforme" id="num_dotaciones_anual_uniforme"
-                                placeholder="Ej. 12" class="crs-form-input" min="1">
-                        </div>
-
-                        <!-- SELECCION DE EPP -->
-                        <div class="crs-input-flex">
-                            <div class="crs-input-group">
-                                <div class="crs-label-wrapper">
-                                    <label for="epp" class="crs-form-label"
-                                        style="font-size: 20px; font-weight: bold;">EPP (Equipo de Protección
-                                        Personal)</label>
-                                    <div class="help-icon" tabindex="0"
-                                        aria-label="Ayuda: Selecciona los tipos de equipo de protección personal (EPP) que se requieren para los colaboradores.">
-                                        ?
-                                        <span class="tooltip">Ayuda: Selecciona los tipos de equipo de protección
-                                            personal (EPP) que se requieren para los colaboradores.</span>
-                                    </div>
-                                </div>
-                                <div>
-                                    <label for="epp_cabeza" class="crs-form-label">Cabeza</label>
-                                    <label><input type="checkbox" id="" value="Cascos" name="epp_cabeza[]" />Cascos
-                                        <button type="button" class="ver-foto-btn" onclick="verFoto('cascos')">Ver
-                                            foto</button>
-                                    </label><br />
-                                    <label><input type="checkbox" id="" value="Lentes de protección"
-                                            name="epp_cabeza[]" />Lentes de
-                                        protección
-                                        <button type="button" class="ver-foto-btn" onclick="verFoto('Lentes')">Ver
-                                            foto</button>
-                                    </label><br />
-                                    <label><input type="checkbox" id="" value="Tapones" name="epp_cabeza[]" />Tapones
-                                        <button type="button" class="ver-foto-btn" onclick="verFoto('tapones')">Ver
-                                            foto</button>
-                                    </label><br />
-                                    <label><input type="checkbox" id="" value="Cubrebocas"
-                                            name="epp_cabeza[]" />Cubrebocas
-                                        <button type="button" class="ver-foto-btn" onclick="verFoto('cubrebocas')">Ver
-                                            foto</button>
-                                    </label><br />
-                                </div>
-                                <br>
+                        <!-- Equipo de porteccion EPP -->
+                        <div class="section">
+                            <label>Equipo de Protección:</label>
+                            <div class="help-icon" tabindex="0"
+                                aria-label="Ayuda: Selecciona los tipos de equipo de protección personal (EPP) que se requieren para los colaboradores.">
+                                ?
+                                <span class="tooltip">Ayuda: Selecciona los tipos de equipo de
+                                    protección
+                                    personal (EPP) que se requieren para los colaboradores.</span>
+                            </div>
+                            <div class="checkbox-group">
+                                <!-- EQUIPO DE PROTECCIÓN -->
+                                <label for="epp_cabeza" class="crs-form-label">Cabeza</label>
+                                <label><input type="checkbox" id="" value="Cascos" name="epp_cabeza[]" />Cascos
+                                    <button type="button" class="ver-foto-btn" onclick="verFoto('cascos')">Ver
+                                        foto</button>
+                                </label><br />
+                                <label><input type="checkbox" id="" value="Lentes de protección"
+                                        name="epp_cabeza[]" />Lentes de
+                                    protección
+                                    <button type="button" class="ver-foto-btn" onclick="verFoto('Lentes')">Ver
+                                        foto</button>
+                                </label><br />
+                                <label><input type="checkbox" id="" value="Tapones" name="epp_cabeza[]" />Tapones
+                                    <button type="button" class="ver-foto-btn" onclick="verFoto('tapones')">Ver
+                                        foto</button>
+                                </label><br />
+                                <label><input type="checkbox" id="" value="Cubrebocas" name="epp_cabeza[]" />Cubrebocas
+                                    <button type="button" class="ver-foto-btn" onclick="verFoto('cubrebocas')">Ver
+                                        foto</button>
+                                </label><br />
+                                <!-- Equipo de proteccion cuerpo -->
                                 <div>
                                     <label for="epp_cuerpo" class="crs-form-label">Cuerpo</label>
                                     <label><input type="checkbox" id="" value="Chaleco" name="epp_cuerpo[]" />Chaleco
                                         <button type="button" class="ver-foto-btn" onclick="verFoto('Chaleco')">Ver
                                             foto</button>
                                     </label><br />
-
                                 </div>
-                            </div>
-                            <div class="crs-input-group">
-                                <div class="crs-label-wrapper">
-                                    <label for="num_dotaciones_anual_epp" class="crs-form-label"
-                                        style="font-size: 20px; font-weight: bold;">Número de dotaciones
-                                        (Anuales)</label>
-                                    <div class="help-icon" tabindex="0"
-                                        aria-label="Ayuda: Indica el número de dotaciones anuales requeridas para el equipo de protección personal (EPP).">
-                                        ?
-                                        <span class="tooltip">Ayuda: Indica el número de dotaciones anuales
-                                            requeridas para el equipo de protección personal (EPP).</span>
+                                <!-- Numero de dotaciones anuales -->
+                                <div class="crs-input-group">
+                                    <div class="crs-label-wrapper">
+                                        <label for="num_dotaciones_anual_epp" class="crs-form-label"
+                                            style="font-size: 20px; font-weight: bold;">Número de dotaciones
+                                            (Anuales)</label>
+                                        <div class="help-icon" tabindex="0"
+                                            aria-label="Ayuda: Indica el número de dotaciones anuales requeridas para el equipo de protección personal (EPP).">
+                                            ?
+                                            <span class="tooltip">Ayuda: Indica el número de dotaciones anuales
+                                                requeridas para el equipo de protección personal (EPP).</span>
+                                        </div>
                                     </div>
+                                    <input type="number" name="num_dotaciones_anual_epp" id="num_dotaciones_anual_epp"
+                                        placeholder="Ej. 12" class="crs-form-input" min="1">
                                 </div>
-                                <input type="number" name="num_dotaciones_anual_epp" id="num_dotaciones_anual_epp"
-                                    placeholder="Ej. 12" class="crs-form-input" min="1">
                             </div>
                         </div>
-                        <!-- selección de maquinaria -->
-                        <div class="crs-input-flex">
-                            <div class="crs-input-group">
-                                <div class="crs-label-wrapper">
-                                    <label for="maquinaria" class="crs-form-label"
-                                        style="font-size: 20px; font-weight: bold;"> Maquinaria</label>
-                                    <div class="help-icon" tabindex="0"
-                                        aria-label="Ayuda: Selecciona los tipos de maquinaria que se requieren para el servicio.">
-                                        ?
-                                        <span class="tooltip">Ayuda: Selecciona los tipos de maquinaria que se
-                                            requieren para el servicio.</span>
-                                    </div>
-                                </div>
-                                <div>
-                                    <label for="maquinaria" class="crs-form-label">Selecciona la
-                                        maquinaria que
-                                        requiera:
-                                    </label>
-                                    <label><input type="checkbox" id="" value="Fregadoras_de_piso"
-                                            name="maquinaria[]" />Fregadoras
-                                        de
-                                        piso
-                                        <button type="button" class="ver-foto-btn" onclick="verFoto('fregadora')">Ver
-                                            foto</button>
-                                    </label><br />
-                                    <label><input type="checkbox" id="" value="Pulidora" name="maquinaria[]" />Pulidora
-                                        <button type="button" class="ver-foto-btn" onclick="verFoto('pulidora')">Ver
-                                            foto</button>
-                                    </label><br />
-                                    <label><input type="checkbox" id="" value="Barredora"
-                                            name="maquinaria[]" />Barredora
-                                        <button type="button" class="ver-foto-btn" onclick="verFoto('barredora')">Ver
-                                            foto</button>
-                                    </label><br />
-                                </div>
+                        <!-- Maquinaria -->
+                        <div class="section">
+                            <label>Maquinaria:</label>
+                            <div class="help-icon" tabindex="0"
+                                aria-label="Ayuda: Selecciona los tipos de maquinaria que se requieren para el servicio.">
+                                ?
+                                <span class="tooltip">Ayuda: Selecciona los tipos de maquinaria que se
+                                    requieren para el servicio.</span>
+                            </div>
+                            <div class="checkbox-group">
+                                <label for="maquinaria" class="crs-form-label">Selecciona la
+                                    maquinaria que
+                                    requiera:
+                                </label>
+                                <label><input type="checkbox" id="" value="Fregadoras_de_piso"
+                                        name="maquinaria[]" />Fregadoras
+                                    de
+                                    piso
+                                    <button type="button" class="ver-foto-btn" onclick="verFoto('fregadora')">Ver
+                                        foto</button>
+                                </label><br />
+                                <label><input type="checkbox" id="" value="Pulidora" name="maquinaria[]" />Pulidora
+                                    <button type="button" class="ver-foto-btn" onclick="verFoto('pulidora')">Ver
+                                        foto</button>
+                                </label><br />
+                                <label><input type="checkbox" id="" value="Barredora" name="maquinaria[]" />Barredora
+                                    <button type="button" class="ver-foto-btn" onclick="verFoto('barredora')">Ver
+                                        foto</button>
+                                </label><br />
                             </div>
                             <div class="crs-input-group">
                                 <div class="crs-label-wrapper">
@@ -343,22 +268,10 @@
                                     min="1">
                             </div>
                         </div>
-                        <!-- Seleccion de Materiales -->
-                        <div class="crs-input-flex">
-                            <div class="crs-input-group">
-                                <div>
-                                    <div class="crs-label-wrapper">
-                                        <label for="Materiales" class="crs-form-label"
-                                            style="font-size: 20px; font-weight: bold;">Materiales</label>
-                                        <div class="help-icon" tabindex="0"
-                                            aria-label="Ayuda: Selecciona los tipos de materiales que se requieren para el servicio.">
-                                            ?
-                                            <span class="tooltip">Ayuda: Selecciona los tipos de materiales que se
-                                                requieren para el servicio.</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Selección de materiales -->
+                        <!-- Materiales -->
+                        <div class="section">
+                            <label>Materiales:</label>
+                            <div class="checkbox-group">
                                 <div class="crs-input-group">
                                     <label for="Materiales" class="crs-form-label">Seleccione si
                                         requiere
@@ -526,7 +439,8 @@
                                     </div>
                                     <!-- tiempo de entrega de dotaciones anuales -->
                                     <div class="crs-input-group">
-                                        <label for="fecha_entrega_mobilario" class="crs-form-label">Seleccione la
+                                        <label for="fecha_entrega_mobilario" class="crs-form-label">Seleccione
+                                            la
                                             fecha de entrega que requiere.</label>
                                         <select name="fecha_entrega_mobilario" id="fecha_entrega_mobilario"
                                             class="crs-form-input">
@@ -537,15 +451,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="form-buttons">
-                    <button type="button" class="prev-step" id="prev-step" style="display: none;">Anterior</button>
-                    <button type="button" class="cancel-btn" id="cancel-pin">Cancelar</button>
-                    <button type="button" class="next-step" id="next-step">Siguiente</button>
-                    <button type="button" class="save-btn" id="save-pin" style="display: none;">Guardar
-                        ubicación</button>
 
+                        <button id="btn-registrar">Registrar Colaborador</button>
+                    </div>
                 </div>
             </form>
         </div>
