@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="public/CSS/map.css">
     <link rel="stylesheet" href="public/CSS/styles.css">
     <link rel="stylesheet" href="public/CSS/map-steps.css">
+    <link rel="stylesheet" href="public/CSS/map-form.css">
     <!-- Libreria del mapa -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
@@ -61,38 +62,37 @@
             <form id="pin-form" action="">
                 <input type="hidden" id="pin-lat">
                 <input type="hidden" id="pin-lng">
-                <!-- centro de trabajo -->
+                <!-- Centro de trabajo -->
                 <div class="form-group">
                     <label for="centro-trabajo">Centro de Trabajo:</label>
                     <input type="text" id="centro-trabajo" placeholder="Ingrese el centro de trabajo">
                 </div>
-                <!-- nuemero de colaboradores -->
+                <!-- Número de colaboradores -->
                 <div class="form-group">
                     <label for="num-colaboradores">Número de Colaboradores:</label>
                     <input type="number" id="num-colaboradores" min="1" value="1">
                 </div>
-                <!-- iniciar -->
-                <button id="btn-iniciar">Iniciar</button>
-                <!-- restante de colaboradores -->
+                <!-- Botón iniciar -->
+                <button type="button" id="btn-iniciar">Iniciar</button>
+                <!-- Sección colaboradores -->
                 <div id="seccion-colaboradores" class="hidden">
                     <div class="collaborator-count">
                         Colaboradores restantes: <span id="contador-colaboradores">0</span>
                     </div>
-
                     <div id="formulario-colaborador" class="collaborator-form">
                         <h3>Datos del Colaborador</h3>
-                        <!-- tipo de turno -->
+                        <!-- Tipo de turno -->
                         <div class="section">
                             <label for="tipo-turno">Tipo de Turno:</label>
                             <select id="tipo-turno">
                                 <option value="">Seleccione un turno</option>
                                 <option value="ocho">8 horas</option>
                                 <option value="seis">6 horas</option>
-                                <option value="Cuatro">4 horas</option>
+                                <option value="cuatro">4 horas</option>
                                 <option value="tiempo-completo">Tiempo completo</option>
                             </select>
                         </div>
-                        <!-- tipo de colaborador -->
+                        <!-- Tipo de colaborador -->
                         <div class="section">
                             <label for="tipo-colaborador">Tipo de Colaborador:</label>
                             <select id="tipo-colaborador">
@@ -100,20 +100,13 @@
                                 <option value="operario_maquinaria">Operario de maquinaria</option>
                                 <option value="operario_limpieza">Operario de limpieza</option>
                                 <option value="supervisor">Supervisor</option>
-                                <option value="Ayudante_general">Ayudante general</option>
+                                <option value="ayudante_general">Ayudante general</option>
                             </select>
                         </div>
-                        <!-- Uniforme -->
+                        <!-- Uniforme (desplegable) -->
                         <div class="section">
-                            <label>Uniforme:</label>
-                            <!-- <div class="help-icon" tabindex="0"
-                                aria-label="Ayuda: Selecciona los tipos de uniforme que se requieren para los colaboradores.">
-                                ?
-                                <span class="tooltip">Ayuda: Selecciona los tipos de uniforme que se
-                                    requieren
-                                    para los colaboradores.</span>
-                            </div> -->
-                            <div class="checkbox-group">
+                            <button type="button" class="accordion">Uniforme</button>
+                            <div class="panel">
                                 <!-- Uniforme superior -->
                                 <label for="uniforme_superior" class="crs-form-label">Parte superior</label>
                                 <label><input type="checkbox" checked id="" value="Bata de la casaca"
@@ -164,17 +157,10 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Equipo de porteccion EPP -->
+                        <!-- Equipo de porteccion EPP (desplegable) -->
                         <div class="section">
-                            <label>Equipo de Protección:</label>
-                            <div class="help-icon" tabindex="0"
-                                aria-label="Ayuda: Selecciona los tipos de equipo de protección personal (EPP) que se requieren para los colaboradores.">
-                                ?
-                                <span class="tooltip">Ayuda: Selecciona los tipos de equipo de
-                                    protección
-                                    personal (EPP) que se requieren para los colaboradores.</span>
-                            </div>
-                            <div class="checkbox-group">
+                            <button type="button" class="accordion">Equipo de Protección:</button>
+                            <div class="panel">
                                 <!-- EQUIPO DE PROTECCIÓN -->
                                 <label for="epp_cabeza" class="crs-form-label">Cabeza</label>
                                 <label><input type="checkbox" id="" value="Cascos" name="epp_cabeza[]" />Cascos
@@ -221,240 +207,266 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Maquinaria -->
+                        <!-- Maquinaria (desplegable) -->
                         <div class="section">
-                            <label>Maquinaria:</label>
-                            <div class="help-icon" tabindex="0"
-                                aria-label="Ayuda: Selecciona los tipos de maquinaria que se requieren para el servicio.">
-                                ?
-                                <span class="tooltip">Ayuda: Selecciona los tipos de maquinaria que se
-                                    requieren para el servicio.</span>
-                            </div>
-                            <div class="checkbox-group">
-                                <label for="maquinaria" class="crs-form-label">Selecciona la
-                                    maquinaria que
-                                    requiera:
-                                </label>
-                                <label><input type="checkbox" id="" value="Fregadoras_de_piso"
-                                        name="maquinaria[]" />Fregadoras
-                                    de
-                                    piso
-                                    <button type="button" class="ver-foto-btn" onclick="verFoto('fregadora')">Ver
-                                        foto</button>
-                                </label><br />
-                                <label><input type="checkbox" id="" value="Pulidora" name="maquinaria[]" />Pulidora
-                                    <button type="button" class="ver-foto-btn" onclick="verFoto('pulidora')">Ver
-                                        foto</button>
-                                </label><br />
-                                <label><input type="checkbox" id="" value="Barredora" name="maquinaria[]" />Barredora
-                                    <button type="button" class="ver-foto-btn" onclick="verFoto('barredora')">Ver
-                                        foto</button>
-                                </label><br />
-                            </div>
-                            <div class="crs-input-group">
-                                <div class="crs-label-wrapper">
-                                    <label for="num_dotaciones_anual_maquinaria" class="crs-form-label"
-                                        style="font-size: 20px; font-weight: bold;">Número de dotaciones
-                                        (Anuales)</label>
-                                    <div class="help-icon" tabindex="0"
-                                        aria-label="Ayuda: Indica el número de dotaciones anuales requeridas para la maquinaria.">
-                                        ?
-                                        <span class="tooltip">Ayuda: Indica el número de dotaciones anuales
-                                            requeridas para la maquinaria.</span>
-                                    </div>
+                            <button type="button" class="accordion">Maquinaria</button>
+                            <div class="panel">
+                                <label>Maquinaria:</label>
+                                <div class="help-icon" tabindex="0"
+                                    aria-label="Ayuda: Selecciona los tipos de maquinaria que se requieren para el servicio.">
+                                    ?
+                                    <span class="tooltip">Ayuda: Selecciona los tipos de maquinaria que se
+                                        requieren para el servicio.</span>
                                 </div>
-                                <input type="number" name="num_dotaciones_anual_maquinaria"
-                                    id="num_dotaciones_anual_maquinaria" placeholder="Ej. 12" class="crs-form-input"
-                                    min="1">
+                                <div class="checkbox-group">
+                                    <label for="maquinaria" class="crs-form-label">Selecciona la
+                                        maquinaria que
+                                        requiera:
+                                    </label>
+                                    <label><input type="checkbox" id="" value="Fregadoras_de_piso"
+                                            name="maquinaria[]" />Fregadoras
+                                        de
+                                        piso
+                                        <button type="button" class="ver-foto-btn" onclick="verFoto('fregadora')">Ver
+                                            foto</button>
+                                    </label><br />
+                                    <label><input type="checkbox" id="" value="Pulidora" name="maquinaria[]" />Pulidora
+                                        <button type="button" class="ver-foto-btn" onclick="verFoto('pulidora')">Ver
+                                            foto</button>
+                                    </label><br />
+                                    <label><input type="checkbox" id="" value="Barredora"
+                                            name="maquinaria[]" />Barredora
+                                        <button type="button" class="ver-foto-btn" onclick="verFoto('barredora')">Ver
+                                            foto</button>
+                                    </label><br />
+                                </div>
+                                <div class="crs-input-group">
+                                    <div class="crs-label-wrapper">
+                                        <label for="num_dotaciones_anual_maquinaria" class="crs-form-label"
+                                            style="font-size: 20px; font-weight: bold;">Número de dotaciones
+                                            (Anuales)</label>
+                                        <div class="help-icon" tabindex="0"
+                                            aria-label="Ayuda: Indica el número de dotaciones anuales requeridas para la maquinaria.">
+                                            ?
+                                            <span class="tooltip">Ayuda: Indica el número de dotaciones anuales
+                                                requeridas para la maquinaria.</span>
+                                        </div>
+                                    </div>
+                                    <input type="number" name="num_dotaciones_anual_maquinaria"
+                                        id="num_dotaciones_anual_maquinaria" placeholder="Ej. 12" class="crs-form-input"
+                                        min="1">
+                                </div>
                             </div>
                         </div>
-                        <!-- Materiales -->
+                        <!-- Materiales (desplegable) -->
                         <div class="section">
-                            <label>Materiales:</label>
-                            <div class="checkbox-group">
-                                <div class="crs-input-group">
-                                    <label for="Materiales" class="crs-form-label">Seleccione si
-                                        requiere
-                                        materiales:
-                                    </label>
-                                    <select name="Materiales" id="Materiales" class="crs-form-input">
-                                        <option value="Sin_materiales">Sin materiales</option>
-                                        <option value="con_materiales">Con materiales</option>
-                                    </select>
-                                </div>
-                                <div id="materiales-container" style="display: none;">
-                                    <label for="con_materiales" class="crs-form-label">Seleccione los
-                                        matreriales
-                                        que
-                                        requiera</label>
-                                    <!-- Quimicos -->
-                                    <label for="quimicos" class="crs-form-label">Quimicos</label>
-                                    <label><input type="checkbox" id="" value="Jabon_multiusos"
-                                            name="quimicos[]" />Jabon
-                                        multiusos
-                                        <button type="button" class="ver-foto-btn"
-                                            onclick="verFoto('jabon_multiusos')">Ver
-                                            foto</button></label><br />
-                                    <label><input type="checkbox" id="" value="Cloro" name="quimicos[]" />Cloro
-                                        <button type="button" class="ver-foto-btn" onclick="verFoto('cloro')">Ver
-                                            foto</button>
-                                    </label><br />
-                                    <label><input type="checkbox" id="" value="Jabon_polvo" name="quimicos[]" />Jabon en
-                                        polvo
-                                        <button type="button" class="ver-foto-btn" onclick="verFoto('jabon_polvo')">Ver
-                                            foto</button>
-                                    </label><br />
-                                    <label><input type="checkbox" id="" value="Limpiador_de_vidrios"
-                                            name="quimicos[]" />Limpiador
-                                        de
-                                        vidrios
-                                        <button type="button" class="ver-foto-btn"
-                                            onclick="verFoto('limpia_vidrios')">Ver
-                                            foto</button>
-                                    </label><br>
-                                    <label><input type="checkbox" id="" value="Sarricida" name="quimicos[]" />Sarricida
-                                        <button type="button" class="ver-foto-btn" onclick="verFoto('sarricida')">Ver
-                                            foto</button>
-                                    </label><br />
-                                    <label><input type="checkbox" id="" value="Limpiador_desengrasante"
-                                            name="quimicos[]" />Limpiador
-                                        desengrasante
-                                        <button type="button" class="ver-foto-btn"
-                                            onclick="verFoto('desengrasante')">Ver
-                                            foto</button>
-                                    </label><br />
-                                    <label><input type="checkbox" id="" value="Jabon_trastes" name="quimicos[]" />Jabon
-                                        para
-                                        trastes
-                                        <button type="button" class="ver-foto-btn"
-                                            onclick="verFoto('jabon_trastes')">Ver
-                                            foto</button>
-                                    </label><br />
-                                    <label><input type="checkbox" id="" value="Jabon_para_manos"
-                                            name="quimicos[]" />Jabón
-                                        para
-                                        manos
-                                        <button type="button" class="ver-foto-btn" onclick="verFoto('jabon_manos')">Ver
-                                            foto</button>
-                                    </label><br />
-                                    <label><input type="checkbox" id="" value="destapacaños"
-                                            name="quimicos[]" />Destapacaños
-                                        <button type="button" class="ver-foto-btn" onclick="verFoto('destapacaños')">Ver
-                                            foto</button>
-                                    </label><br />
-                                    <!-- Jarcieria -->
-                                    <label for="jarcieria" class="crs-form-label">Jarcieria</label>
-                                    <label><input type="checkbox" id="" value="Escobas avanico"
-                                            name="jarcieria[]" />Escobas
-                                        avanico
-                                        <button type="button" class="ver-foto-btn" onclick="verFoto('escobas')">Ver
-                                            foto</button>
-                                    </label><br />
-                                    <label><input type="checkbox" id="" value="Cepillo_rigido"
-                                            name="jarcieria[]" />Cepillo
-                                        rigido
-                                        <button type="button" class="ver-foto-btn" onclick="verFoto('cepillo')">Ver
-                                            foto</button>
-                                    </label><br />
-                                    <label><input type="checkbox" id="" value="Cubetas" name="jarcieria[]" />Cubetas
-                                        <button type="button" class="ver-foto-btn" onclick="verFoto('cubetas')">Ver
-                                            foto</button>
-                                    </label><br />
-                                    <label><input type="checkbox" id="" value="Microfibras"
-                                            name="jarcieria[]" />Microfibras
-                                        <button type="button" class="ver-foto-btn" onclick="verFoto('microfibras')">Ver
-                                            foto</button>
-                                    </label><br />
-                                    <label><input type="checkbox" id="" value="Franela" name="jarcieria[]" />Franela
-                                        <button type="button" class="ver-foto-btn" onclick="verFoto('franelas')">Ver
-                                            foto</button>
-                                    </label><br />
-                                    <label><input type="checkbox" id="" value="Recogedores_lamina"
-                                            name="jarcieria[]" />Recogedores
-                                        de
-                                        lamina
-                                        <button type="button" class="ver-foto-btn" onclick="verFoto('recogedores')">Ver
-                                            foto</button>
-                                    </label><br />
-                                    <label><input type="checkbox" id="" value="Mechudos" name="jarcieria[]" />Mechudos
-                                        <button type="button" class="ver-foto-btn" onclick="verFoto('mechudos')">Ver
-                                            foto</button>
-                                    </label><br />
-                                    <label><input type="checkbox" id="" value="Mops" name="jarcieria[]" />Mops
-                                        <button type="button" class="ver-foto-btn" onclick="verFoto('mops')">Ver
-                                            foto</button>
-                                    </label><br />
-                                    <!-- numero de dotaciones anuales -->
+                            <button type="button" class="accordion">Materiales</button>
+                            <div class="panel">
+                                <label>Materiales:</label>
+                                <div class="checkbox-group">
                                     <div class="crs-input-group">
-                                        <label for="cantidad_jarseria" class="crs-form-label">Número
-                                            de
-                                            dotaciones (Anuales):</label>
-                                        <input type="number" name="cantidad_jarseria" id="cantidad_jarseria"
-                                            placeholder="Ej. 12" class="crs-form-input" min="1">
-                                    </div>
-                                    <!-- tiempo de entrega de dotaciones anuales -->
-                                    <div class="crs-input-group">
-
-                                        <label for="Fecha_entrega_jarcieria" class="crs-form-label">Seleccione
-                                            la
-                                            fecha de entrega que
-
-                                            <label for="fecha_entrega_jarseria" class="crs-form-label">Seleccione la
-                                                fecha de entrega que
-                                                requiere.</label>
-                                            <select name="fecha_entrega_jarseria" id="fecha_entrega_jarseria"
-                                                class="crs-form-input">
-                                                <option value="bimestral">Bimestral</option>
-                                                <option value="trimestarl">Trimestral</option>
-                                                <option value="cuatrimestral">Cuatrimestral</option>
-                                                <option value="semestral">Semestral</option>
-                                            </select>
-                                    </div>
-                                    <!-- Mobiliario de limpieza -->
-                                    <label for="mobiliario" class="crs-form-label">Mobiliario de
-                                        limpieza</label>
-                                    <label><input type="checkbox" id="" value="Despachador_jabon"
-                                            name="mobiliario[]" />Despachador de
-                                        jabon
-                                        <button type="button" class="ver-foto-btn" onclick="verFoto('Lentes')">Ver
-                                            foto</button>
-                                    </label><br />
-                                    <label><input type="checkbox" id="" value="Despachador_manitas"
-                                            name="mobiliario[]" />Despachador de
-                                        manitas</label><br />
-                                    <label><input type="checkbox" id="" value="Despachador_papel"
-                                            name="mobiliario[]" />Despachador para
-                                        papel
-                                        bobina</label><br />
-                                    <label><input type="checkbox" id="" value="Señaletica_piso"
-                                            name="mobiliario[]" />Señaletica de piso
-                                        mojado</label><br />
-                                    <!-- numero de dotaciones anuales -->
-                                    <div class="crs-input-group">
-                                        <label for="cantidad_mobiliario" class="crs-form-label">Número
-                                            de
-                                            dotaciones (Anuales):</label>
-                                        <input type="number" name="cantidad_mobiliario" id="cantidad_mobiliario"
-                                            placeholder="Ej. 12" class="crs-form-input" min="1">
-                                    </div>
-                                    <!-- tiempo de entrega de dotaciones anuales -->
-                                    <div class="crs-input-group">
-                                        <label for="fecha_entrega_mobilario" class="crs-form-label">Seleccione
-                                            la
-                                            fecha de entrega que requiere.</label>
-                                        <select name="fecha_entrega_mobilario" id="fecha_entrega_mobilario"
-                                            class="crs-form-input">
-                                            <option value="semestral">Semestral</option>
-                                            <option value="anual">Anual</option>
+                                        <label for="Materiales" class="crs-form-label">Seleccione si
+                                            requiere
+                                            materiales:
+                                        </label>
+                                        <select name="Materiales" id="Materiales" class="crs-form-input">
+                                            <option value="Sin_materiales">Sin materiales</option>
+                                            <option value="con_materiales">Con materiales</option>
                                         </select>
                                     </div>
+                                    <div id="materiales-container" style="display: none;">
+                                        <label for="con_materiales" class="crs-form-label">Seleccione los
+                                            matreriales
+                                            que
+                                            requiera</label>
+                                        <!-- Quimicos -->
+                                        <button type="button" class="accordion">Quimicos</button>
+                                        <div class="panel">
+                                            <label><input type="checkbox" id="" value="Jabon_multiusos"
+                                                    name="quimicos[]" />Jabon
+                                                multiusos
+                                                <button type="button" class="ver-foto-btn"
+                                                    onclick="verFoto('jabon_multiusos')">Ver
+                                                    foto</button></label><br />
+                                            <label><input type="checkbox" id="" value="Cloro" name="quimicos[]" />Cloro
+                                                <button type="button" class="ver-foto-btn"
+                                                    onclick="verFoto('cloro')">Ver
+                                                    foto</button>
+                                            </label><br />
+                                            <label><input type="checkbox" id="" value="Jabon_polvo"
+                                                    name="quimicos[]" />Jabon en
+                                                polvo
+                                                <button type="button" class="ver-foto-btn"
+                                                    onclick="verFoto('jabon_polvo')">Ver
+                                                    foto</button>
+                                            </label><br />
+                                            <label><input type="checkbox" id="" value="Limpiador_de_vidrios"
+                                                    name="quimicos[]" />Limpiador
+                                                de
+                                                vidrios
+                                                <button type="button" class="ver-foto-btn"
+                                                    onclick="verFoto('limpia_vidrios')">Ver
+                                                    foto</button>
+                                            </label><br>
+                                            <label><input type="checkbox" id="" value="Sarricida"
+                                                    name="quimicos[]" />Sarricida
+                                                <button type="button" class="ver-foto-btn"
+                                                    onclick="verFoto('sarricida')">Ver
+                                                    foto</button>
+                                            </label><br />
+                                            <label><input type="checkbox" id="" value="Limpiador_desengrasante"
+                                                    name="quimicos[]" />Limpiador
+                                                desengrasante
+                                                <button type="button" class="ver-foto-btn"
+                                                    onclick="verFoto('desengrasante')">Ver
+                                                    foto</button>
+                                            </label><br />
+                                            <label><input type="checkbox" id="" value="Jabon_trastes"
+                                                    name="quimicos[]" />Jabon
+                                                para
+                                                trastes
+                                                <button type="button" class="ver-foto-btn"
+                                                    onclick="verFoto('jabon_trastes')">Ver
+                                                    foto</button>
+                                            </label><br />
+                                            <label><input type="checkbox" id="" value="Jabon_para_manos"
+                                                    name="quimicos[]" />Jabón
+                                                para
+                                                manos
+                                                <button type="button" class="ver-foto-btn"
+                                                    onclick="verFoto('jabon_manos')">Ver
+                                                    foto</button>
+                                            </label><br />
+                                            <label><input type="checkbox" id="" value="destapacaños"
+                                                    name="quimicos[]" />Destapacaños
+                                                <button type="button" class="ver-foto-btn"
+                                                    onclick="verFoto('destapacaños')">Ver
+                                                    foto</button>
+                                            </label><br />
+                                        </div>
+                                        <!-- Jarcieria -->
+                                        <button type="button" class="accordion">Jarcieria</button>
+                                        <div class="panel">
+                                            <label><input type="checkbox" id="" value="Escobas avanico"
+                                                    name="jarcieria[]" />Escobas
+                                                avanico
+                                                <button type="button" class="ver-foto-btn"
+                                                    onclick="verFoto('escobas')">Ver
+                                                    foto</button>
+                                            </label><br />
+                                            <label><input type="checkbox" id="" value="Cepillo_rigido"
+                                                    name="jarcieria[]" />Cepillo
+                                                rigido
+                                                <button type="button" class="ver-foto-btn"
+                                                    onclick="verFoto('cepillo')">Ver
+                                                    foto</button>
+                                            </label><br />
+                                            <label><input type="checkbox" id="" value="Cubetas"
+                                                    name="jarcieria[]" />Cubetas
+                                                <button type="button" class="ver-foto-btn"
+                                                    onclick="verFoto('cubetas')">Ver
+                                                    foto</button>
+                                            </label><br />
+                                            <label><input type="checkbox" id="" value="Microfibras"
+                                                    name="jarcieria[]" />Microfibras
+                                                <button type="button" class="ver-foto-btn"
+                                                    onclick="verFoto('microfibras')">Ver
+                                                    foto</button>
+                                            </label><br />
+                                            <label><input type="checkbox" id="" value="Franela"
+                                                    name="jarcieria[]" />Franela
+                                                <button type="button" class="ver-foto-btn"
+                                                    onclick="verFoto('franelas')">Ver
+                                                    foto</button>
+                                            </label><br />
+                                            <label><input type="checkbox" id="" value="Recogedores_lamina"
+                                                    name="jarcieria[]" />Recogedores
+                                                de
+                                                lamina
+                                                <button type="button" class="ver-foto-btn"
+                                                    onclick="verFoto('recogedores')">Ver
+                                                    foto</button>
+                                            </label><br />
+                                            <label><input type="checkbox" id="" value="Mechudos"
+                                                    name="jarcieria[]" />Mechudos
+                                                <button type="button" class="ver-foto-btn"
+                                                    onclick="verFoto('mechudos')">Ver
+                                                    foto</button>
+                                            </label><br />
+                                            <label><input type="checkbox" id="" value="Mops" name="jarcieria[]" />Mops
+                                                <button type="button" class="ver-foto-btn" onclick="verFoto('mops')">Ver
+                                                    foto</button>
+                                            </label><br />
+                                            <!-- numero de dotaciones anuales -->
+                                            <div class="crs-input-group">
+                                                <label for="cantidad_jarseria" class="crs-form-label">Número
+                                                    de
+                                                    dotaciones (Anuales):</label>
+                                                <input type="number" name="cantidad_jarseria" id="cantidad_jarseria"
+                                                    placeholder="Ej. 12" class="crs-form-input" min="1">
+                                            </div>
+                                            <!-- tiempo de entrega de dotaciones anuales -->
+                                            <div class="crs-input-group">
+                                                <label for="Fecha_entrega_jarcieria" class="crs-form-label">Seleccione
+                                                    la fecha de entrega que requiere.</label>
+                                                <label for="fecha_entrega_jarseria" class="crs-form-label">Seleccione la
+                                                    fecha de entrega quen requiere.</label>
+                                                <select name="fecha_entrega_jarseria" id="fecha_entrega_jarseria"
+                                                    class="crs-form-input">
+                                                    <option value="bimestral">Bimestral</option>
+                                                    <option value="trimestarl">Trimestral</option>
+                                                    <option value="cuatrimestral">Cuatrimestral</option>
+                                                    <option value="semestral">Semestral</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!-- Mobiliario de limpieza -->
+                                        <button type="button" class="accordion">Mobiliario de limpieza</button>
+                                        <div class="panel">
+                                            <label><input type="checkbox" id="" value="Despachador_jabon"
+                                                    name="mobiliario[]" />Despachador de
+                                                jabon
+                                                <button type="button" class="ver-foto-btn"
+                                                    onclick="verFoto('Lentes')">Ver
+                                                    foto</button>
+                                            </label><br />
+                                            <label><input type="checkbox" id="" value="Despachador_manitas"
+                                                    name="mobiliario[]" />Despachador de
+                                                manitas</label><br />
+                                            <label><input type="checkbox" id="" value="Despachador_papel"
+                                                    name="mobiliario[]" />Despachador para
+                                                papel
+                                                bobina</label><br />
+                                            <label><input type="checkbox" id="" value="Señaletica_piso"
+                                                    name="mobiliario[]" />Señaletica de piso
+                                                mojado</label><br />
+                                            <!-- numero de dotaciones anuales -->
+                                            <div class="crs-input-group">
+                                                <label for="cantidad_mobiliario" class="crs-form-label">Número
+                                                    de
+                                                    dotaciones (Anuales):</label>
+                                                <input type="number" name="cantidad_mobiliario" id="cantidad_mobiliario"
+                                                    placeholder="Ej. 12" class="crs-form-input" min="1">
+                                            </div>
+                                            <!-- tiempo de entrega de dotaciones anuales -->
+                                            <div class="crs-input-group">
+                                                <label for="fecha_entrega_mobilario" class="crs-form-label">Seleccione
+                                                    la
+                                                    fecha de entrega que requiere.</label>
+                                                <select name="fecha_entrega_mobilario" id="fecha_entrega_mobilario"
+                                                    class="crs-form-input">
+                                                    <option value="semestral">Semestral</option>
+                                                    <option value="anual">Anual</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+
+                                <button type="button" id="btn-registrar">Registrar Colaborador</button>
                             </div>
                         </div>
-
-                        <button id="btn-registrar">Registrar Colaborador</button>
-                    </div>
-                </div>
+                        <button type="submit" id="btn-enviar" class="hidden">Enviar Cotización</button>
             </form>
         </div>
     </div>
@@ -464,6 +476,7 @@
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script type="module" src="./public/JS/mapa.js"></script>
     <script src="./public/JS/map-steps.js"></script>
+    <script src="./public/JS/map-form.js"></script>
 </body>
 
 </html>

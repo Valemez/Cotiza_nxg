@@ -12,12 +12,6 @@ introJs.tour().onbeforeexit(function () {
 }).start()
 
 
-// Mostrar/ocultar materiales según selección
-// document.getElementById('Materiales').addEventListener('change', function () {
-//     const materialesContainer = document.getElementById('materiales-container');
-//     materialesContainer.style.display = this.value === 'con_materiales' ? 'block' : 'none';
-// });
-
 document.addEventListener('DOMContentLoaded', function () {
     // elementos
     const stepMenus = [

@@ -1,0 +1,139 @@
+.accordion {
+    background: #f1f1f1;
+    color: #222;
+    border-radius: 6px;
+    margin-bottom: 4px;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 8px 12px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.accordion.active,
+.accordion:hover {
+    background: #36d1c4;
+    color: #fff;
+}
+.panel {
+    padding: 8px 0 8px 12px;
+    background: #fafafa;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    display: none;
+    overflow-x: auto;
+}
+
+/* Botones generales */
+button,
+input[type="submit"] {
+    background: linear-gradient(90deg, #36d1c4 0%, #5b86e5 100%);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 22px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(52, 231, 231, 0.15);
+    transition: background 0.3s, transform 0.2s;
+    margin: 8px 0;
+    outline: none;
+}
+
+button:hover,
+input[type="submit"]:hover {
+    background: linear-gradient(90deg, #5b86e5 0%, #36d1c4 100%);
+    transform: translateY(-2px) scale(1.04);
+}
+
+button:active,
+input[type="submit"]:active {
+    background: #36d1c4;
+    transform: scale(0.98);
+}
+
+/* Scroll personalizado */
+.pin-form-content::-webkit-scrollbar {
+    width: 8px;
+    background: #e0e0e0;
+    border-radius: 8px;
+}
+.pin-form-content::-webkit-scrollbar-thumb {
+    background: #36d1c4;
+    border-radius: 8px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .pin-form-content {
+        max-width: 98vw;
+        padding: 12px 4px;
+    }
+    button,
+    input[type="submit"] {
+        font-size: 15px;
+        padding: 8px 12px;
+    }
+}
+
+/* Accordion improvements */
+.accordion {
+    background: #f1f1f1;
+    color: #222;
+    border-radius: 6px;
+    margin-bottom: 4px;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 8px 12px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.accordion.active,
+.accordion:hover {
+    background: #36d1c4;
+    color: #fff;
+}
+.panel {
+    padding: 8px 0 8px 12px;
+    background: #fafafa;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    display: none;
+    overflow-x: auto;
+}
+
+/* Form fields */
+.form-group label,
+.section label {
+    font-weight: 500;
+    margin-bottom: 2px;
+    display: block;
+}
+.form-group input,
+.section select,
+.crs-form-input {
+    width: 100%;
+    padding: 7px 10px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    border: 1px solid #d1d1d1;
+    font-size: 15px;
+    background: #f9f9f9;
+}
+
+/* Collaborator count */
+.collaborator-count {
+    font-size: 16px;
+    font-weight: 600;
+    color: #36d1c4;
+    margin-bottom: 10px;
+}
+
+/* Hide elements */
+.hidden {
+    display: none !important;
+}
